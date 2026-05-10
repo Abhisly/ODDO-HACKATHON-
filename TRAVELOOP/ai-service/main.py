@@ -7,4 +7,4 @@ app = FastAPI(title="Traveloop AI Service")
 async def root():
     return {"message": "Traveloop AI Service is online"}
 
-# app.include_router(api_v1_router, prefix="/api/v1")
+app.include_router(api_v1_router, prefix="/api/v1")
