@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, MapPin, X } from 'lucide-react';
-import { CityDestination, searchDestinations } from '@/lib/destinationData';
+import { destinationApi } from '@/lib/api';
+import { CityDestination } from '@/lib/destinationData';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -15,12 +16,45 @@ interface Props {
 export default function CitySearchInput({ onSelect, placeholder = 'Search a city...', excludeIds = [] }: Props) {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
-  const [results, setResults] = useState<CityDestination[]>([]);
+  const [allCities, setAllCities] = useState<CityDestination[]>([]);
+  const [loading, setLoading] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setResults(searchDestinations(query).filter(d => !excludeIds.includes(d.id)));
-  }, [query, excludeIds.join(',')]);
+    const fetchCities = async () => {
+      setLoading(true);
+      try {
+        const data = await destinationApi.getAllCities();
+        const mappedCities: CityDestination[] = data.map((c: any) => ({
+          id: c.id,
+          name: c.city,
+          country: c.country || '',
+          countryCode: '📍', // Placeholder or derive from country
+          image: c.heroImage || '',
+          heroImage: c.heroImage || '',
+          description: c.description || '',
+          costPerDay: c.averageBudgetPerDay || 100,
+          weather: { temp: 25, condition: c.climate || 'Clear', icon: 'Sun' }, // Mocking weather
+          spots: [] // We'll fetch spots when the city is selected or use famousFor
+        }));
+        setAllCities(mappedCities);
+      } catch (err) {
+        console.error('Failed to fetch cities:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCities();
+  }, []);
+
+  const results = useMemo(() => {
+    if (!query) return [];
+    const q = query.toLowerCase();
+    return allCities.filter(d => 
+      !excludeIds.includes(d.id) && 
+      (d.name.toLowerCase().includes(q) || d.country.toLowerCase().includes(q))
+    );
+  }, [query, allCities, excludeIds]);
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -30,10 +64,32 @@ export default function CitySearchInput({ onSelect, placeholder = 'Search a city
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
-  const handleSelect = (city: CityDestination) => {
-    onSelect(city);
-    setQuery('');
-    setOpen(false);
+  const handleSelect = async (city: CityDestination) => {
+    setLoading(true);
+    try {
+      const data = await destinationApi.getCityDetails(city.name);
+      const fullCity: CityDestination = {
+        ...city,
+        spots: data.famousPlaces.map((p: any) => ({
+          id: p.id,
+          name: p.name,
+          image: p.images?.[0] || '',
+          category: p.category || 'Landmark',
+          rating: p.rating || 4.5,
+          durationHours: p.durationHours || 2,
+          description: p.description || '',
+          estimatedCost: p.estimatedCost || 0
+        }))
+      };
+      onSelect(fullCity);
+    } catch (err) {
+      console.error('Failed to fetch city details:', err);
+      onSelect(city); // Fallback to partial city
+    } finally {
+      setLoading(false);
+      setQuery('');
+      setOpen(false);
+    }
   };
 
   return (

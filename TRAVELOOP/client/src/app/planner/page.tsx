@@ -4,15 +4,18 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import { ArrowRight, MapPin, Compass, Clock, DollarSign, Plane, ChevronRight, Sparkles, Check, Calendar } from 'lucide-react';
-import { CityDestination, DESTINATION_DATA } from '@/lib/destinationData';
+import { CityDestination } from '@/lib/destinationData';
 import { TripStop } from '@/components/features/DestinationStopCard';
 import DestinationStopCard from '@/components/features/DestinationStopCard';
 import SightseeingGallery from '@/components/features/SightseeingGallery';
-import CitySearchInput from '@/components/features/CitySearchInput';
+import { destinationApi } from '@/lib/api';
 import { useTravelStore } from '@/lib/store';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { addDays, format } from 'date-fns';
+import { useEffect } from 'react';
+
+import CitySearchInput from '@/components/features/CitySearchInput';
 
 type Phase = 'build' | 'explore' | 'preview';
 
@@ -29,9 +32,34 @@ export default function PlannerPage() {
   const [tripName, setTripName] = useState('');
   const [startDate, setStartDate] = useState<string>(format(addDays(new Date(), 7), 'yyyy-MM-dd'));
   const [isGenerating, setIsGenerating] = useState(false);
+  const [popularCities, setPopularCities] = useState<CityDestination[]>([]);
 
   const { addTrip } = useTravelStore();
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchPopular = async () => {
+      try {
+        const data = await destinationApi.getAllCities();
+        const mapped: CityDestination[] = data.map((c: any) => ({
+          id: c.id,
+          name: c.city,
+          country: c.country || '',
+          countryCode: '📍',
+          image: c.heroImage || '',
+          heroImage: c.heroImage || '',
+          description: c.description || '',
+          costPerDay: c.averageBudgetPerDay || 100,
+          weather: { temp: 25, condition: c.climate || 'Clear', icon: 'Sun' },
+          spots: []
+        }));
+        setPopularCities(mapped);
+      } catch (err) {
+        console.error('Failed to fetch popular cities:', err);
+      }
+    };
+    fetchPopular();
+  }, []);
 
   // --- Derived State ---
   const totalDays = stops.reduce((s, stop) => s + stop.days, 0);
@@ -213,10 +241,30 @@ export default function PlannerPage() {
                   <div>
                     <p className="text-xs font-bold tracking-widest uppercase text-luxury-charcoal/50 dark:text-white/40 mb-3">Popular Destinations</p>
                     <div className="grid grid-cols-2 gap-3">
-                      {DESTINATION_DATA.filter(d => !stops.find(s => s.city.id === d.id)).slice(0, 6).map(city => (
+                      {popularCities.filter(d => !stops.find(s => s.city.id === d.id)).slice(0, 6).map(city => (
                         <button
                           key={city.id}
-                          onClick={() => addStop(city)}
+                          onClick={async () => {
+                            try {
+                              const data = await destinationApi.getCityDetails(city.name);
+                              const fullCity: CityDestination = {
+                                ...city,
+                                spots: data.famousPlaces.map((p: any) => ({
+                                  id: p.id,
+                                  name: p.name,
+                                  image: p.images?.[0] || '',
+                                  category: p.category || 'Landmark',
+                                  rating: p.rating || 4.5,
+                                  durationHours: p.durationHours || 2,
+                                  description: p.description || '',
+                                  estimatedCost: p.estimatedCost || 0
+                                }))
+                              };
+                              addStop(fullCity);
+                            } catch (err) {
+                              addStop(city);
+                            }
+                          }}
                           className="relative h-24 rounded-xl overflow-hidden group border border-white/20 dark:border-white/10 hover:border-red-400 transition-all"
                         >
                           <img src={city.image} alt={city.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />

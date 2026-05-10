@@ -1,0 +1,579 @@
+{
+  "famousPlaces": [
+    {
+      "id": "place_001",
+      "city": "Tokyo",
+      "country": "Japan",
+      "name": "Shibuya Crossing",
+      "description": "The world's busiest pedestrian crossing, where up to 3,000 people cross simultaneously from all directions. Surrounded by neon billboards and towering screens, it's the pulsating heart of modern Tokyo — best experienced from the Starbucks or Mag's Park rooftop above.",
+      "category": "landmarks",
+      "images": [
+        "https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=800&q=80",
+        "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?w=800&q=80"
+      ],
+      "estimatedCost": 0,
+      "durationHours": 1.5,
+      "rating": 4.8,
+      "bestTimeToVisit": "Evening, 6PM–10PM",
+      "openingHours": "24 hours",
+      "coordinates": { "lat": 35.6598, "lng": 139.7004 },
+      "tips": [
+        "Visit at night for the full neon effect",
+        "Grab a window seat at the Starbucks above for the best aerial view",
+        "Weekends are significantly more crowded"
+      ]
+    },
+    {
+      "id": "place_002",
+      "city": "Tokyo",
+      "country": "Japan",
+      "name": "Senso-ji Temple",
+      "description": "Tokyo's oldest and most revered Buddhist temple, founded in 628 AD in the Asakusa district. The iconic Kaminarimon Thunder Gate with its giant red lantern leads to Nakamise shopping street, lined with traditional crafts and snacks before the main hall.",
+      "category": "temples",
+      "images": [
+        "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=800&q=80",
+        "https://images.unsplash.com/photo-1605108040955-1eba8fba0b9f?w=800&q=80"
+      ],
+      "estimatedCost": 0,
+      "durationHours": 2,
+      "rating": 4.7,
+      "bestTimeToVisit": "Early morning, before 8AM",
+      "openingHours": "6:00 AM – 5:00 PM",
+      "coordinates": { "lat": 35.7147, "lng": 139.7967 },
+      "tips": [
+        "Arrive before 8AM to experience the temple without crowds",
+        "Draw an omikuji (fortune paper) — if bad, tie it to the rack",
+        "The Nakamise Dori shopping street opens around 10AM"
+      ]
+    },
+    {
+      "id": "place_003",
+      "city": "Kyoto",
+      "country": "Japan",
+      "name": "Fushimi Inari Shrine",
+      "description": "A breathtaking tunnel of over 10,000 vibrant vermillion torii gates that winds up Mount Inari. Dedicated to Inari, the Shinto god of foxes, rice, and prosperity, this is Kyoto's most iconic sight — a two-hour hike takes you to the mountain summit with panoramic views.",
+      "category": "temples",
+      "images": [
+        "https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80",
+        "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80"
+      ],
+      "estimatedCost": 0,
+      "durationHours": 3,
+      "rating": 4.9,
+      "bestTimeToVisit": "Sunrise or after 4PM",
+      "openingHours": "24 hours",
+      "coordinates": { "lat": 34.9671, "lng": 135.7727 },
+      "tips": [
+        "Go at sunrise or late afternoon to avoid tour groups",
+        "The higher you climb, the fewer people you'll encounter",
+        "Wear comfortable shoes — it's 4km round trip with elevation"
+      ]
+    },
+    {
+      "id": "place_004",
+      "city": "Paris",
+      "country": "France",
+      "name": "Eiffel Tower",
+      "description": "Gustave Eiffel's iron masterpiece is the world's most-visited monument, rising 330 meters above the Seine. Built in 1889 and initially condemned by Parisian critics, it's now the defining symbol of France. The summit view stretches 70km on a clear day, with Champagne available at the top.",
+      "category": "landmarks",
+      "images": [
+        "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=800&q=80",
+        "https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=800&q=80"
+      ],
+      "estimatedCost": 28,
+      "durationHours": 2.5,
+      "rating": 4.8,
+      "bestTimeToVisit": "Dusk or after 9PM for light show",
+      "openingHours": "9:00 AM – 12:45 AM",
+      "coordinates": { "lat": 48.8584, "lng": 2.2945 },
+      "tips": [
+        "Book summit tickets 2 months in advance",
+        "The hourly light show runs until 1AM and is free to watch from Trocadéro",
+        "Taking the stairs to the 2nd floor is cheaper and faster than the queue"
+      ]
+    },
+    {
+      "id": "place_005",
+      "city": "Paris",
+      "country": "France",
+      "name": "The Louvre Museum",
+      "description": "The world's largest art museum and home to over 380,000 works including the Mona Lisa, Venus de Milo, and Winged Victory. The stunning glass pyramid entrance designed by I.M. Pei creates a magnificent contrast with the 800-year-old palace that surrounds it.",
+      "category": "museums",
+      "images": [
+        "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
+        "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80"
+      ],
+      "estimatedCost": 17,
+      "durationHours": 4,
+      "rating": 4.7,
+      "bestTimeToVisit": "Wednesday or Friday evenings (open until 9:45PM)",
+      "openingHours": "9:00 AM – 6:00 PM (Closed Tuesday)",
+      "coordinates": { "lat": 48.8606, "lng": 2.3376 },
+      "tips": [
+        "Pre-book timed entry tickets to avoid the pyramid queue",
+        "Wednesday & Friday evenings are significantly less crowded",
+        "Download the Louvre app for interactive maps and artwork guides"
+      ]
+    },
+    {
+      "id": "place_006",
+      "city": "Dubai",
+      "country": "UAE",
+      "name": "Burj Khalifa",
+      "description": "At 828 meters, the Burj Khalifa is the world's tallest building — a tapering silver spire that pierces the desert sky and can be seen from 95km away. The At the Top observation deck on floor 124 and the premium SKY level on floor 148 offer vertigo-inducing views across the Gulf and desert.",
+      "category": "landmarks",
+      "images": [
+        "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80",
+        "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800&q=80"
+      ],
+      "estimatedCost": 45,
+      "durationHours": 2,
+      "rating": 4.7,
+      "bestTimeToVisit": "30 minutes before sunset",
+      "openingHours": "8:30 AM – 11:00 PM",
+      "coordinates": { "lat": 25.1972, "lng": 55.2744 },
+      "tips": [
+        "Book the SKY level (floor 148) for a more exclusive experience with fewer crowds",
+        "Arrive 30 minutes before sunset to witness the transition from day to the illuminated city at night",
+        "The Dubai Fountain show below runs every 30 minutes after 6PM"
+      ]
+    },
+    {
+      "id": "place_007",
+      "city": "Dubai",
+      "country": "UAE",
+      "name": "Palm Jumeirah",
+      "description": "The world's largest artificial island, shaped like a palm tree and visible from space, is home to ultra-luxury hotels including the Atlantis and the One&Only. The Palm Monorail connects its fronds, and the boardwalk offers stunning views of the Dubai Marina skyline.",
+      "category": "landmarks",
+      "images": [
+        "https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=800&q=80",
+        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80"
+      ],
+      "estimatedCost": 5,
+      "durationHours": 3,
+      "rating": 4.5,
+      "bestTimeToVisit": "Late afternoon for golden hour photography",
+      "openingHours": "24 hours",
+      "coordinates": { "lat": 25.1124, "lng": 55.1390 },
+      "tips": [
+        "Take the Palm Monorail for a unique overhead view of the island",
+        "Aquaventure Waterpark at Atlantis is a full day attraction",
+        "The Pointe mall area on the tip has great skyline views"
+      ]
+    },
+    {
+      "id": "place_008",
+      "city": "Singapore",
+      "country": "Singapore",
+      "name": "Marina Bay Sands",
+      "description": "One of the most recognizable buildings in Asia — three 55-story towers topped by a 340-meter-long SkyPark with the world's largest rooftop infinity pool. The complex includes the ArtScience Museum, a luxury casino, and a rooftop observation deck offering stunning panoramic views.",
+      "category": "landmarks",
+      "images": [
+        "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80",
+        "https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=800&q=80"
+      ],
+      "estimatedCost": 23,
+      "durationHours": 3,
+      "rating": 4.8,
+      "bestTimeToVisit": "Sunset, around 7PM",
+      "openingHours": "SkyPark: 11:00 AM – 9:00 PM",
+      "coordinates": { "lat": 1.2838, "lng": 103.8607 },
+      "tips": [
+        "Hotel guests have exclusive access to the infinity pool — worth considering for a splurge",
+        "The non-hotel observation deck offers similar views at a fraction of the cost",
+        "Spectra light show at Event Plaza is free every night at 8PM and 9PM"
+      ]
+    },
+    {
+      "id": "place_009",
+      "city": "Singapore",
+      "country": "Singapore",
+      "name": "Gardens by the Bay",
+      "description": "An otherworldly 101-hectare nature park featuring the Supertree Grove — 16-story vertical gardens that come alive with a spectacular light and sound show each evening. The Cloud Forest dome contains a 35-meter indoor waterfall and mountain shrouded in mist inside a climate-controlled greenhouse.",
+      "category": "nature",
+      "images": [
+        "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80",
+        "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&q=80"
+      ],
+      "estimatedCost": 28,
+      "durationHours": 3.5,
+      "rating": 4.8,
+      "bestTimeToVisit": "Evening, for the Garden Rhapsody light show at 7:45PM",
+      "openingHours": "5:00 AM – 2:00 AM (outdoor); 9:00 AM – 9:00 PM (conservatories)",
+      "coordinates": { "lat": 1.2816, "lng": 103.8636 },
+      "tips": [
+        "Garden Rhapsody show is free and runs every evening at 7:45PM and 8:45PM",
+        "The OCBC Skyway walkway between Supertrees is worth the extra fee",
+        "Combine with Marina Bay Sands visit in the same evening"
+      ]
+    },
+    {
+      "id": "place_010",
+      "city": "New York",
+      "country": "USA",
+      "name": "Central Park",
+      "description": "The 843-acre green lung of Manhattan is the world's most-visited urban park — a masterpiece of landscape design with meadows, woodland, a lake, an ice-skating rink, and famous sights like Bethesda Fountain, Strawberry Fields, and Belvedere Castle. The skyline views from the park are unmatched.",
+      "category": "nature",
+      "images": [
+        "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80",
+        "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80"
+      ],
+      "estimatedCost": 0,
+      "durationHours": 3,
+      "rating": 4.8,
+      "bestTimeToVisit": "Morning or fall/spring afternoons",
+      "openingHours": "6:00 AM – 1:00 AM",
+      "coordinates": { "lat": 40.7851, "lng": -73.9683 },
+      "tips": [
+        "Rent a bicycle to cover more ground",
+        "The Loeb Boathouse restaurant is perfect for a leisurely lunch by the lake",
+        "Strawberry Fields memorial is a tranquil tribute to John Lennon"
+      ]
+    },
+    {
+      "id": "place_011",
+      "city": "New York",
+      "country": "USA",
+      "name": "The Metropolitan Museum of Art",
+      "description": "The Met is the largest art museum in the Americas, spanning 17 acres and containing over 1.5 million works from 5,000 years of human history. From Egyptian mummies to Impressionist masterpieces to medieval armor, a single visit barely scratches the surface. The rooftop garden offers Central Park panoramas.",
+      "category": "museums",
+      "images": [
+        "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?w=800&q=80",
+        "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80"
+      ],
+      "estimatedCost": 30,
+      "durationHours": 4,
+      "rating": 4.8,
+      "bestTimeToVisit": "Thursday evening (open until 9PM)",
+      "openingHours": "10:00 AM – 5:00 PM (Thu–Sat until 9:00 PM; closed Tuesday)",
+      "coordinates": { "lat": 40.7794, "lng": -73.9632 },
+      "tips": [
+        "Thursday evenings are the least crowded time to visit",
+        "The Temple of Dendur and the Egyptian collection are must-sees",
+        "The rooftop bar is open seasonally with spectacular Central Park views"
+      ]
+    },
+    {
+      "id": "place_012",
+      "city": "Rome",
+      "country": "Italy",
+      "name": "The Colosseum",
+      "description": "The Flavian Amphitheatre — the world's largest ancient amphitheatre — was completed in 80 AD and could seat 80,000 spectators watching gladiatorial combat. Its engineering brilliance and dramatic ruins remain one of humanity's most awe-inspiring architectural achievements.",
+      "category": "historical places",
+      "images": [
+        "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&q=80",
+        "https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=800&q=80"
+      ],
+      "estimatedCost": 18,
+      "durationHours": 2.5,
+      "rating": 4.9,
+      "bestTimeToVisit": "Morning, 9AM–10AM",
+      "openingHours": "9:00 AM – 7:00 PM",
+      "coordinates": { "lat": 41.8902, "lng": 12.4922 },
+      "tips": [
+        "Pre-book timed entry tickets online to avoid 2-hour queues",
+        "The SUPER ticket includes Roman Forum and underground arena access",
+        "Visit on a Monday when Roman Forum is less busy"
+      ]
+    },
+    {
+      "id": "place_013",
+      "city": "Rome",
+      "country": "Italy",
+      "name": "Vatican Museums & Sistine Chapel",
+      "description": "The Vatican Museums contain one of the world's greatest art collections, accumulated over 500 years by the popes. The journey culminates in Michelangelo's Sistine Chapel — one of humanity's supreme artistic achievements, where the Creation of Adam fresco has moved visitors to tears for five centuries.",
+      "category": "museums",
+      "images": [
+        "https://images.unsplash.com/photo-1555992457-b8fefdd09069?w=800&q=80",
+        "https://images.unsplash.com/photo-1516550893923-42d28e5677af?w=800&q=80"
+      ],
+      "estimatedCost": 20,
+      "durationHours": 4,
+      "rating": 4.9,
+      "bestTimeToVisit": "Friday evenings (extended hours, fewer crowds)",
+      "openingHours": "9:00 AM – 6:00 PM (Mon–Sat)",
+      "coordinates": { "lat": 41.9065, "lng": 12.4536 },
+      "tips": [
+        "Book the early morning 7AM access tour for a near-empty Sistine Chapel",
+        "Modest dress is required — cover shoulders and knees",
+        "The Gallery of Maps is often overlooked but stunningly beautiful"
+      ]
+    },
+    {
+      "id": "place_014",
+      "city": "Bali",
+      "country": "Indonesia",
+      "name": "Tanah Lot Temple",
+      "description": "One of Bali's most iconic sea temples, perched dramatically on an offshore rock formation surrounded by crashing waves. During low tide, visitors can walk across to the temple; at high tide, it becomes an island. The sunset views here are legendary among photographers and romantic travelers.",
+      "category": "temples",
+      "images": [
+        "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
+        "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80"
+      ],
+      "estimatedCost": 5,
+      "durationHours": 2,
+      "rating": 4.6,
+      "bestTimeToVisit": "30–60 minutes before sunset",
+      "openingHours": "7:00 AM – 7:00 PM",
+      "coordinates": { "lat": -8.6211, "lng": 115.0869 },
+      "tips": [
+        "Check tide times in advance — low tide gives access to the temple base",
+        "Arrive 90 minutes before sunset to secure a good viewing spot",
+        "The surrounding cliffside restaurants offer perfect sunset views with cocktails"
+      ]
+    },
+    {
+      "id": "place_015",
+      "city": "Bali",
+      "country": "Indonesia",
+      "name": "Tegalalang Rice Terraces",
+      "description": "The UNESCO-listed rice terraces of Tegalalang in Ubud are a masterpiece of traditional Balinese Subak irrigation — a 1,000-year-old cooperative water management system. The emerald green stepped paddies descend into a lush valley, offering some of Bali's most photographed landscapes.",
+      "category": "nature",
+      "images": [
+        "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80",
+        "https://images.unsplash.com/photo-1573790387438-4da905039392?w=800&q=80"
+      ],
+      "estimatedCost": 3,
+      "durationHours": 2.5,
+      "rating": 4.5,
+      "bestTimeToVisit": "Early morning, 7AM–9AM",
+      "openingHours": "8:00 AM – 6:00 PM",
+      "coordinates": { "lat": -8.4322, "lng": 115.2779 },
+      "tips": [
+        "Go early to avoid tour buses and capture the morning mist",
+        "The swing above the terraces is touristy but offers incredible photo opportunities",
+        "Several cafes on the ridge offer breakfast with panoramic views"
+      ]
+    },
+    {
+      "id": "place_016",
+      "city": "Istanbul",
+      "country": "Turkey",
+      "name": "Hagia Sophia",
+      "description": "Built in 537 AD as a cathedral, converted to a mosque in 1453, a museum for 85 years, and reconverted to an active mosque in 2020, Hagia Sophia is a building that embodies civilizational history. Its soaring 56-meter dome was the world's largest for nearly a millennium.",
+      "category": "historical places",
+      "images": [
+        "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800&q=80",
+        "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&q=80"
+      ],
+      "estimatedCost": 0,
+      "durationHours": 2,
+      "rating": 4.8,
+      "bestTimeToVisit": "Weekday mornings, 9AM",
+      "openingHours": "Open daily except during prayer times",
+      "coordinates": { "lat": 41.0086, "lng": 28.9802 },
+      "tips": [
+        "Entry is now free but bring appropriate attire — modest dress required",
+        "Women must cover their hair with a scarf inside",
+        "Visit just after prayer time ends for the best access to the interior"
+      ]
+    },
+    {
+      "id": "place_017",
+      "city": "Istanbul",
+      "country": "Turkey",
+      "name": "Grand Bazaar",
+      "description": "One of the world's oldest and largest covered markets, the Grand Bazaar has over 4,000 shops spread across 61 covered streets and has been trading since 1461. Explore its labyrinthine alleys for hand-painted ceramics, Turkish carpets, gold jewellery, spices, and traditional lanterns.",
+      "category": "shopping",
+      "images": [
+        "https://images.unsplash.com/photo-1527838832700-5059252407fa?w=800&q=80",
+        "https://images.unsplash.com/photo-1570939274717-7eda259b50ed?w=800&q=80"
+      ],
+      "estimatedCost": 0,
+      "durationHours": 3,
+      "rating": 4.4,
+      "bestTimeToVisit": "Weekday mornings",
+      "openingHours": "8:30 AM – 7:00 PM (Closed Sunday)",
+      "coordinates": { "lat": 41.0108, "lng": 28.9680 },
+      "tips": [
+        "Bargaining is expected — start at 50% of the asking price",
+        "The Spice Bazaar nearby offers Turkish delight, teas, and dried fruits",
+        "Watch for tourist-trap prices near main entrances — venture deeper for better deals"
+      ]
+    },
+    {
+      "id": "place_018",
+      "city": "Seoul",
+      "country": "South Korea",
+      "name": "Gyeongbokgung Palace",
+      "description": "The grandest of Seoul's five royal palaces, Gyeongbokgung was the main royal palace of the Joseon dynasty for over 500 years. Its magnificent throne hall, reflecting pond, and traditional Gyeonghoeru Pavilion stand beautifully amid the modern city skyline — a profound contrast of Korea's past and present.",
+      "category": "historical places",
+      "images": [
+        "https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=800&q=80",
+        "https://images.unsplash.com/photo-1583425921686-c5daf5f49e4a?w=800&q=80"
+      ],
+      "estimatedCost": 3,
+      "durationHours": 2.5,
+      "rating": 4.7,
+      "bestTimeToVisit": "Changing of the Guard ceremony at 10AM or 2PM",
+      "openingHours": "9:00 AM – 6:00 PM (Closed Tuesday)",
+      "coordinates": { "lat": 37.5796, "lng": 126.9770 },
+      "tips": [
+        "Rent a hanbok (traditional dress) for free entry and beautiful photos",
+        "The National Folk Museum inside the palace grounds is free and fascinating",
+        "The Changing of the Royal Guard ceremony is spectacular and free to watch"
+      ]
+    },
+    {
+      "id": "place_019",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "name": "The Grand Palace",
+      "description": "The official residence of the Kings of Siam since 1782, the Grand Palace is Thailand's most spectacular architectural complex — a dazzling ensemble of gilded spires, mirrored mosaic, and ornate Thai craftsmanship covering 218,000 square meters. Within its walls sits Wat Phra Kaew, home to the revered Emerald Buddha.",
+      "category": "historical places",
+      "images": [
+        "https://images.unsplash.com/photo-1584361853901-dd1904bb7987?w=800&q=80",
+        "https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=800&q=80"
+      ],
+      "estimatedCost": 15,
+      "durationHours": 3,
+      "rating": 4.7,
+      "bestTimeToVisit": "Morning, 8:30AM when it opens",
+      "openingHours": "8:30 AM – 3:30 PM",
+      "coordinates": { "lat": 13.7500, "lng": 100.4921 },
+      "tips": [
+        "Dress modestly — cover shoulders and knees; free clothing loans available at entry",
+        "Go early to avoid the heat and tour groups",
+        "Combine with Wat Pho temple (5 min walk) on the same visit"
+      ]
+    },
+    {
+      "id": "place_020",
+      "city": "Maldives",
+      "country": "Maldives",
+      "name": "Baa Atoll Biosphere Reserve",
+      "description": "A UNESCO Biosphere Reserve and one of the world's greatest marine ecosystems, Baa Atoll is home to Hanifaru Bay — where the world's largest gatherings of manta rays and whale sharks occur seasonally. The kaleidoscopic coral reefs teem with sea turtles, eagle rays, and over 1,200 species of fish.",
+      "category": "nature",
+      "images": [
+        "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80",
+        "https://images.unsplash.com/photo-1540202404-a2f29016b523?w=800&q=80"
+      ],
+      "estimatedCost": 80,
+      "durationHours": 6,
+      "rating": 4.9,
+      "bestTimeToVisit": "June–November for manta ray season",
+      "openingHours": "Guided excursions: 6:00 AM – 5:00 PM",
+      "coordinates": { "lat": 5.1333, "lng": 72.9500 },
+      "tips": [
+        "Only snorkelling (not scuba) is permitted in Hanifaru Bay to protect the ecosystem",
+        "Book manta/whale shark excursions through your resort in advance",
+        "Calm days (no wind) are best for visibility — check conditions the night before"
+      ]
+    },
+    {
+      "id": "place_021",
+      "city": "Sydney",
+      "country": "Australia",
+      "name": "Sydney Opera House",
+      "description": "Jørn Utzon's 1973 masterpiece is the defining symbol of Australia — its dramatic sail-shaped shell roofs housing multiple performance venues on the edge of Bennelong Point. Designated a UNESCO World Heritage Site in 2007, it hosts over 1,800 performances annually and can be toured even without attending a show.",
+      "category": "landmarks",
+      "images": [
+        "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&q=80",
+        "https://images.unsplash.com/photo-1524820197278-540916411e20?w=800&q=80"
+      ],
+      "estimatedCost": 45,
+      "durationHours": 2,
+      "rating": 4.8,
+      "bestTimeToVisit": "Morning or for an evening performance",
+      "openingHours": "Box Office: 9:00 AM – 8:30 PM",
+      "coordinates": { "lat": -33.8568, "lng": 151.2153 },
+      "tips": [
+        "Attending an evening performance offers the best interior experience",
+        "The forecourt often has free outdoor performances and events",
+        "The Opera Bar below has some of the city's best harbour sunset views"
+      ]
+    },
+    {
+      "id": "place_022",
+      "city": "Cape Town",
+      "country": "South Africa",
+      "name": "Table Mountain",
+      "description": "One of the world's most recognizable natural landmarks, Table Mountain's flat-topped summit at 1,086 meters offers 360-degree views across Cape Town, the Cape Peninsula, Robben Island, and Table Bay. The aerial cableway rotates during the 5-minute ascent for panoramic views in all directions.",
+      "category": "nature",
+      "images": [
+        "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80",
+        "https://images.unsplash.com/photo-1522787718-64f19e59e1a4?w=800&q=80"
+      ],
+      "estimatedCost": 30,
+      "durationHours": 3,
+      "rating": 4.9,
+      "bestTimeToVisit": "Morning, 9AM–11AM (before cloud cover arrives)",
+      "openingHours": "8:00 AM – 7:00 PM (weather permitting)",
+      "coordinates": { "lat": -33.9628, "lng": 18.4098 },
+      "tips": [
+        "Check the official Table Mountain website for real-time cable car status",
+        "Book cableway tickets online to avoid queues",
+        "The hike up Platteklip Gorge takes about 90 minutes and is well signposted"
+      ]
+    },
+    {
+      "id": "place_023",
+      "city": "Rio de Janeiro",
+      "country": "Brazil",
+      "name": "Christ the Redeemer",
+      "description": "Perched atop the 700-meter Corcovado Mountain, the 38-meter Art Deco statue of Christ the Redeemer has watched over Rio since 1931 with arms spread wide. One of the New Seven Wonders of the World, it offers a spiritual and panoramic experience that encapsulates the beauty and soul of Rio de Janeiro.",
+      "category": "landmarks",
+      "images": [
+        "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=800&q=80",
+        "https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?w=800&q=80"
+      ],
+      "estimatedCost": 25,
+      "durationHours": 3,
+      "rating": 4.9,
+      "bestTimeToVisit": "Early morning for clear skies",
+      "openingHours": "8:00 AM – 7:00 PM",
+      "coordinates": { "lat": -22.9519, "lng": -43.2105 },
+      "tips": [
+        "Go early on clear days — clouds frequently obscure the statue by mid-morning",
+        "Take the rack railway from Cosme Velho for the most scenic ascent",
+        "The sunset viewing experience is particularly dramatic on clear evenings"
+      ]
+    },
+    {
+      "id": "place_024",
+      "city": "Santorini",
+      "country": "Greece",
+      "name": "Oia Village Sunset",
+      "description": "Oia's sunset is considered one of the finest in the world — crowds gather every evening on the village's medieval castle ruins to applaud as the sun melts into the Aegean Sea, silhouetting blue-domed churches against a sky of molten orange and crimson. The views across the caldera are nothing short of magical.",
+      "category": "nature",
+      "images": [
+        "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&q=80",
+        "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80"
+      ],
+      "estimatedCost": 0,
+      "durationHours": 2,
+      "rating": 5.0,
+      "bestTimeToVisit": "90 minutes before sunset for a good position",
+      "openingHours": "24 hours",
+      "coordinates": { "lat": 36.4618, "lng": 25.3753 },
+      "tips": [
+        "Arrive 90 minutes early to claim a spot on the castle walls",
+        "Alternatively, watch from a caldera-view restaurant with a glass of Assyrtiko wine",
+        "The crowd applause at the moment of sunset is a uniquely moving experience"
+      ]
+    },
+    {
+      "id": "place_025",
+      "city": "Marrakech",
+      "country": "Morocco",
+      "name": "Djemaa el-Fna Square",
+      "description": "The beating heart of Marrakech's medina, this UNESCO-listed square transforms dramatically at dusk — snake charmers, storytellers, acrobats, and henna artists give way to dozens of open-air food stalls filling the air with aromatic smoke. It's one of Earth's greatest public spectacles, unchanged in spirit for centuries.",
+      "category": "food streets",
+      "images": [
+        "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=800&q=80",
+        "https://images.unsplash.com/photo-1517821369346-db1c1f02b694?w=800&q=80"
+      ],
+      "estimatedCost": 10,
+      "durationHours": 3,
+      "rating": 4.6,
+      "bestTimeToVisit": "Dusk, 6PM–10PM",
+      "openingHours": "24 hours (most active from 4PM–midnight)",
+      "coordinates": { "lat": 31.6258, "lng": -7.9891 },
+      "tips": [
+        "Try the fresh-squeezed orange juice from the stalls — incredibly cheap and delicious",
+        "Watch from a rooftop restaurant initially for a bird's-eye orientation",
+        "Agree on prices before accepting any entertainment or having photos taken"
+      ]
+    }
+  ]
+}

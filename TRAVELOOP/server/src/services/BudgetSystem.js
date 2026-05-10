@@ -11,14 +11,13 @@ class BudgetSystem {
     };
 
     for (const dest of destinations) {
-      const cityData = await prisma.city.findUnique({ where: { cityName: dest.city } });
+      const cityData = await prisma.city.findUnique({ where: { city: dest.city } });
       
       if (cityData) {
         const days = dest.duration;
-        const accommodation = (cityData.averageHotelCost || 100) * days;
-        const food = (cityData.averageMealCost || 30) * 3 * days;
-        const transport = (cityData.transportCost || 10) * days;
-        // Mock activities cost
+        const accommodation = (cityData.luxuryBudgetPerDay || 100) * days;
+        const food = (cityData.averageBudgetPerDay || 30) * days;
+        const transport = 15 * days;
         const activities = 50 * days;
 
         budgetSummary.accommodation += accommodation;

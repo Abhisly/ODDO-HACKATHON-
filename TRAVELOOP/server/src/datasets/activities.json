@@ -1,32 +1,548 @@
-[
-  {
-    "title": "Sushi Making Class",
-    "city": "Tokyo",
-    "category": "Culinary",
-    "duration": "3 hours",
-    "estimatedPrice": 80,
-    "images": ["sushi-class.jpg"],
-    "description": "Learn to make authentic sushi with a master chef.",
-    "rating": 4.9
-  },
-  {
-    "title": "Louvre Guided Tour",
-    "city": "Paris",
-    "category": "Art",
-    "duration": "2.5 hours",
-    "estimatedPrice": 60,
-    "images": ["louvre.jpg"],
-    "description": "Skip the line and see the Mona Lisa.",
-    "rating": 4.7
-  },
-  {
-    "title": "Surf Lesson",
-    "city": "Bali",
-    "category": "Adventure",
-    "duration": "2 hours",
-    "estimatedPrice": 30,
-    "images": ["surf-bali.jpg"],
-    "description": "Learn to catch waves at Kuta Beach.",
-    "rating": 4.6
-  }
-]
+{
+  "activities": [
+    {
+      "id": "act_001",
+      "city": "Tokyo",
+      "country": "Japan",
+      "title": "Tsukiji Outer Market Food Tour",
+      "category": "food",
+      "durationHours": 3,
+      "estimatedPrice": 45,
+      "images": [
+        "https://images.unsplash.com/photo-1517154421773-0855edd4b89a?w=800&q=80",
+        "https://images.unsplash.com/photo-1512451590035-f0a79e2f0a33?w=800&q=80"
+      ],
+      "description": "An expert-led walking tour through the legendary Tsukiji Outer Market, where you'll sample sushi, tamagoyaki egg omelets, fresh uni sea urchin, and wagyu beef skewers directly from the market stalls. End with a sake tasting at a century-old rice wine vendor.",
+      "rating": 4.9,
+      "suitableFor": ["couples", "solo", "foodies", "adults"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_002",
+      "city": "Tokyo",
+      "country": "Japan",
+      "title": "TeamLab Planets Immersive Digital Art",
+      "category": "culture",
+      "durationHours": 2,
+      "estimatedPrice": 32,
+      "images": [
+        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+        "https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=800&q=80"
+      ],
+      "description": "Walk through a series of immersive digital art rooms where the boundaries between viewer and art dissolve — wade through knee-deep water covered in floating flowers, lie in a room of infinite mirrored universes, and touch artworks that react to your every movement. A genuinely mind-bending experience.",
+      "rating": 4.8,
+      "suitableFor": ["couples", "solo", "families", "photography lovers"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_003",
+      "city": "Tokyo",
+      "country": "Japan",
+      "title": "Sumo Wrestling Morning Practice Visit",
+      "category": "culture",
+      "durationHours": 3,
+      "estimatedPrice": 85,
+      "images": [
+        "https://images.unsplash.com/photo-1605108040955-1eba8fba0b9f?w=800&q=80",
+        "https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=800&q=80"
+      ],
+      "description": "An exclusive early morning visit to an authentic sumo stable (heya) where you'll watch the daily training session from 6AM. Witness sumo wrestlers practice ancient rituals and bouts up close, followed by a traditional chanko-nabe wrestler's stew breakfast with the team.",
+      "rating": 4.7,
+      "suitableFor": ["couples", "solo", "culture enthusiasts", "groups"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_004",
+      "city": "Kyoto",
+      "country": "Japan",
+      "title": "Private Tea Ceremony in a Historic Machiya",
+      "category": "culture",
+      "durationHours": 1.5,
+      "estimatedPrice": 60,
+      "images": [
+        "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800&q=80",
+        "https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=800&q=80"
+      ],
+      "description": "Experience the meditative ritual of chado (the Way of Tea) in a 200-year-old machiya townhouse in Higashiyama, guided by a certified tea master. Dress in a yukata robe, learn the precise movements of the ceremony, and enjoy matcha and wagashi sweets in a traditional tatami room.",
+      "rating": 4.9,
+      "suitableFor": ["couples", "solo", "culture enthusiasts", "honeymooners"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_005",
+      "city": "Kyoto",
+      "country": "Japan",
+      "title": "Early Morning Arashiyama Bamboo Grove Walk",
+      "category": "nature",
+      "durationHours": 2,
+      "estimatedPrice": 0,
+      "images": [
+        "https://images.unsplash.com/photo-1580552797461-27e3b9c8f979?w=800&q=80",
+        "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80"
+      ],
+      "description": "Walk through the ethereal Arashiyama Bamboo Grove before 7AM when morning mist hangs between the towering stalks and the sound of rustling bamboo fills the air. Continue to the adjacent Tenryu-ji Zen garden, a UNESCO World Heritage site with views over mountains reflected in its central pond.",
+      "rating": 4.8,
+      "suitableFor": ["solo", "couples", "photography lovers", "nature lovers"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_006",
+      "city": "Bali",
+      "country": "Indonesia",
+      "title": "Sunrise Trek to Mount Batur Volcano",
+      "category": "adventure",
+      "durationHours": 7,
+      "estimatedPrice": 55,
+      "images": [
+        "https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80",
+        "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80"
+      ],
+      "description": "Embark on an exhilarating pre-dawn hike up the active 1,717-meter Mount Batur volcano, reaching the summit crater just as the sun rises over the caldera lake below. Enjoy breakfast cooked using natural volcanic steam at the summit before the breathtaking descent.",
+      "rating": 4.8,
+      "suitableFor": ["adventurers", "solo", "couples", "fitness enthusiasts"],
+      "difficultyLevel": "moderate"
+    },
+    {
+      "id": "act_007",
+      "city": "Bali",
+      "country": "Indonesia",
+      "title": "Traditional Balinese Healing & Spa Ritual",
+      "category": "wellness",
+      "durationHours": 4,
+      "estimatedPrice": 120,
+      "images": [
+        "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80",
+        "https://images.unsplash.com/photo-1573790387438-4da905039392?w=800&q=80"
+      ],
+      "description": "A transformative four-hour wellness ritual at a luxury Ubud jungle spa. Begin with a Balinese blessing ceremony, followed by a traditional Boreh spice wrap, four-hand massage using coconut and frangipani oils, a milk bath with floating flower petals, and a healing meditation session.",
+      "rating": 4.9,
+      "suitableFor": ["couples", "solo", "honeymooners", "wellness seekers"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_008",
+      "city": "Bali",
+      "country": "Indonesia",
+      "title": "Ubud Cooking Class with Market Visit",
+      "category": "food",
+      "durationHours": 5,
+      "estimatedPrice": 45,
+      "images": [
+        "https://images.unsplash.com/photo-1555992457-b8fefdd09069?w=800&q=80",
+        "https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800&q=80"
+      ],
+      "description": "Start with a dawn visit to Ubud's local morning market to select fresh ingredients with a Balinese chef, learning about tropical spices and local produce. Return to a traditional open-air kitchen to prepare eight authentic Balinese dishes including satay, black rice pudding, and fragrant jamu juice.",
+      "rating": 4.8,
+      "suitableFor": ["couples", "solo", "families", "foodies"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_009",
+      "city": "Dubai",
+      "country": "UAE",
+      "title": "Private Desert Safari with Dune Dining",
+      "category": "luxury",
+      "durationHours": 6,
+      "estimatedPrice": 280,
+      "images": [
+        "https://images.unsplash.com/photo-1506665531195-3566af2b4dfa?w=800&q=80",
+        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80"
+      ],
+      "description": "A private luxury desert experience in the Arabian red dunes — arrive by Land Rover, experience exhilarating dune bashing, falconry displays, and camel rides before a private candlelit dinner set under the stars with a personal chef, live oud music, and unlimited premium beverages.",
+      "rating": 4.9,
+      "suitableFor": ["couples", "honeymooners", "luxury travelers", "groups"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_010",
+      "city": "Dubai",
+      "country": "UAE",
+      "title": "Helicopter Tour Over Palm Jumeirah",
+      "category": "adventure",
+      "durationHours": 0.5,
+      "estimatedPrice": 250,
+      "images": [
+        "https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80",
+        "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800&q=80"
+      ],
+      "description": "A 15–30 minute helicopter tour over Dubai's most iconic landmarks — the Palm Jumeirah, World Islands, Burj Khalifa, Dubai Creek, and the Marina skyline. The aerial perspective reveals the extraordinary scale of Dubai's engineering feats in a way no other experience can match.",
+      "rating": 4.9,
+      "suitableFor": ["couples", "adventure seekers", "luxury travelers", "photography lovers"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_011",
+      "city": "Dubai",
+      "country": "UAE",
+      "title": "Deep-Sea Fishing in the Arabian Gulf",
+      "category": "adventure",
+      "durationHours": 6,
+      "estimatedPrice": 150,
+      "images": [
+        "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+      ],
+      "description": "A full-day deep-sea fishing adventure aboard a luxury charter vessel in the Arabian Gulf, targeting king mackerel, barracuda, grouper, and the prized queen fish. The trip includes all fishing equipment, a skilled captain and crew, lunch, and the option to have your catch cooked at a local restaurant.",
+      "rating": 4.6,
+      "suitableFor": ["adventurers", "groups", "solo", "couples"],
+      "difficultyLevel": "moderate"
+    },
+    {
+      "id": "act_012",
+      "city": "Paris",
+      "country": "France",
+      "title": "Michelin-Star Chef Cooking Class",
+      "category": "food",
+      "durationHours": 4,
+      "estimatedPrice": 195,
+      "images": [
+        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&q=80",
+        "https://images.unsplash.com/photo-1520939817895-060bdaf4fe1b?w=800&q=80"
+      ],
+      "description": "Learn the secrets of classic and contemporary French cuisine in a professional kitchen alongside a Michelin-starred chef. Master techniques like confit de canard, soufflé au chocolat, and the perfect beurre blanc sauce, then enjoy the three-course meal you've prepared with wine pairings selected by a sommelier.",
+      "rating": 4.9,
+      "suitableFor": ["couples", "solo", "foodies", "luxury travelers"],
+      "difficultyLevel": "moderate"
+    },
+    {
+      "id": "act_013",
+      "city": "Paris",
+      "country": "France",
+      "title": "Seine River Luxury Dinner Cruise",
+      "category": "luxury",
+      "durationHours": 2.5,
+      "estimatedPrice": 170,
+      "images": [
+        "https://images.unsplash.com/photo-1431274172761-fcdab704a0bb?w=800&q=80",
+        "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?w=800&q=80"
+      ],
+      "description": "An unforgettable evening cruising along the Seine aboard a glass-enclosed luxury vessel, passing illuminated monuments including the Eiffel Tower, Notre Dame, and Musée d'Orsay while enjoying a four-course gourmet French meal with champagne and live classical music.",
+      "rating": 4.8,
+      "suitableFor": ["couples", "honeymooners", "luxury travelers", "celebrations"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_014",
+      "city": "London",
+      "country": "UK",
+      "title": "Private Afternoon Tea at The Ritz",
+      "category": "luxury",
+      "durationHours": 2,
+      "estimatedPrice": 95,
+      "images": [
+        "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=800&q=80",
+        "https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=800&q=80"
+      ],
+      "description": "The quintessentially British experience of Afternoon Tea at the legendary Palm Court of The Ritz London — a gilded room of Louis XVI grandeur where you'll be served finger sandwiches, warm scones with clotted cream, and exquisite pastries alongside a curated selection of over 18 fine teas.",
+      "rating": 4.9,
+      "suitableFor": ["couples", "solo", "luxury travelers", "celebrations"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_015",
+      "city": "London",
+      "country": "UK",
+      "title": "Shakespeare's Globe Theatre Evening Performance",
+      "category": "culture",
+      "durationHours": 3,
+      "estimatedPrice": 65,
+      "images": [
+        "https://images.unsplash.com/photo-1543832923-44667a44c804?w=800&q=80",
+        "https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80"
+      ],
+      "description": "Watch Shakespeare performed as the Elizabethans did — in a faithful reconstruction of the original 1599 Globe Theatre on the South Bank of the Thames. Open to the sky, with groundling standing areas and wooden galleries, the atmosphere of an evening performance here is genuinely electric.",
+      "rating": 4.7,
+      "suitableFor": ["couples", "solo", "culture enthusiasts", "adults"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_016",
+      "city": "New York",
+      "country": "USA",
+      "title": "Broadway Premium Show with Backstage Tour",
+      "category": "culture",
+      "durationHours": 4,
+      "estimatedPrice": 250,
+      "images": [
+        "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80",
+        "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&q=80"
+      ],
+      "description": "Experience Broadway's magic from the best orchestra seats with a premium show package, followed by a behind-the-scenes backstage tour revealing the technical wizardry of set changes, costume departments, and stage management that powers Broadway's nightly spectacle.",
+      "rating": 4.9,
+      "suitableFor": ["couples", "solo", "families", "luxury travelers"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_017",
+      "city": "New York",
+      "country": "USA",
+      "title": "New York Food Cart & Hidden Restaurant Tour",
+      "category": "food",
+      "durationHours": 3.5,
+      "estimatedPrice": 75,
+      "images": [
+        "https://images.unsplash.com/photo-1522083165195-3424ed129620?w=800&q=80",
+        "https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=800&q=80"
+      ],
+      "description": "A guided food walk through Manhattan's most diverse neighborhoods — sampling legendary halal cart chicken over rice, authentic New York bagels with lox, Chinatown dim sum, Little Italy cannoli, and finishing with a slice of coal-oven pizza at a family-run pizzeria operating since 1929.",
+      "rating": 4.8,
+      "suitableFor": ["foodies", "solo", "couples", "groups"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_018",
+      "city": "Singapore",
+      "country": "Singapore",
+      "title": "Hawker Centre Progressive Dinner with Local Guide",
+      "category": "food",
+      "durationHours": 3,
+      "estimatedPrice": 50,
+      "images": [
+        "https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=800&q=80",
+        "https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80"
+      ],
+      "description": "Join a local Singaporean food guide through three iconic hawker centres, sampling Michelin-recommended Hainanese chicken rice, laksa curry noodles, char kway teow, satay, and chilli crab — Singapore's obsession with food culture explained through the story of each dish.",
+      "rating": 4.9,
+      "suitableFor": ["foodies", "solo", "couples", "culture enthusiasts"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_019",
+      "city": "Singapore",
+      "country": "Singapore",
+      "title": "Night Safari at Singapore Zoo",
+      "category": "nature",
+      "durationHours": 3,
+      "estimatedPrice": 55,
+      "images": [
+        "https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800&q=80",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+      ],
+      "description": "The world's first nocturnal zoo, where over 900 animals from 100 species roam semi-wild in recreated natural habitats viewed in near-darkness. The tram ride reveals fishing cats hunting, Malayan tigers prowling, and Sunda flying squirrels gliding — a wildlife experience unlike anything else on earth.",
+      "rating": 4.7,
+      "suitableFor": ["families", "couples", "nature lovers", "groups"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_020",
+      "city": "Seoul",
+      "country": "South Korea",
+      "title": "K-Pop Entertainment District & Idol Café Tour",
+      "category": "culture",
+      "durationHours": 4,
+      "estimatedPrice": 35,
+      "images": [
+        "https://images.unsplash.com/photo-1583425921686-c5daf5f49e4a?w=800&q=80",
+        "https://images.unsplash.com/photo-1548115184-bc6544d06a58?w=800&q=80"
+      ],
+      "description": "An insider tour of Seoul's K-Pop universe — visit entertainment agencies in Gangnam, browse idol merchandise in the HYBE Insight museum, enjoy themed cafes dedicated to BTS and BLACKPINK, finish with a K-Pop dance lesson at a professional training studio.",
+      "rating": 4.7,
+      "suitableFor": ["K-pop fans", "solo", "groups", "young adults"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_021",
+      "city": "Seoul",
+      "country": "South Korea",
+      "title": "Korean BBQ Masterclass with Soju Pairing",
+      "category": "food",
+      "durationHours": 2.5,
+      "estimatedPrice": 65,
+      "images": [
+        "https://images.unsplash.com/photo-1597932015218-7a51d9ab3a61?w=800&q=80",
+        "https://images.unsplash.com/photo-1517154421773-0855edd4b89a?w=800&q=80"
+      ],
+      "description": "Learn the art of Korean BBQ from a pit master — from selecting and marinating different cuts of galbi and samgyeopsal to the precise grilling technique, wrapping in perilla leaves, and pairing with traditional banchan side dishes and premium soju varieties.",
+      "rating": 4.8,
+      "suitableFor": ["foodies", "couples", "groups", "solo"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_022",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "title": "Private Chao Phraya River Cruise at Sunset",
+      "category": "luxury",
+      "durationHours": 2,
+      "estimatedPrice": 90,
+      "images": [
+        "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80",
+        "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80"
+      ],
+      "description": "A private sunset cruise along the historic Chao Phraya River aboard a restored teak rice barge, passing golden temple spires, ancient wooden shophouses, and the illuminated Wat Arun at dusk. Enjoy canapés and cocktails as Bangkok transforms from day to its spectacular evening glow.",
+      "rating": 4.8,
+      "suitableFor": ["couples", "honeymooners", "luxury travelers", "groups"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_023",
+      "city": "Bangkok",
+      "country": "Thailand",
+      "title": "Thai Muay Thai Boxing Class",
+      "category": "adventure",
+      "durationHours": 2,
+      "estimatedPrice": 30,
+      "images": [
+        "https://images.unsplash.com/photo-1584361853901-dd1904bb7987?w=800&q=80",
+        "https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=800&q=80"
+      ],
+      "description": "Train with professional Muay Thai fighters at a traditional Bangkok gym — learn authentic striking combinations, clinch work, and footwork from coaches who have competed internationally. The class ends with light sparring and the opportunity to get a traditional Sak Yant protective tattoo from the resident monk.",
+      "rating": 4.6,
+      "suitableFor": ["fitness enthusiasts", "solo", "adventurers", "adults"],
+      "difficultyLevel": "moderate"
+    },
+    {
+      "id": "act_024",
+      "city": "Maldives",
+      "country": "Maldives",
+      "title": "Private Submarine Dive & Coral Garden Snorkelling",
+      "category": "adventure",
+      "durationHours": 4,
+      "estimatedPrice": 350,
+      "images": [
+        "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800&q=80",
+        "https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?w=800&q=80"
+      ],
+      "description": "Descend 40 meters in a personal luxury submarine to observe the vibrant deep-sea world — shark nurseries, shipwrecks covered in coral, and schools of fluorescent fish — followed by a private guided snorkelling session above a shallow coral garden teeming with sea turtles and manta rays.",
+      "rating": 5.0,
+      "suitableFor": ["luxury travelers", "couples", "adventure seekers", "families"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_025",
+      "city": "Maldives",
+      "country": "Maldives",
+      "title": "Overwater Bungalow Breakfast Under the Stars",
+      "category": "luxury",
+      "durationHours": 2,
+      "estimatedPrice": 180,
+      "images": [
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+        "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80"
+      ],
+      "description": "A once-in-a-lifetime breakfast experience — a private floating table is set in the lagoon beside your overwater villa at dawn, with tropical fruits, pastries, and champagne as the sun rises over the Indian Ocean. Your personal butler arranges everything as colourful fish glide beneath the glass floor.",
+      "rating": 5.0,
+      "suitableFor": ["honeymooners", "couples", "luxury travelers", "celebrations"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_026",
+      "city": "Rome",
+      "country": "Italy",
+      "title": "Underground Catacombs & Hidden Crypts Tour",
+      "category": "culture",
+      "durationHours": 3,
+      "estimatedPrice": 55,
+      "images": [
+        "https://images.unsplash.com/photo-1575783970733-1aaedde1db74?w=800&q=80",
+        "https://images.unsplash.com/photo-1531572753322-ad063cecc140?w=800&q=80"
+      ],
+      "description": "Descend into Rome's subterranean world — the ancient catacombs where early Christians buried their dead in tunnels stretching hundreds of kilometers, and the extraordinary Capuchin Crypt where the bones of 3,700 monks form elaborate baroque decorations. A deeply atmospheric journey into the ancient city beneath the city.",
+      "rating": 4.7,
+      "suitableFor": ["history enthusiasts", "solo", "couples", "adults"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_027",
+      "city": "Istanbul",
+      "country": "Turkey",
+      "title": "Traditional Turkish Hammam Experience",
+      "category": "wellness",
+      "durationHours": 2.5,
+      "estimatedPrice": 75,
+      "images": [
+        "https://images.unsplash.com/photo-1578659258548-98b40018a00c?w=800&q=80",
+        "https://images.unsplash.com/photo-1531956531700-dc0ee0f1f9a5?w=800&q=80"
+      ],
+      "description": "A restorative wellness ritual at one of Istanbul's historic 16th-century hammam bathhouses — relax on the heated marble slab, receive a vigorous kese exfoliation scrub removing weeks of dead skin, a foamy full-body wash, and an invigorating olive oil massage leaving skin renewed and muscles completely relaxed.",
+      "rating": 4.8,
+      "suitableFor": ["solo", "couples", "wellness seekers", "culture enthusiasts"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_028",
+      "city": "Cape Town",
+      "country": "South Africa",
+      "title": "Shark Cage Diving at Seal Island",
+      "category": "adventure",
+      "durationHours": 8,
+      "estimatedPrice": 180,
+      "images": [
+        "https://images.unsplash.com/photo-1543846988-b40bdc9f9e9e?w=800&q=80",
+        "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&q=80"
+      ],
+      "description": "A full-day ocean adventure to Seal Island near Gansbaai — one of the world's premier locations to observe great white sharks in their natural hunting environment. The cage dive puts you face-to-face with these magnificent apex predators in the water, while surface observers witness spectacular breach attacks.",
+      "rating": 4.8,
+      "suitableFor": ["thrill seekers", "adventurers", "solo", "groups"],
+      "difficultyLevel": "challenging"
+    },
+    {
+      "id": "act_029",
+      "city": "Sydney",
+      "country": "Australia",
+      "title": "Sydney Harbour Bridge Climb at Sunrise",
+      "category": "adventure",
+      "durationHours": 3.5,
+      "estimatedPrice": 220,
+      "images": [
+        "https://images.unsplash.com/photo-1548468173-0ce4eda1f116?w=800&q=80",
+        "https://images.unsplash.com/photo-1619115707063-5ed65a0c40e3?w=800&q=80"
+      ],
+      "description": "Climb the steel arches of one of the world's most recognizable bridges, rising 134 meters above Sydney Harbour. The dawn climb option offers the most dramatic experience — watching the sun rise over the Opera House and harbour as the city awakens far below your feet. A uniquely Sydney bucket-list experience.",
+      "rating": 4.9,
+      "suitableFor": ["adventurers", "couples", "solo", "photography lovers"],
+      "difficultyLevel": "moderate"
+    },
+    {
+      "id": "act_030",
+      "city": "Santorini",
+      "country": "Greece",
+      "title": "Private Catamaran Sunset Cruise with Dinner",
+      "category": "luxury",
+      "durationHours": 5,
+      "estimatedPrice": 280,
+      "images": [
+        "https://images.unsplash.com/photo-1601424682313-dfa2b44e5b38?w=800&q=80",
+        "https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80"
+      ],
+      "description": "A private luxury catamaran circumnavigates the Santorini caldera, stopping at volcanic hot springs for a swim, the red and white beaches for snorkelling, and anchoring off the Oia cliffs for a private sunset dinner featuring fresh grilled seafood, Greek salad, and unlimited local wine as the sun dips below the horizon.",
+      "rating": 5.0,
+      "suitableFor": ["honeymooners", "couples", "luxury travelers", "celebrations"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_031",
+      "city": "Marrakech",
+      "country": "Morocco",
+      "title": "Medina Spice Souk & Moroccan Cooking Class",
+      "category": "food",
+      "durationHours": 5,
+      "estimatedPrice": 60,
+      "images": [
+        "https://images.unsplash.com/photo-1517821369346-db1c1f02b694?w=800&q=80",
+        "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=800&q=80"
+      ],
+      "description": "Navigate the ancient spice souk with a local guide, learning the medicinal and culinary heritage of cumin, saffron, ras el hanout, and preserved lemons. Return to a traditional riad kitchen to master the art of slow-cooked chicken tagine, harira soup, and bastilla pastry with a renowned Marrakchi chef.",
+      "rating": 4.8,
+      "suitableFor": ["foodies", "couples", "solo", "culture enthusiasts"],
+      "difficultyLevel": "easy"
+    },
+    {
+      "id": "act_032",
+      "city": "Rio de Janeiro",
+      "country": "Brazil",
+      "title": "Hang Gliding Over Tijuca Forest & Ipanema",
+      "category": "adventure",
+      "durationHours": 2,
+      "estimatedPrice": 120,
+      "images": [
+        "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=800&q=80",
+        "https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=800&q=80"
+      ],
+      "description": "Launch from the Pedra Bonita ramp in Tijuca Forest with a certified instructor and soar like a bird over the canopy, Cristo Redentor, Guanabara Bay, and Ipanema beach — landing softly on the sand as onlookers applaud. The 10-minute flight offers one of the most spectacular perspectives on earth.",
+      "rating": 4.9,
+      "suitableFor": ["thrill seekers", "adventurers", "solo", "couples"],
+      "difficultyLevel": "moderate"
+    }
+  ]
+}

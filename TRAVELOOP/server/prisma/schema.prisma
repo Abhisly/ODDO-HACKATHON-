@@ -8,56 +8,75 @@ datasource db {
 }
 
 model City {
-  id               String   @id @default(uuid())
-  cityName         String   @unique
-  country          String
-  heroImage        String?
-  galleryImages    String[]
-  averageBudget    Float?
-  averageHotelCost Float?
-  averageMealCost  Float?
-  transportCost    Float?
-  weatherType      String?
-  tags             String[]
-  recommendedDays  Int?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  places           Place[]
-  activities       Activity[]
+  id                    String   @id @default(uuid())
+  city                  String   @unique
+  country               String?
+  continent             String?
+  description           String?
+  heroImage             String?
+  galleryImages         String[]
+  coordinates           Json?
+  timezone              String?
+  averageBudgetPerDay   Float?
+  luxuryBudgetPerDay    Float?
+  recommendedTripDays   Int?
+  climate               String?
+  bestSeason            String?
+  tags                  String[]
+  popularityScore       Int?
+  famousFor             String[]
+  transportationOptions String[]
+  safetyScore           Int?
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  places                Place[]
+  activities            Activity[]
 }
 
 model Place {
   id              String   @id @default(uuid())
   name            String
   city            String
-  cityRef         City     @relation(fields: [city], references: [cityName], onDelete: Cascade)
+  country         String?
+  cityRef         City     @relation(fields: [city], references: [city], onDelete: Cascade)
   description     String?
   images          String[]
-  timings         String?
+  openingHours    String?
   estimatedCost   Float?
+  durationHours   Float?
   category        String?
-  ratings         Float?
-  location        String?
+  rating          Float?
+  coordinates     Json?
   bestTimeToVisit String?
+  tips            String[]
+  
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+  
   itineraryItems  ItineraryPlace[]
 }
 
 model Activity {
-  id             String   @id @default(uuid())
-  title          String
-  city           String
-  cityRef        City     @relation(fields: [city], references: [cityName], onDelete: Cascade)
-  category       String?
-  duration       String?
-  estimatedPrice Float?
-  images         String[]
-  description    String?
-  rating         Float?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  itineraryItems ItineraryActivity[]
+  id              String   @id @default(uuid())
+  title           String
+  city            String
+  country         String?
+  cityRef         City     @relation(fields: [city], references: [city], onDelete: Cascade)
+  category        String?
+  durationHours   Float?
+  estimatedPrice  Float?
+  images          String[]
+  description     String?
+  rating          Float?
+  suitableFor     String[]
+  difficultyLevel String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  itineraryItems  ItineraryActivity[]
 }
 
 model Trip {

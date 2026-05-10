@@ -1,0 +1,964 @@
+{
+  "budgets": [
+    {
+      "city": "Tokyo",
+      "country": "Japan",
+      "currency": "JPY",
+      "currencySymbol": "¥",
+      "usdExchangeRate": 149.5,
+      "budgetHotelAverage": 65,
+      "luxuryHotelAverage": 480,
+      "foodAverage": 30,
+      "luxuryFoodAverage": 180,
+      "transportAverage": 12,
+      "activityAverage": 35,
+      "miscellaneousAverage": 20,
+      "estimatedDailyBudget": 120,
+      "luxuryDailyBudget": 650,
+      "backpackerBudget": 65,
+      "familyBudget": 280,
+      "breakdown": {
+        "budget": {
+          "accommodation": 65,
+          "food": 20,
+          "transport": 10,
+          "activities": 15,
+          "miscellaneous": 10
+        },
+        "midRange": {
+          "accommodation": 150,
+          "food": 50,
+          "transport": 15,
+          "activities": 40,
+          "miscellaneous": 25
+        },
+        "luxury": {
+          "accommodation": 480,
+          "food": 180,
+          "transport": 60,
+          "activities": 120,
+          "miscellaneous": 80
+        }
+      },
+      "tippingCulture": "Tipping is NOT customary in Japan and can be considered rude",
+      "taxNote": "Consumption tax of 10% applies. Tourists can claim tax-free refunds on purchases over ¥5,500",
+      "bestValueTips": [
+        "Buy an IC card (Suica/Pasmo) for seamless and discounted public transport",
+        "Convenience store meals (7-Eleven, FamilyMart) are cheap and surprisingly high quality",
+        "Look for lunch-time teishoku set meals at restaurants — same food, half the dinner price"
+      ]
+    },
+    {
+      "city": "Kyoto",
+      "country": "Japan",
+      "currency": "JPY",
+      "currencySymbol": "¥",
+      "usdExchangeRate": 149.5,
+      "budgetHotelAverage": 55,
+      "luxuryHotelAverage": 420,
+      "foodAverage": 25,
+      "luxuryFoodAverage": 150,
+      "transportAverage": 8,
+      "activityAverage": 20,
+      "miscellaneousAverage": 15,
+      "estimatedDailyBudget": 100,
+      "luxuryDailyBudget": 500,
+      "backpackerBudget": 55,
+      "familyBudget": 230,
+      "breakdown": {
+        "budget": {
+          "accommodation": 55,
+          "food": 18,
+          "transport": 8,
+          "activities": 12,
+          "miscellaneous": 8
+        },
+        "midRange": {
+          "accommodation": 130,
+          "food": 45,
+          "transport": 12,
+          "activities": 30,
+          "miscellaneous": 20
+        },
+        "luxury": {
+          "accommodation": 420,
+          "food": 150,
+          "transport": 40,
+          "activities": 80,
+          "miscellaneous": 60
+        }
+      },
+      "tippingCulture": "Tipping is not practiced in Japan",
+      "taxNote": "10% consumption tax; tax-free shopping available at designated stores",
+      "bestValueTips": [
+        "Many of the most beautiful temples in Kyoto have free outer grounds",
+        "Day pass for Kyoto buses covers most tourist areas for around $5",
+        "Nishiki Market is great for cheap traditional snacks and lunch"
+      ]
+    },
+    {
+      "city": "Paris",
+      "country": "France",
+      "currency": "EUR",
+      "currencySymbol": "€",
+      "usdExchangeRate": 0.92,
+      "budgetHotelAverage": 90,
+      "luxuryHotelAverage": 600,
+      "foodAverage": 35,
+      "luxuryFoodAverage": 220,
+      "transportAverage": 15,
+      "activityAverage": 30,
+      "miscellaneousAverage": 25,
+      "estimatedDailyBudget": 150,
+      "luxuryDailyBudget": 900,
+      "backpackerBudget": 80,
+      "familyBudget": 340,
+      "breakdown": {
+        "budget": {
+          "accommodation": 90,
+          "food": 25,
+          "transport": 12,
+          "activities": 20,
+          "miscellaneous": 15
+        },
+        "midRange": {
+          "accommodation": 220,
+          "food": 75,
+          "transport": 20,
+          "activities": 50,
+          "miscellaneous": 35
+        },
+        "luxury": {
+          "accommodation": 600,
+          "food": 220,
+          "transport": 80,
+          "activities": 120,
+          "miscellaneous": 80
+        }
+      },
+      "tippingCulture": "Service charge (15%) is usually included. Rounding up or leaving 5–10% extra is appreciated",
+      "taxNote": "VAT of 20% on most goods. Non-EU tourists can claim VAT refund on purchases over €100",
+      "bestValueTips": [
+        "First Sunday of the month most major museums including the Louvre are free",
+        "Picnicking from a boulangerie and fromagerie is the most Parisian budget option",
+        "Paris Museum Pass pays off after visiting 2–3 major attractions"
+      ]
+    },
+    {
+      "city": "Bali",
+      "country": "Indonesia",
+      "currency": "IDR",
+      "currencySymbol": "Rp",
+      "usdExchangeRate": 15750,
+      "budgetHotelAverage": 25,
+      "luxuryHotelAverage": 280,
+      "foodAverage": 12,
+      "luxuryFoodAverage": 80,
+      "transportAverage": 10,
+      "activityAverage": 25,
+      "miscellaneousAverage": 15,
+      "estimatedDailyBudget": 70,
+      "luxuryDailyBudget": 400,
+      "backpackerBudget": 30,
+      "familyBudget": 180,
+      "breakdown": {
+        "budget": {
+          "accommodation": 25,
+          "food": 10,
+          "transport": 8,
+          "activities": 15,
+          "miscellaneous": 8
+        },
+        "midRange": {
+          "accommodation": 80,
+          "food": 30,
+          "transport": 15,
+          "activities": 35,
+          "miscellaneous": 20
+        },
+        "luxury": {
+          "accommodation": 280,
+          "food": 80,
+          "transport": 50,
+          "activities": 100,
+          "miscellaneous": 40
+        }
+      },
+      "tippingCulture": "Not obligatory but appreciated; 5–10% at restaurants and round up for taxi drivers",
+      "taxNote": "21% government tax and service charge usually added to restaurant bills",
+      "bestValueTips": [
+        "Rent a scooter for around $5/day — cheapest and most flexible way to explore",
+        "Warungs (local food stalls) serve delicious nasi goreng for under $2",
+        "Book villas directly to avoid platform fees — often 20–30% cheaper"
+      ]
+    },
+    {
+      "city": "Dubai",
+      "country": "United Arab Emirates",
+      "currency": "AED",
+      "currencySymbol": "د.إ",
+      "usdExchangeRate": 3.67,
+      "budgetHotelAverage": 80,
+      "luxuryHotelAverage": 900,
+      "foodAverage": 30,
+      "luxuryFoodAverage": 200,
+      "transportAverage": 20,
+      "activityAverage": 60,
+      "miscellaneousAverage": 35,
+      "estimatedDailyBudget": 200,
+      "luxuryDailyBudget": 1500,
+      "backpackerBudget": 90,
+      "familyBudget": 420,
+      "breakdown": {
+        "budget": {
+          "accommodation": 80,
+          "food": 20,
+          "transport": 15,
+          "activities": 30,
+          "miscellaneous": 20
+        },
+        "midRange": {
+          "accommodation": 220,
+          "food": 70,
+          "transport": 30,
+          "activities": 80,
+          "miscellaneous": 40
+        },
+        "luxury": {
+          "accommodation": 900,
+          "food": 200,
+          "transport": 120,
+          "activities": 280,
+          "miscellaneous": 100
+        }
+      },
+      "tippingCulture": "10–15% at restaurants; AED 10–20 for hotel staff; not legally required but expected",
+      "taxNote": "5% VAT on most goods and services; no income tax",
+      "bestValueTips": [
+        "The Dubai Metro is cheap, clean, and covers most tourist attractions",
+        "Dubai Mall food court has affordable meals from dozens of cuisines",
+        "Many beach clubs offer day passes including food credits — better value than paying per item"
+      ]
+    },
+    {
+      "city": "Singapore",
+      "country": "Singapore",
+      "currency": "SGD",
+      "currencySymbol": "S$",
+      "usdExchangeRate": 1.35,
+      "budgetHotelAverage": 70,
+      "luxuryHotelAverage": 500,
+      "foodAverage": 20,
+      "luxuryFoodAverage": 130,
+      "transportAverage": 10,
+      "activityAverage": 35,
+      "miscellaneousAverage": 20,
+      "estimatedDailyBudget": 130,
+      "luxuryDailyBudget": 700,
+      "backpackerBudget": 65,
+      "familyBudget": 280,
+      "breakdown": {
+        "budget": {
+          "accommodation": 70,
+          "food": 15,
+          "transport": 8,
+          "activities": 20,
+          "miscellaneous": 12
+        },
+        "midRange": {
+          "accommodation": 180,
+          "food": 50,
+          "transport": 15,
+          "activities": 50,
+          "miscellaneous": 30
+        },
+        "luxury": {
+          "accommodation": 500,
+          "food": 130,
+          "transport": 50,
+          "activities": 120,
+          "miscellaneous": 60
+        }
+      },
+      "tippingCulture": "Not expected or necessary — 10% service charge is typically included in bills",
+      "taxNote": "9% GST (Goods and Services Tax) applied to most goods and services",
+      "bestValueTips": [
+        "Hawker centre meals from S$3–6 are the best food deal in the world",
+        "The MRT is clean, affordable, and connects all major attractions",
+        "Gardens by the Bay outdoor Supertree Grove is free to visit in the evenings"
+      ]
+    },
+    {
+      "city": "New York",
+      "country": "United States",
+      "currency": "USD",
+      "currencySymbol": "$",
+      "usdExchangeRate": 1.0,
+      "budgetHotelAverage": 120,
+      "luxuryHotelAverage": 700,
+      "foodAverage": 45,
+      "luxuryFoodAverage": 250,
+      "transportAverage": 15,
+      "activityAverage": 40,
+      "miscellaneousAverage": 30,
+      "estimatedDailyBudget": 180,
+      "luxuryDailyBudget": 1000,
+      "backpackerBudget": 100,
+      "familyBudget": 380,
+      "breakdown": {
+        "budget": {
+          "accommodation": 120,
+          "food": 25,
+          "transport": 12,
+          "activities": 20,
+          "miscellaneous": 15
+        },
+        "midRange": {
+          "accommodation": 280,
+          "food": 80,
+          "transport": 20,
+          "activities": 60,
+          "miscellaneous": 40
+        },
+        "luxury": {
+          "accommodation": 700,
+          "food": 250,
+          "transport": 80,
+          "activities": 180,
+          "miscellaneous": 100
+        }
+      },
+      "tippingCulture": "Mandatory — 18–22% at restaurants, $1–2 per drink at bars, $5/day for hotel housekeeping",
+      "taxNote": "8.875% sales tax in New York City on most goods and services",
+      "bestValueTips": [
+        "The NYC Subway is the most efficient and affordable way to get around Manhattan",
+        "Central Park, the High Line, and the Brooklyn Bridge are all free",
+        "Museum of Modern Art (MoMA) and many major museums offer free Friday evenings"
+      ]
+    },
+    {
+      "city": "London",
+      "country": "United Kingdom",
+      "currency": "GBP",
+      "currencySymbol": "£",
+      "usdExchangeRate": 0.79,
+      "budgetHotelAverage": 100,
+      "luxuryHotelAverage": 650,
+      "foodAverage": 40,
+      "luxuryFoodAverage": 200,
+      "transportAverage": 20,
+      "activityAverage": 30,
+      "miscellaneousAverage": 25,
+      "estimatedDailyBudget": 160,
+      "luxuryDailyBudget": 850,
+      "backpackerBudget": 90,
+      "familyBudget": 350,
+      "breakdown": {
+        "budget": {
+          "accommodation": 100,
+          "food": 25,
+          "transport": 15,
+          "activities": 15,
+          "miscellaneous": 15
+        },
+        "midRange": {
+          "accommodation": 230,
+          "food": 70,
+          "transport": 25,
+          "activities": 45,
+          "miscellaneous": 30
+        },
+        "luxury": {
+          "accommodation": 650,
+          "food": 200,
+          "transport": 80,
+          "activities": 120,
+          "miscellaneous": 70
+        }
+      },
+      "tippingCulture": "10–12.5% at restaurants if service charge not included; not expected in pubs",
+      "taxNote": "20% VAT included in most prices. Non-UK visitors cannot claim VAT refunds post-Brexit",
+      "bestValueTips": [
+        "Most of London's world-class museums — the British Museum, National Gallery, V&A — are completely free",
+        "An Oyster card provides discounted tube and bus travel; get one at any station",
+        "Pret a Manger and Marks & Spencer meal deals are excellent for cheap, quality lunch"
+      ]
+    },
+    {
+      "city": "Rome",
+      "country": "Italy",
+      "currency": "EUR",
+      "currencySymbol": "€",
+      "usdExchangeRate": 0.92,
+      "budgetHotelAverage": 75,
+      "luxuryHotelAverage": 500,
+      "foodAverage": 30,
+      "luxuryFoodAverage": 160,
+      "transportAverage": 10,
+      "activityAverage": 25,
+      "miscellaneousAverage": 20,
+      "estimatedDailyBudget": 130,
+      "luxuryDailyBudget": 750,
+      "backpackerBudget": 70,
+      "familyBudget": 290,
+      "breakdown": {
+        "budget": {
+          "accommodation": 75,
+          "food": 20,
+          "transport": 8,
+          "activities": 15,
+          "miscellaneous": 12
+        },
+        "midRange": {
+          "accommodation": 180,
+          "food": 60,
+          "transport": 15,
+          "activities": 40,
+          "miscellaneous": 25
+        },
+        "luxury": {
+          "accommodation": 500,
+          "food": 160,
+          "transport": 60,
+          "activities": 100,
+          "miscellaneous": 60
+        }
+      },
+      "tippingCulture": "Coperto (cover charge) of €1–3 is standard. Tipping 5–10% is appreciated but not mandatory",
+      "taxNote": "22% VAT standard rate; 10% on restaurant meals. Non-EU visitors can reclaim on purchases over €154.94",
+      "bestValueTips": [
+        "The Trevi Fountain, Pantheon exterior, and Spanish Steps are completely free",
+        "Eat where Italians eat — walk at least 2 streets away from major landmarks",
+        "A 48-hour Roma Pass includes transport and priority museum access"
+      ]
+    },
+    {
+      "city": "Seoul",
+      "country": "South Korea",
+      "currency": "KRW",
+      "currencySymbol": "₩",
+      "usdExchangeRate": 1330,
+      "budgetHotelAverage": 55,
+      "luxuryHotelAverage": 320,
+      "foodAverage": 18,
+      "luxuryFoodAverage": 100,
+      "transportAverage": 8,
+      "activityAverage": 20,
+      "miscellaneousAverage": 15,
+      "estimatedDailyBudget": 90,
+      "luxuryDailyBudget": 450,
+      "backpackerBudget": 50,
+      "familyBudget": 200,
+      "breakdown": {
+        "budget": {
+          "accommodation": 55,
+          "food": 12,
+          "transport": 6,
+          "activities": 10,
+          "miscellaneous": 8
+        },
+        "midRange": {
+          "accommodation": 130,
+          "food": 35,
+          "transport": 12,
+          "activities": 30,
+          "miscellaneous": 18
+        },
+        "luxury": {
+          "accommodation": 320,
+          "food": 100,
+          "transport": 40,
+          "activities": 80,
+          "miscellaneous": 45
+        }
+      },
+      "tippingCulture": "Tipping is NOT customary in Korea and can cause confusion or offense",
+      "taxNote": "10% VAT included in most prices. Tax refund kiosks at airports for purchases over ₩30,000",
+      "bestValueTips": [
+        "T-Money card for subway and bus is the most cost-effective transport option",
+        "Gwanjang Market has some of the best and cheapest traditional food in Seoul",
+        "Many palace entry fees are under $3; free on public holidays"
+      ]
+    },
+    {
+      "city": "Bangkok",
+      "country": "Thailand",
+      "currency": "THB",
+      "currencySymbol": "฿",
+      "usdExchangeRate": 35.2,
+      "budgetHotelAverage": 25,
+      "luxuryHotelAverage": 220,
+      "foodAverage": 12,
+      "luxuryFoodAverage": 70,
+      "transportAverage": 8,
+      "activityAverage": 20,
+      "miscellaneousAverage": 12,
+      "estimatedDailyBudget": 60,
+      "luxuryDailyBudget": 350,
+      "backpackerBudget": 28,
+      "familyBudget": 150,
+      "breakdown": {
+        "budget": {
+          "accommodation": 25,
+          "food": 10,
+          "transport": 6,
+          "activities": 10,
+          "miscellaneous": 8
+        },
+        "midRange": {
+          "accommodation": 70,
+          "food": 28,
+          "transport": 12,
+          "activities": 30,
+          "miscellaneous": 18
+        },
+        "luxury": {
+          "accommodation": 220,
+          "food": 70,
+          "transport": 40,
+          "activities": 80,
+          "miscellaneous": 40
+        }
+      },
+      "tippingCulture": "Appreciated but not mandatory; ฿20–50 for services, round up for taxis",
+      "taxNote": "7% VAT; refunds available for purchases over ฿5,000 at VAT refund counters",
+      "bestValueTips": [
+        "BTS Skytrain and MRT cover most tourist areas affordably",
+        "Street food from night markets costs ฿40–100 per dish and is world-class",
+        "River taxi is the cheapest and most scenic way to cross the city"
+      ]
+    },
+    {
+      "city": "Maldives",
+      "country": "Maldives",
+      "currency": "USD",
+      "currencySymbol": "$",
+      "usdExchangeRate": 1.0,
+      "budgetHotelAverage": 150,
+      "luxuryHotelAverage": 1500,
+      "foodAverage": 50,
+      "luxuryFoodAverage": 250,
+      "transportAverage": 80,
+      "activityAverage": 120,
+      "miscellaneousAverage": 50,
+      "estimatedDailyBudget": 300,
+      "luxuryDailyBudget": 2000,
+      "backpackerBudget": 150,
+      "familyBudget": 600,
+      "breakdown": {
+        "budget": {
+          "accommodation": 150,
+          "food": 35,
+          "transport": 30,
+          "activities": 50,
+          "miscellaneous": 25
+        },
+        "midRange": {
+          "accommodation": 500,
+          "food": 120,
+          "transport": 60,
+          "activities": 150,
+          "miscellaneous": 60
+        },
+        "luxury": {
+          "accommodation": 1500,
+          "food": 250,
+          "transport": 120,
+          "activities": 350,
+          "miscellaneous": 100
+        }
+      },
+      "tippingCulture": "10–15% at resorts; most luxury resorts include service charge automatically",
+      "taxNote": "16% Tourism Goods and Services Tax (T-GST) on all tourism services; 10% service charge at resorts",
+      "bestValueTips": [
+        "Guesthouses on local islands like Maafushi cost a fraction of resort prices",
+        "Book all-inclusive packages to avoid the crippling cost of resort food and beverages",
+        "Seaplane transfers are spectacular but expensive — speedboat is the budget alternative"
+      ]
+    },
+    {
+      "city": "Istanbul",
+      "country": "Turkey",
+      "currency": "TRY",
+      "currencySymbol": "₺",
+      "usdExchangeRate": 32.5,
+      "budgetHotelAverage": 40,
+      "luxuryHotelAverage": 350,
+      "foodAverage": 15,
+      "luxuryFoodAverage": 90,
+      "transportAverage": 5,
+      "activityAverage": 15,
+      "miscellaneousAverage": 12,
+      "estimatedDailyBudget": 80,
+      "luxuryDailyBudget": 500,
+      "backpackerBudget": 40,
+      "familyBudget": 190,
+      "breakdown": {
+        "budget": {
+          "accommodation": 40,
+          "food": 10,
+          "transport": 4,
+          "activities": 8,
+          "miscellaneous": 8
+        },
+        "midRange": {
+          "accommodation": 120,
+          "food": 35,
+          "transport": 10,
+          "activities": 25,
+          "miscellaneous": 18
+        },
+        "luxury": {
+          "accommodation": 350,
+          "food": 90,
+          "transport": 40,
+          "activities": 70,
+          "miscellaneous": 50
+        }
+      },
+      "tippingCulture": "10–15% at restaurants appreciated; round up for taxi drivers and tour guides",
+      "taxNote": "18% VAT; tourists can claim refunds on single purchases over ₺118 at Global Blue stores",
+      "bestValueTips": [
+        "Istanbul Kart provides heavily discounted fares on all public transport",
+        "Simit (sesame bread rings) from street carts cost under $0.50 — the best budget snack",
+        "Many mosques including the Blue Mosque are free to enter"
+      ]
+    },
+    {
+      "city": "Zurich",
+      "country": "Switzerland",
+      "currency": "CHF",
+      "currencySymbol": "Fr.",
+      "usdExchangeRate": 0.90,
+      "budgetHotelAverage": 130,
+      "luxuryHotelAverage": 800,
+      "foodAverage": 50,
+      "luxuryFoodAverage": 250,
+      "transportAverage": 25,
+      "activityAverage": 45,
+      "miscellaneousAverage": 35,
+      "estimatedDailyBudget": 220,
+      "luxuryDailyBudget": 1200,
+      "backpackerBudget": 120,
+      "familyBudget": 450,
+      "breakdown": {
+        "budget": {
+          "accommodation": 130,
+          "food": 30,
+          "transport": 20,
+          "activities": 25,
+          "miscellaneous": 20
+        },
+        "midRange": {
+          "accommodation": 320,
+          "food": 85,
+          "transport": 30,
+          "activities": 65,
+          "miscellaneous": 40
+        },
+        "luxury": {
+          "accommodation": 800,
+          "food": 250,
+          "transport": 100,
+          "activities": 160,
+          "miscellaneous": 100
+        }
+      },
+      "tippingCulture": "Round up to the nearest franc; 10% appreciated at restaurants but never expected",
+      "taxNote": "7.7% standard VAT; 3.7% for accommodation. Tourists can reclaim on purchases over CHF 300",
+      "bestValueTips": [
+        "The Zurich Card covers all public transport and museum entry — excellent value for 2–3 day stays",
+        "Many museums are free on the first Wednesday of the month",
+        "Migros and Coop supermarkets have excellent prepared food at half the restaurant cost"
+      ]
+    },
+    {
+      "city": "Cape Town",
+      "country": "South Africa",
+      "currency": "ZAR",
+      "currencySymbol": "R",
+      "usdExchangeRate": 18.8,
+      "budgetHotelAverage": 45,
+      "luxuryHotelAverage": 380,
+      "foodAverage": 20,
+      "luxuryFoodAverage": 100,
+      "transportAverage": 12,
+      "activityAverage": 30,
+      "miscellaneousAverage": 18,
+      "estimatedDailyBudget": 90,
+      "luxuryDailyBudget": 500,
+      "backpackerBudget": 40,
+      "familyBudget": 200,
+      "breakdown": {
+        "budget": {
+          "accommodation": 45,
+          "food": 15,
+          "transport": 10,
+          "activities": 18,
+          "miscellaneous": 12
+        },
+        "midRange": {
+          "accommodation": 140,
+          "food": 40,
+          "transport": 18,
+          "activities": 50,
+          "miscellaneous": 25
+        },
+        "luxury": {
+          "accommodation": 380,
+          "food": 100,
+          "transport": 60,
+          "activities": 140,
+          "miscellaneous": 60
+        }
+      },
+      "tippingCulture": "Standard 10–15% at restaurants; 10% for taxis; petrol attendants and car guards expect R5–20",
+      "taxNote": "15% VAT included in prices; tourists can reclaim on purchases over R250 at dedicated desks",
+      "bestValueTips": [
+        "Uber is cheap and far safer than unmetered taxis in Cape Town",
+        "The V&A Waterfront has free walking access and busker entertainment",
+        "Bo-Kaap neighbourhood restaurants offer excellent Cape Malay cuisine for half V&A prices"
+      ]
+    },
+    {
+      "city": "Sydney",
+      "country": "Australia",
+      "currency": "AUD",
+      "currencySymbol": "A$",
+      "usdExchangeRate": 1.53,
+      "budgetHotelAverage": 100,
+      "luxuryHotelAverage": 550,
+      "foodAverage": 40,
+      "luxuryFoodAverage": 180,
+      "transportAverage": 18,
+      "activityAverage": 35,
+      "miscellaneousAverage": 25,
+      "estimatedDailyBudget": 160,
+      "luxuryDailyBudget": 800,
+      "backpackerBudget": 85,
+      "familyBudget": 340,
+      "breakdown": {
+        "budget": {
+          "accommodation": 100,
+          "food": 25,
+          "transport": 15,
+          "activities": 20,
+          "miscellaneous": 15
+        },
+        "midRange": {
+          "accommodation": 230,
+          "food": 70,
+          "transport": 25,
+          "activities": 55,
+          "miscellaneous": 30
+        },
+        "luxury": {
+          "accommodation": 550,
+          "food": 180,
+          "transport": 70,
+          "activities": 130,
+          "miscellaneous": 70
+        }
+      },
+      "tippingCulture": "Not expected — wages are high; 10% for exceptional service is a generous gesture",
+      "taxNote": "10% GST included in prices; tourists can claim Tourist Refund Scheme on purchases over A$300",
+      "bestValueTips": [
+        "The Opal card provides the most affordable transport across trains, buses, and ferries",
+        "Bondi to Coogee coastal walk is free and one of the world's great urban walks",
+        "Fish markets at Pyrmont offer world-class seafood at market prices"
+      ]
+    },
+    {
+      "city": "Rio de Janeiro",
+      "country": "Brazil",
+      "currency": "BRL",
+      "currencySymbol": "R$",
+      "usdExchangeRate": 4.97,
+      "budgetHotelAverage": 35,
+      "luxuryHotelAverage": 280,
+      "foodAverage": 15,
+      "luxuryFoodAverage": 80,
+      "transportAverage": 5,
+      "activityAverage": 20,
+      "miscellaneousAverage": 15,
+      "estimatedDailyBudget": 75,
+      "luxuryDailyBudget": 400,
+      "backpackerBudget": 40,
+      "familyBudget": 180,
+      "breakdown": {
+        "budget": {
+          "accommodation": 35,
+          "food": 12,
+          "transport": 4,
+          "activities": 12,
+          "miscellaneous": 10
+        },
+        "midRange": {
+          "accommodation": 100,
+          "food": 35,
+          "transport": 10,
+          "activities": 35,
+          "miscellaneous": 20
+        },
+        "luxury": {
+          "accommodation": 280,
+          "food": 80,
+          "transport": 40,
+          "activities": 100,
+          "miscellaneous": 50
+        }
+      },
+      "tippingCulture": "10% service charge usually included; additional tipping appreciated but optional",
+      "taxNote": "ICMS (state tax) and ISS (service tax) are included in displayed prices",
+      "bestValueTips": [
+        "Use the Metro for Ipanema, Copacabana, and Centro — cheap and reliable",
+        "Per-kilo restaurants (restaurante por quilo) offer fantastic value for traditional lunch",
+        "Free beach access is a Brazilian constitutional right — all beaches are public"
+      ]
+    },
+    {
+      "city": "Marrakech",
+      "country": "Morocco",
+      "currency": "MAD",
+      "currencySymbol": "د.م.",
+      "usdExchangeRate": 10.05,
+      "budgetHotelAverage": 30,
+      "luxuryHotelAverage": 280,
+      "foodAverage": 12,
+      "luxuryFoodAverage": 70,
+      "transportAverage": 5,
+      "activityAverage": 15,
+      "miscellaneousAverage": 12,
+      "estimatedDailyBudget": 55,
+      "luxuryDailyBudget": 350,
+      "backpackerBudget": 30,
+      "familyBudget": 140,
+      "breakdown": {
+        "budget": {
+          "accommodation": 30,
+          "food": 8,
+          "transport": 4,
+          "activities": 8,
+          "miscellaneous": 8
+        },
+        "midRange": {
+          "accommodation": 90,
+          "food": 28,
+          "transport": 10,
+          "activities": 25,
+          "miscellaneous": 15
+        },
+        "luxury": {
+          "accommodation": 280,
+          "food": 70,
+          "transport": 35,
+          "activities": 80,
+          "miscellaneous": 40
+        }
+      },
+      "tippingCulture": "Expected for guides, drivers, and hammam attendants; 10–15% at restaurants",
+      "taxNote": "20% VAT standard; included in most displayed prices for tourists",
+      "bestValueTips": [
+        "Petit taxis use meters — insist on the meter being switched on",
+        "The souk vegetable market near Bab Doukkala has the cheapest authentic Moroccan food",
+        "Bargaining in souks is expected — never pay the first asking price"
+      ]
+    },
+    {
+      "city": "Santorini",
+      "country": "Greece",
+      "currency": "EUR",
+      "currencySymbol": "€",
+      "usdExchangeRate": 0.92,
+      "budgetHotelAverage": 85,
+      "luxuryHotelAverage": 600,
+      "foodAverage": 35,
+      "luxuryFoodAverage": 160,
+      "transportAverage": 15,
+      "activityAverage": 45,
+      "miscellaneousAverage": 20,
+      "estimatedDailyBudget": 140,
+      "luxuryDailyBudget": 800,
+      "backpackerBudget": 80,
+      "familyBudget": 300,
+      "breakdown": {
+        "budget": {
+          "accommodation": 85,
+          "food": 22,
+          "transport": 10,
+          "activities": 25,
+          "miscellaneous": 15
+        },
+        "midRange": {
+          "accommodation": 220,
+          "food": 65,
+          "transport": 20,
+          "activities": 70,
+          "miscellaneous": 30
+        },
+        "luxury": {
+          "accommodation": 600,
+          "food": 160,
+          "transport": 60,
+          "activities": 180,
+          "miscellaneous": 60
+        }
+      },
+      "tippingCulture": "10% at restaurants appreciated; round up for taxi drivers",
+      "taxNote": "24% VAT standard rate for most goods and services",
+      "bestValueTips": [
+        "Book caldera-view hotels in Oia months in advance — prices double with short notice",
+        "Local buses (KTEL) connect all villages cheaply; renting ATV is affordable for flexibility",
+        "Grocery stores in Fira are far cheaper than resort-area restaurants for breakfast and snacks"
+      ]
+    },
+    {
+      "city": "New Delhi",
+      "country": "India",
+      "currency": "INR",
+      "currencySymbol": "₹",
+      "usdExchangeRate": 83.5,
+      "budgetHotelAverage": 20,
+      "luxuryHotelAverage": 200,
+      "foodAverage": 8,
+      "luxuryFoodAverage": 60,
+      "transportAverage": 4,
+      "activityAverage": 10,
+      "miscellaneousAverage": 8,
+      "estimatedDailyBudget": 50,
+      "luxuryDailyBudget": 300,
+      "backpackerBudget": 20,
+      "familyBudget": 120,
+      "breakdown": {
+        "budget": {
+          "accommodation": 20,
+          "food": 5,
+          "transport": 3,
+          "activities": 5,
+          "miscellaneous": 5
+        },
+        "midRange": {
+          "accommodation": 65,
+          "food": 20,
+          "transport": 8,
+          "activities": 18,
+          "miscellaneous": 12
+        },
+        "luxury": {
+          "accommodation": 200,
+          "food": 60,
+          "transport": 30,
+          "activities": 50,
+          "miscellaneous": 30
+        }
+      },
+      "tippingCulture": "10% at restaurants; ₹50–100 for guides and hotel porters; auto-rickshaw drivers don't expect tips",
+      "taxNote": "18% GST on most services; 12% on hotels under ₹7,500/night",
+      "bestValueTips": [
+        "Delhi Metro is world-class, safe, and extremely affordable — use it everywhere",
+        "Dilli Haat market has fixed-price authentic handicrafts without the bargaining stress",
+        "Thali meals at local dhabas cost ₹80–200 and are some of the best food in the world"
+      ]
+    }
+  ]
+}
