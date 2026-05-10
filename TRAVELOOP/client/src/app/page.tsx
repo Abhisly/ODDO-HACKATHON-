@@ -30,10 +30,10 @@ export default function RootPage() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full mb-16">
             <Link 
-              href="/dashboard" 
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 rounded-full bg-red-600 text-white font-medium text-lg tracking-wide transition-transform hover:scale-105 shadow-2xl"
+              href="/login" 
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full bg-red-600 text-white font-medium text-lg tracking-wide transition-transform hover:scale-105 shadow-2xl"
             >
-              Plan Your Journey <ArrowRight className="w-5 h-5" />
+              Begin Your Journey <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
 

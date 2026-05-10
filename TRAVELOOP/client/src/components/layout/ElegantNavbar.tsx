@@ -8,13 +8,11 @@ import { Compass, User, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { label: 'Dashboard', path: '/dashboard' },
   { label: 'Discover', path: '/discover' },
   { label: 'My Trips', path: '/trips' },
   { label: 'Plan Trip', path: '/planner' },
   { label: 'Route Matrix', path: '/matrix' },
-  { label: 'Logistics', path: '/telemetry' },
-  { label: 'AI Concierge', path: '/concierge' },
+  { label: 'AI Assistant', path: '/concierge' },
 ];
 
 import { ThemeToggle } from '@/components/ui/curtain-theme-toggle';
@@ -96,11 +94,11 @@ export default function ElegantNavbar() {
             <div className="hidden lg:flex items-center gap-4">
               <ThemeToggle variant="icon" defaultTheme="light" duration={600} />
               
-              <Link href="/settings" className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-colors">
-                <User className={cn("w-5 h-5", scrolled ? "text-luxury-charcoal dark:text-white" : "text-luxury-charcoal dark:text-white lg:text-white")} />
+              <Link href="/login" className="w-10 h-10 rounded-full bg-white/10 dark:bg-white/5 hover:bg-red-600/10 dark:hover:bg-white/10 flex items-center justify-center transition-all border border-black/5 dark:border-white/10">
+                <User className={cn("w-5 h-5", scrolled ? "text-luxury-charcoal dark:text-white" : "text-luxury-charcoal dark:text-white")} />
               </Link>
-              <Link href="/planner" className="btn-luxury text-sm py-2.5 px-6">
-                Start Planning
+              <Link href="/planner" className="btn-luxury text-sm py-2.5 px-6 shadow-xl shadow-red-600/20">
+                Plan Journey
               </Link>
             </div>
 

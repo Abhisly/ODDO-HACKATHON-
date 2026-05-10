@@ -1,8 +1,18 @@
 const express = require('express');
-const router = express.Router();
-const { getAllCities, getCityDetails } = require('../controllers/destinationController');
+const {
+  getDestinations,
+  getDestination,
+  createDestination
+} = require('../controllers/destinationController');
+const { protect, authorize } = require('../middleware/authMiddleware');
 
-router.get('/cities', getAllCities);
-router.get('/cities/:cityName', getCityDetails);
+const router = express.Router();
+
+router.route('/')
+  .get(getDestinations)
+  .post(protect, authorize('admin'), createDestination);
+
+router.route('/:id')
+  .get(getDestination);
 
 module.exports = router;

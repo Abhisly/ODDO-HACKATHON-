@@ -14,9 +14,7 @@ export default function EditorialLayout({ children }: { children: React.ReactNod
     <ScrollProvider>
       <div className="min-h-screen text-luxury-charcoal dark:text-white selection:bg-red-500 selection:text-white flex font-sans transition-colors duration-500">
         
-        <ResponsiveSidebar />
-        
-        <div className="flex-1 flex flex-col min-h-screen w-full lg:w-auto overflow-x-hidden relative z-10">
+        <div className="flex-1 flex flex-col min-h-screen w-full relative z-10">
           <ElegantNavbar />
           
           <main className="flex-1 w-full relative">
