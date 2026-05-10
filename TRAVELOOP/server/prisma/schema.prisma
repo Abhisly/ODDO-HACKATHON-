@@ -7,154 +7,121 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model City {
-  id                    String   @id @default(uuid())
-  city                  String   @unique
-  country               String?
-  continent             String?
-  description           String?
-  heroImage             String?
-  galleryImages         String[]
-  coordinates           Json?
-  timezone              String?
-  averageBudgetPerDay   Float?
-  luxuryBudgetPerDay    Float?
-  recommendedTripDays   Int?
-  climate               String?
-  bestSeason            String?
-  tags                  String[]
-  popularityScore       Int?
-  famousFor             String[]
-  transportationOptions String[]
-  safetyScore           Int?
-  
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
-  
-  places                Place[]
-  activities            Activity[]
+enum Role {
+  user
+  admin
 }
 
-model Place {
-  id              String   @id @default(uuid())
-  name            String
-  city            String
-  country         String?
-  cityRef         City     @relation(fields: [city], references: [city], onDelete: Cascade)
-  description     String?
-  images          String[]
-  openingHours    String?
-  estimatedCost   Float?
-  durationHours   Float?
-  category        String?
-  rating          Float?
-  coordinates     Json?
-  bestTimeToVisit String?
-  tips            String[]
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  
-  itineraryItems  ItineraryPlace[]
-}
+model User {
+  id                String    @id @default(uuid())
+  fullName          String
+  username          String    @unique
+  email             String    @unique
+  password          String
+  avatar            String?
+  role              Role      @default(user)
+  bio               String?
+  travelPreferences Json?
+  savedDestinations String[]
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 
-model Activity {
-  id              String   @id @default(uuid())
-  title           String
-  city            String
-  country         String?
-  cityRef         City     @relation(fields: [city], references: [city], onDelete: Cascade)
-  category        String?
-  durationHours   Float?
-  estimatedPrice  Float?
-  images          String[]
-  description     String?
-  rating          Float?
-  suitableFor     String[]
-  difficultyLevel String?
-  
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  
-  itineraryItems  ItineraryActivity[]
+  trips             Trip[]
+  journals          Journal[]
 }
 
 model Trip {
-  id              String   @id @default(uuid())
-  tripName        String
-  totalDuration   Int?
-  travelersCount  Int      @default(1)
-  tripImages      String[]
-  userId          String   @default("mock-user-123")
-  isPublic        Boolean  @default(false)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id              String    @id @default(uuid())
+  title           String
+  description     String?
+  ownerId         String
+  owner           User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  coverImage      String?
+  startDate       DateTime?
+  endDate         DateTime?
+  estimatedBudget Float?
+  travelersCount  Int       @default(1)
+  visibility      String    @default("private") // "private" or "public"
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
-  destinations    TripDestination[]
-  itinerary       ItineraryDay[]
-  budgetSummary   BudgetSummary?
-  packingChecklist ChecklistItem[]
-  notes           Note[]
+  budget          Budget?
+  packingList     PackingChecklist[]
+  journals        Journal[]
 }
 
-model TripDestination {
-  id       String @id @default(uuid())
+model Destination {
+  id              String    @id @default(uuid())
+  city            String    @unique
+  country         String
+  description     String?
+  heroImage       String?
+  averageBudget   Float?
+  recommendedDays Int?
+  climate         String?
+  bestSeason      String?
+  tags            String[]
+  popularityScore Int       @default(0)
+
+  famousPlaces    FamousPlace[]
+  activities      Activity[]
+}
+
+model FamousPlace {
+  id            String      @id @default(uuid())
+  destinationId String
+  destination   Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+  name          String
+  description   String?
+  category      String?
+  image         String?
+  estimatedCost Float?
+  durationHours Float?
+  rating        Float?
+}
+
+model Activity {
+  id              String      @id @default(uuid())
+  destinationId   String
+  destination     Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+  title           String
+  category        String?
+  estimatedPrice  Float?
+  durationHours   Float?
+  description     String?
+  image           String?
+  rating          Float?
+}
+
+model Budget {
+  id                String @id @default(uuid())
+  tripId            String @unique
+  trip              Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  accommodationCost Float  @default(0)
+  transportCost     Float  @default(0)
+  foodCost          Float  @default(0)
+  activityCost      Float  @default(0)
+  miscellaneousCost Float  @default(0)
+  totalCost         Float  @default(0)
+}
+
+model PackingChecklist {
+  id       String  @id @default(uuid())
   tripId   String
-  trip     Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
-  city     String
-  duration Int
+  trip     Trip    @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  category String?
+  itemName String
+  isPacked Boolean @default(false)
 }
 
-model BudgetSummary {
-  id             String @id @default(uuid())
-  tripId         String @unique
-  trip           Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
-  totalEstimated Float  @default(0)
-  accommodation  Float  @default(0)
-  food           Float  @default(0)
-  transport      Float  @default(0)
-  activities     Float  @default(0)
-}
-
-model ItineraryDay {
-  id         String @id @default(uuid())
-  day        Int
-  city       String
-  tripId     String
-  trip       Trip   @relation(fields: [tripId], references: [id], onDelete: Cascade)
-  places     ItineraryPlace[]
-  activities ItineraryActivity[]
-}
-
-model ItineraryPlace {
-  id             String       @id @default(uuid())
-  itineraryDayId String
-  placeId        String
-  itineraryDay   ItineraryDay @relation(fields: [itineraryDayId], references: [id], onDelete: Cascade)
-  place          Place        @relation(fields: [placeId], references: [id], onDelete: Cascade)
-}
-
-model ItineraryActivity {
-  id             String       @id @default(uuid())
-  itineraryDayId String
-  activityId     String
-  itineraryDay   ItineraryDay @relation(fields: [itineraryDayId], references: [id], onDelete: Cascade)
-  activity       Activity     @relation(fields: [activityId], references: [id], onDelete: Cascade)
-}
-
-model ChecklistItem {
-  id      String  @id @default(uuid())
-  item    String
-  packed  Boolean @default(false)
-  tripId  String
-  trip    Trip    @relation(fields: [tripId], references: [id], onDelete: Cascade)
-}
-
-model Note {
-  id      String   @id @default(uuid())
-  title   String?
-  content String?
-  date    DateTime @default(now())
-  tripId  String
-  trip    Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+model Journal {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tripId    String
+  trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  title     String
+  content   String
+  images    String[]
+  createdAt DateTime @default(now())
 }

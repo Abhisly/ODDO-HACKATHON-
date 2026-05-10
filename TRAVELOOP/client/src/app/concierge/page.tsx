@@ -1,8 +1,8 @@
-'use client';
-
+"use client";
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Compass, MapPin, Coffee, Plane, User } from 'lucide-react';
+import { Send, Compass, User, Sparkles, MessageSquare, Mic, Image as ImageIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 type Message = {
   id: string;
@@ -15,11 +15,11 @@ const INITIAL_MESSAGES: Message[] = [
   {
     id: 'msg-1',
     sender: 'ai',
-    text: "Hello. I'm your Traveloop Concierge. I notice you're planning a trip to Kyoto in October. How can I assist you today?",
+    text: "Welcome to your private concierge. I am here to ensure your journey is nothing short of extraordinary. How may I assist you today?",
     suggestions: [
-      "Find luxury Ryokans under $500/night.",
-      "What is the best way to get from KIX to Kyoto?",
-      "Recommend hidden Michelin-star sushi."
+      "Curate a 7-day luxury Tokyo escape",
+      "Hidden Michelin-star gems in Paris",
+      "Private yacht charters in Amalfi"
     ]
   }
 ];
@@ -28,10 +28,12 @@ export default function ConciergePage() {
   const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const endOfMessagesRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
   }, [messages, isTyping]);
 
   const handleSend = (text: string) => {
@@ -48,111 +50,136 @@ export default function ConciergePage() {
       const aiMsg: Message = {
         id: `msg-${Date.now() + 1}`,
         sender: 'ai',
-        text: `Based on your luxury profile, I recommend "Tawaraya Ryokan" for its unparalleled Omotenashi (traditional hospitality). I've temporarily held a reservation for you. Would you like me to confirm it and add it to your Day 1 itinerary?`,
-        suggestions: ["Yes, confirm the Ryokan.", "Show me other options.", "No, let's look at dining instead."]
+        text: `Based on your preference for refined experiences, I've curated a selection of private villas and exclusive dining spots. Would you like me to integrate these into your itinerary or refine the selection further?`,
+        suggestions: ["Show me the villas", "Tell me more about dining", "Refine for nature focus"]
       };
       setMessages(prev => [...prev, aiMsg]);
-    }, 2500);
+    }, 2000);
   };
 
   return (
-    <div className="editorial-container pt-32 pb-6 max-w-5xl mx-auto h-screen flex flex-col">
-      <div className="mb-6 flex justify-between items-end">
+    <div className="w-full h-screen bg-white dark:bg-black flex flex-col overflow-hidden">
+      {/* Header */}
+      <div className="editorial-container pt-32 pb-8 flex flex-col md:flex-row justify-between items-end gap-4 border-b border-black/5 dark:border-white/5">
         <div>
-          <h1 className="text-4xl font-serif font-medium tracking-tight text-luxury-charcoal mb-2">
-            AI Concierge
-          </h1>
-          <p className="text-luxury-charcoal/60 font-light">
-            Your personal expert for crafting perfect itineraries.
-          </p>
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4 text-red-600" />
+            <span className="text-red-600 font-bold tracking-[0.3em] uppercase text-[10px]">Private Service</span>
+          </div>
+          <h1 className="text-4xl font-serif font-medium text-luxury-charcoal dark:text-white">AI Concierge</h1>
         </div>
-        <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-luxury-cream rounded-full border border-black/5 text-xs font-medium text-red-600">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-          </span>
-          Online & Context-Aware
+        <div className="flex items-center gap-4 text-[10px] font-bold uppercase tracking-widest text-luxury-charcoal/40 dark:text-white/40">
+          <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Encrypted Channel</span>
+          <span className="w-px h-4 bg-black/10 dark:bg-white/10" />
+          <span>Priority Access</span>
         </div>
       </div>
 
-      <div className="flex-1 bg-white border border-black/5 rounded-3xl overflow-hidden flex flex-col shadow-luxury">
-        
-        {/* Chat Area */}
-        <div className="flex-1 overflow-y-auto p-6 md:p-10 space-y-8">
-          <AnimatePresence initial={false}>
-            {messages.map((msg) => (
-              <motion.div
-                key={msg.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`flex gap-6 ${msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
-              >
-                {/* Avatar */}
-                <div className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${msg.sender === 'ai' ? 'bg-red-600 text-white' : 'bg-luxury-beige text-luxury-charcoal'}`}>
-                  {msg.sender === 'ai' ? <Compass className="w-6 h-6" /> : <User className="w-6 h-6" />}
+      {/* Chat Messages */}
+      <div 
+        ref={scrollRef}
+        className="flex-1 overflow-y-auto editorial-container py-12 space-y-12 scrollbar-hide"
+      >
+        <AnimatePresence mode="popLayout">
+          {messages.map((msg) => (
+            <motion.div
+              key={msg.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={cn(
+                "flex gap-6 max-w-4xl mx-auto",
+                msg.sender === 'user' ? "flex-row-reverse" : "flex-row"
+              )}
+            >
+              <div className={cn(
+                "w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-lg",
+                msg.sender === 'ai' ? "bg-red-600 text-white" : "bg-zinc-900 text-white"
+              )}>
+                {msg.sender === 'ai' ? <Compass className="w-6 h-6" /> : <User className="w-6 h-6" />}
+              </div>
+              
+              <div className={cn(
+                "flex flex-col gap-4",
+                msg.sender === 'user' ? "items-end" : "items-start"
+              )}>
+                <div className={cn(
+                  "p-8 rounded-[2rem] text-lg leading-relaxed shadow-luxury",
+                  msg.sender === 'user' 
+                    ? "bg-zinc-900 text-white rounded-tr-none" 
+                    : "bg-white dark:bg-zinc-900 border border-black/5 dark:border-white/10 text-luxury-charcoal dark:text-white rounded-tl-none"
+                )}>
+                  {msg.text}
                 </div>
 
-                {/* Message Bubble */}
-                <div className={`flex flex-col gap-4 max-w-[80%] ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}>
-                  <div className={`p-6 rounded-2xl text-[15px] leading-relaxed shadow-sm ${msg.sender === 'user' ? 'bg-luxury-charcoal text-white rounded-tr-sm' : 'bg-luxury-cream text-luxury-charcoal border border-black/5 rounded-tl-sm'}`}>
-                    {msg.text}
+                {msg.suggestions && (
+                  <div className="flex flex-wrap gap-2">
+                    {msg.suggestions.map((s, i) => (
+                      <button
+                        key={i}
+                        onClick={() => handleSend(s)}
+                        className="px-6 py-2 rounded-full border border-black/10 dark:border-white/10 text-xs font-bold tracking-widest uppercase hover:border-red-600 hover:text-red-600 transition-all dark:text-white/60 dark:hover:text-red-600"
+                      >
+                        {s}
+                      </button>
+                    ))}
                   </div>
-                  
-                  {/* Suggestion Chips */}
-                  {msg.suggestions && (
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {msg.suggestions.map((suggestion, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => handleSend(suggestion)}
-                          className="px-4 py-2 text-xs font-medium rounded-full bg-white border border-black/10 text-luxury-charcoal hover:border-red-600 hover:text-red-600 transition-colors shadow-sm"
-                        >
-                          {suggestion}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+                )}
+              </div>
+            </motion.div>
+          ))}
 
-          {/* Typing Indicator */}
           {isTyping && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-6">
-              <div className="shrink-0 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="flex gap-6 max-w-4xl mx-auto"
+            >
+              <div className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shrink-0">
                 <Compass className="w-6 h-6 animate-spin-slow" />
               </div>
-              <div className="p-6 rounded-2xl bg-luxury-cream border border-black/5 rounded-tl-sm flex items-center gap-2">
-                <motion.span animate={{ opacity: [0.4, 1, 0.4] }} transition={{ repeat: Infinity, duration: 1.4 }} className="w-2 h-2 bg-luxury-charcoal/40 rounded-full" />
-                <motion.span animate={{ opacity: [0.4, 1, 0.4] }} transition={{ repeat: Infinity, duration: 1.4, delay: 0.2 }} className="w-2 h-2 bg-luxury-charcoal/40 rounded-full" />
-                <motion.span animate={{ opacity: [0.4, 1, 0.4] }} transition={{ repeat: Infinity, duration: 1.4, delay: 0.4 }} className="w-2 h-2 bg-luxury-charcoal/40 rounded-full" />
+              <div className="p-8 rounded-[2rem] bg-black/5 dark:bg-white/5 rounded-tl-none flex items-center gap-2">
+                <div className="w-2 h-2 bg-red-600 rounded-full animate-bounce" />
+                <div className="w-2 h-2 bg-red-600 rounded-full animate-bounce [animation-delay:0.2s]" />
+                <div className="w-2 h-2 bg-red-600 rounded-full animate-bounce [animation-delay:0.4s]" />
               </div>
             </motion.div>
           )}
-          <div ref={endOfMessagesRef} />
-        </div>
+        </AnimatePresence>
+      </div>
 
-        {/* Input Area */}
-        <div className="p-4 md:p-6 bg-white border-t border-black/5">
-          <div className="relative">
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend(input)}
-              placeholder="Ask for recommendations, budget advice, or itinerary changes..."
-              className="w-full bg-luxury-cream border border-black/5 rounded-full py-4 pl-6 pr-16 text-luxury-charcoal placeholder:text-luxury-charcoal/40 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-all"
-            />
-            <button
+      {/* Input Box */}
+      <div className="editorial-container pb-12 pt-6">
+        <div className="max-w-4xl mx-auto relative group">
+          <div className="absolute left-6 top-1/2 -translate-y-1/2 flex items-center gap-4 text-luxury-charcoal/20 dark:text-white/20">
+            <MessageSquare className="w-5 h-5" />
+          </div>
+          <input 
+            type="text" 
+            placeholder="Describe your perfect escape..."
+            className="w-full pl-16 pr-32 py-6 rounded-[2.5rem] bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 shadow-2xl focus:ring-4 focus:ring-red-600/5 transition-all text-lg outline-none"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSend(input)}
+          />
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+            <button className="p-3 text-luxury-charcoal/20 dark:text-white/20 hover:text-red-600 transition-colors">
+              <Mic className="w-5 h-5" />
+            </button>
+            <button className="p-3 text-luxury-charcoal/20 dark:text-white/20 hover:text-red-600 transition-colors">
+              <ImageIcon className="w-5 h-5" />
+            </button>
+            <button 
               onClick={() => handleSend(input)}
-              disabled={!input.trim() || isTyping}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 transition-all shadow-md"
+              disabled={!input.trim()}
+              className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-xl shadow-red-600/30 hover:scale-105 transition-transform disabled:opacity-50"
             >
-              <Send className="w-4 h-4 ml-0.5" />
+              <Send className="w-5 h-5 ml-0.5" />
             </button>
           </div>
         </div>
+        <p className="text-center text-[10px] font-bold uppercase tracking-widest text-luxury-charcoal/20 dark:text-white/20 mt-6">
+          Powered by Traveloop AI • High Fidelity Mode
+        </p>
       </div>
     </div>
   );
