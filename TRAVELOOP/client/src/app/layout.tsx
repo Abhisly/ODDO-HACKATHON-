@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased selection:bg-red-500 selection:text-white bg-gray-300 dark:bg-black transition-colors duration-500">
+      <body className="font-sans antialiased selection:bg-red-50 selection:text-white bg-[#FDFBF7] dark:bg-black transition-colors duration-500">
         <EditorialLayout>{children}</EditorialLayout>
         <Toaster />
       </body>

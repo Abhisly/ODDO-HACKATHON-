@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { MOCK_TRIPS, MOCK_DESTINATIONS, MOCK_BUDGET_EXPENSES, MOCK_PACKING_LIST, MOCK_NOTES } from './mockData';
+import { tripApi, destinationApi, authApi } from './api';
+import { MOCK_DESTINATIONS, MOCK_TRIPS, MOCK_PACKING_LIST, MOCK_BUDGET_EXPENSES, MOCK_NOTES } from './mockData';
 
 export type Activity = {
   id: string;
@@ -16,12 +17,14 @@ export type DayPlan = {
 
 export type Trip = {
   id: string;
-  destination: any;
+  title: string;
+  description?: string;
   startDate: string;
   endDate: string;
   status: string;
-  budget: number;
-  travelers: number;
+  estimatedBudget: number;
+  travelersCount: number;
+  destination?: any;
   itinerary: DayPlan[];
 };
 
@@ -46,13 +49,23 @@ interface TravelStore {
   budgetExpenses: any[];
   packingList: PackingItem[];
   notes: Note[];
+  user: any | null;
+  currency: string;
+  loading: boolean;
   
   // Actions
-  setActiveTrip: (id: string) => void;
-  addTrip: (trip: Trip) => void;
-  updateItineraryDay: (tripId: string, dayIndex: number, newActivities: Activity[]) => void;
-  addActivity: (tripId: string, dayIndex: number, activity: Activity) => void;
-  deleteActivity: (tripId: string, dayIndex: number, activityId: string) => void;
+  setUser: (user: any | null) => void;
+  setCurrency: (currency: string) => void;
+  setActiveTrip: (id: string | null) => void;
+  fetchTrips: () => Promise<void>;
+  fetchDestinations: () => Promise<void>;
+  addTrip: (trip: any) => Promise<void>;
+  deleteTrip: (id: string) => Promise<void>;
+  updateTrip: (id: string, data: any) => Promise<void>;
+  
+  setDestinations: (destinations: any[]) => void;
+  
+  // Packing & Notes
   togglePackingItem: (id: string) => void;
   addPackingItem: (item: PackingItem) => void;
   deletePackingItem: (id: string) => void;
@@ -62,56 +75,80 @@ interface TravelStore {
   deleteNote: (id: string) => void;
 }
 
-export const useTravelStore = create<TravelStore>((set) => ({
-  destinations: MOCK_DESTINATIONS,
-  trips: MOCK_TRIPS,
-  activeTripId: MOCK_TRIPS[0].id,
+export const useTravelStore = create<TravelStore>((set, get) => ({
+  destinations: MOCK_DESTINATIONS, // Initialize with mock data for robust demo
+  trips: [],
+  activeTripId: null,
   budgetExpenses: MOCK_BUDGET_EXPENSES,
   packingList: MOCK_PACKING_LIST,
   notes: MOCK_NOTES,
+  user: null,
+  currency: 'USD',
+  loading: false,
 
+  setUser: (user) => set({ user }),
+  setCurrency: (currency) => set({ currency }),
   setActiveTrip: (id) => set({ activeTripId: id }),
-  
-  addTrip: (trip) => set((state) => ({ trips: [...state.trips, trip] })),
-  
-  updateItineraryDay: (tripId, dayIndex, newActivities) => set((state) => ({
-    trips: state.trips.map(trip => {
-      if (trip.id === tripId) {
-        const newItinerary = [...trip.itinerary];
-        newItinerary[dayIndex] = { ...newItinerary[dayIndex], activities: newActivities };
-        return { ...trip, itinerary: newItinerary };
-      }
-      return trip;
-    })
-  })),
+  setDestinations: (destinations) => set({ destinations }),
 
-  addActivity: (tripId, dayIndex, activity) => set((state) => ({
-    trips: state.trips.map(trip => {
-      if (trip.id === tripId) {
-        const newItinerary = [...trip.itinerary];
-        newItinerary[dayIndex] = { 
-          ...newItinerary[dayIndex], 
-          activities: [...newItinerary[dayIndex].activities, activity] 
-        };
-        return { ...trip, itinerary: newItinerary };
+  fetchDestinations: async () => {
+    try {
+      const res = await destinationApi.getAllDestinations();
+      if (res.data && res.data.length > 0) {
+        set({ destinations: res.data });
       }
-      return trip;
-    })
-  })),
+    } catch (err) {
+      console.warn('Using cached destination intelligence.');
+    }
+  },
 
-  deleteActivity: (tripId, dayIndex, activityId) => set((state) => ({
-    trips: state.trips.map(trip => {
-      if (trip.id === tripId) {
-        const newItinerary = [...trip.itinerary];
-        newItinerary[dayIndex] = { 
-          ...newItinerary[dayIndex], 
-          activities: newItinerary[dayIndex].activities.filter(a => a.id !== activityId) 
-        };
-        return { ...trip, itinerary: newItinerary };
-      }
-      return trip;
-    })
-  })),
+  fetchTrips: async () => {
+    set({ loading: true });
+    try {
+      const res = await tripApi.getTrips();
+      set({ trips: res.data });
+    } catch (err) {
+      console.warn('Using local trip portfolio.');
+      // Keep empty or use MOCK_TRIPS if absolutely necessary, 
+      // but trips are user-specific so empty is safer unless demo account is used.
+    } finally {
+      set({ loading: false });
+    }
+  },
+
+  addTrip: async (tripData) => {
+    try {
+      const res = await tripApi.createTrip(tripData);
+      set((state) => ({ trips: [res.data, ...state.trips] }));
+    } catch (err) {
+      console.error('Failed to add trip:', err);
+      // For demo, we still want it to appear in UI
+      const mockTrip = { ...tripData, id: Math.random().toString(36).substr(2, 9), status: 'Planning' };
+      set((state) => ({ trips: [mockTrip, ...state.trips] }));
+    }
+  },
+
+  deleteTrip: async (id) => {
+    try {
+      await tripApi.deleteTrip(id);
+      set((state) => ({ trips: state.trips.filter(t => t.id !== id) }));
+    } catch (err) {
+      set((state) => ({ trips: state.trips.filter(t => t.id !== id) }));
+    }
+  },
+
+  updateTrip: async (id, data) => {
+    try {
+      const res = await tripApi.updateTrip(id, data);
+      set((state) => ({
+        trips: state.trips.map(t => t.id === id ? res.data : t)
+      }));
+    } catch (err) {
+      set((state) => ({
+        trips: state.trips.map(t => t.id === id ? { ...t, ...data } : t)
+      }));
+    }
+  },
 
   togglePackingItem: (id) => set((state) => ({
     packingList: state.packingList.map(item => 

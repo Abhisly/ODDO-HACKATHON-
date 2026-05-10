@@ -5,16 +5,28 @@ import ElegantNavbar from './ElegantNavbar';
 import ScrollProvider from './ScrollProvider';
 import { ResponsiveSidebar } from './ResponsiveSidebar';
 import { AnimatePresence, motion } from 'framer-motion';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function EditorialLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token');
+    const protectedRoutes = ['/dashboard', '/trips', '/planner', '/settings', '/matrix', '/concierge'];
+    
+    if (protectedRoutes.some(route => pathname?.startsWith(route)) && !token) {
+      router.push('/auth');
+    }
+  }, [pathname, router]);
   
   return (
     <ScrollProvider>
       <div className="min-h-screen text-luxury-charcoal dark:text-white selection:bg-red-500 selection:text-white flex font-sans transition-colors duration-500">
         
-        <div className="flex-1 flex flex-col min-h-screen w-full relative z-10">
+        <ResponsiveSidebar />
+        
+        <div className="flex-1 flex flex-col min-h-screen w-full lg:w-auto overflow-x-hidden relative z-10">
           <ElegantNavbar />
           
           <main className="flex-1 w-full relative">

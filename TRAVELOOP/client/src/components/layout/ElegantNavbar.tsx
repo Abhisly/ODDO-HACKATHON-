@@ -4,15 +4,21 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Compass, User, Menu, X } from 'lucide-react';
+import { Compass, User, Menu, X, Globe, LogOut, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useTravelStore } from '@/lib/store';
+import { useRouter } from 'next/navigation';
+import { authApi } from '@/lib/api';
+import { toast } from 'sonner';
 
 const navLinks = [
+  { label: 'Dashboard', path: '/dashboard' },
   { label: 'Discover', path: '/discover' },
   { label: 'My Trips', path: '/trips' },
   { label: 'Plan Trip', path: '/planner' },
   { label: 'Route Matrix', path: '/matrix' },
-  { label: 'AI Assistant', path: '/concierge' },
+  { label: 'Logistics', path: '/telemetry' },
+  { label: 'AI Concierge', path: '/concierge' },
 ];
 
 import { ThemeToggle } from '@/components/ui/curtain-theme-toggle';
@@ -21,12 +27,39 @@ export default function ElegantNavbar() {
 // ... existing state
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currencyOpen, setCurrencyOpen] = useState(false);
   const { scrollY } = useScroll();
   const pathname = usePathname();
+  const router = useRouter();
+  const { user, setUser, currency, setCurrency } = useTravelStore();
+
+  const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'INR', 'AED'];
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 50);
   });
+
+  const handleLogout = async () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    toast.success('Logged out successfully');
+    router.push('/');
+  };
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const token = localStorage.getItem('token');
+      if (token && !user) {
+        try {
+          const res = await authApi.getMe();
+          setUser(res.data);
+        } catch (err) {
+          localStorage.removeItem('token');
+        }
+      }
+    };
+    checkUser();
+  }, [user, setUser]);
 
   return (
     <>
@@ -92,14 +125,59 @@ export default function ElegantNavbar() {
 
             {/* Actions */}
             <div className="hidden lg:flex items-center gap-4">
+              {/* Currency Selector */}
+              <div className="relative">
+                <button 
+                  onClick={() => setCurrencyOpen(!currencyOpen)}
+                  className={cn(
+                    "flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all",
+                    scrolled 
+                      ? "border-black/10 dark:border-white/10 text-luxury-charcoal dark:text-white" 
+                      : "border-white/20 text-white"
+                  )}
+                >
+                  <Globe className="w-4 h-4" />
+                  <span className="text-xs font-bold">{currency}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+                {currencyOpen && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute top-full mt-2 right-0 bg-white dark:bg-zinc-900 border border-black/10 dark:border-white/10 rounded-xl shadow-xl p-2 z-[60] min-w-[100px]"
+                  >
+                    {currencies.map(c => (
+                      <button 
+                        key={c}
+                        onClick={() => { setCurrency(c); setCurrencyOpen(false); }}
+                        className={cn(
+                          "w-full text-left px-3 py-2 text-xs rounded-lg transition-colors",
+                          currency === c ? "bg-red-50 text-red-600 font-bold" : "hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                        )}
+                      >
+                        {c}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </div>
+
               <ThemeToggle variant="icon" defaultTheme="light" duration={600} />
               
-              <Link href="/login" className="w-10 h-10 rounded-full bg-white/10 dark:bg-white/5 hover:bg-red-600/10 dark:hover:bg-white/10 flex items-center justify-center transition-all border border-black/5 dark:border-white/10">
-                <User className={cn("w-5 h-5", scrolled ? "text-luxury-charcoal dark:text-white" : "text-luxury-charcoal dark:text-white")} />
-              </Link>
-              <Link href="/planner" className="btn-luxury text-sm py-2.5 px-6 shadow-xl shadow-red-600/20">
-                Plan Journey
-              </Link>
+              {user ? (
+                <div className="flex items-center gap-3">
+                  <Link href="/dashboard" className="w-10 h-10 rounded-full border border-black/10 dark:border-white/10 overflow-hidden">
+                    <img src={user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.username}`} alt="Avatar" className="w-full h-full object-cover" />
+                  </Link>
+                  <button onClick={handleLogout} className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors">
+                    <LogOut className="w-5 h-5" />
+                  </button>
+                </div>
+              ) : (
+                <Link href="/auth" className="btn-luxury text-sm py-2.5 px-6">
+                  Login
+                </Link>
+              )}
             </div>
 
             {/* Mobile Menu Toggle */}
