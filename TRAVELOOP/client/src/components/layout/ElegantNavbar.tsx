@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { label: 'Dashboard', path: '/dashboard' },
   { label: 'Discover', path: '/discover' },
+  { label: 'Activities', path: '/activities' },
   { label: 'My Trips', path: '/trips' },
   { label: 'Route Matrix', path: '/matrix' },
   { label: 'Logistics', path: '/telemetry' },

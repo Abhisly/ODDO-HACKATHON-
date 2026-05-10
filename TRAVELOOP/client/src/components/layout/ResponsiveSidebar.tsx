@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Compass, Calendar, Map as MapIcon, Menu, X, BookOpen, MessageSquare } from 'lucide-react';
+import { Compass, Calendar, Map as MapIcon, Menu, X, BookOpen, MessageSquare, MapPin, Star, Plane, Settings, LayoutDashboard } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function ResponsiveSidebar() {
@@ -13,11 +13,12 @@ export function ResponsiveSidebar() {
 
   const navLinks = [
     { name: 'Dashboard', href: '/dashboard', icon: Compass },
-    { name: 'Discover', href: '/discover', icon: MapIcon },
-    { name: 'My Trips', href: '/trips', icon: Calendar },
+    { name: 'Discover', href: '/discover', icon: MapPin },
+    { name: 'Activities', href: '/activities', icon: Star },
+    { name: 'My Trips', href: '/trips', icon: Plane },
     { name: 'Route Matrix', href: '/matrix', icon: MapIcon },
-    { name: 'Logistics', href: '/telemetry', icon: Calendar },
-    { name: 'AI Concierge', href: '/concierge', icon: MessageSquare },
+    { name: 'Logistics', href: '/telemetry', icon: Settings },
+    { name: 'AI Concierge', href: '/concierge', icon: LayoutDashboard },
     { name: 'Journal', href: '/missions', icon: BookOpen },
   ];
 

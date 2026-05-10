@@ -1,73 +1,102 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Wallet, Luggage, Plus, Trash2, CheckCircle2, Circle, AlertCircle, PieChart as PieChartIcon, BarChart3, TrendingUp } from 'lucide-react';
 import { useTravelStore } from '@/lib/store';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, BarChart, Bar, XAxis, YAxis } from 'recharts';
-import { Wallet, Plus, CheckCircle2, Circle, GripVertical } from 'lucide-react';
-import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
+import { SectionHeader } from '@/components/ui/SectionHeader';
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
+import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import { format } from 'date-fns';
 
-const COLORS = ['#2C5545', '#1D3557', '#E07A5F', '#1A1A1A'];
+const COLORS = ['#2C5545', '#C4B5A5', '#A39171', '#4A4A4A', '#8C9A9E'];
 
-export default function BudgetPackingPage() {
-  const { trips, activeTripId, budgetExpenses, packingList, togglePackingItem } = useTravelStore();
+export default function TelemetryPage() {
+  const { activeTripId, trips, budgetExpenses, packingList, togglePackingItem, addPackingItem, deletePackingItem, addExpense, deleteExpense } = useTravelStore();
+  
   const [activeTab, setActiveTab] = useState<'budget' | 'packing'>('budget');
-  const [mounted, setMounted] = useState(false);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
+  
+  // New Item States
+  const [newExpense, setNewExpense] = useState({ category: 'Activities', amount: '', date: new Date().toISOString().split('T')[0] });
+  const [newPackingItem, setNewPackingItem] = useState({ category: 'Clothing', name: '' });
 
   const activeTrip = trips.find(t => t.id === activeTripId);
 
-  if (!mounted || !activeTrip) return null;
+  // --- Budget Calculations ---
+  const totalExpenses = budgetExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+  const budgetLimit = activeTrip?.budget || 10000;
+  const budgetRemaining = budgetLimit - totalExpenses;
+  const isOverBudget = budgetRemaining < 0;
 
-  const totalSpent = budgetExpenses.reduce((acc, curr) => acc + curr.amount, 0);
-  const remaining = activeTrip.budget - totalSpent;
+  const categoryData = useMemo(() => {
+    const data: Record<string, number> = {};
+    budgetExpenses.forEach(exp => {
+      data[exp.category] = (data[exp.category] || 0) + exp.amount;
+    });
+    return Object.entries(data).map(([name, value]) => ({ name, value }));
+  }, [budgetExpenses]);
 
-  // Group packing list by category
-  const categories = Array.from(new Set(packingList.map(item => item.category)));
+  const handleAddExpense = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newExpense.amount) return;
+    addExpense({
+      id: `exp-${Date.now()}`,
+      category: newExpense.category,
+      amount: parseFloat(newExpense.amount),
+      date: newExpense.date
+    });
+    setNewExpense({ ...newExpense, amount: '' });
+  };
 
-  // Mock DnD for packing list (visual only for now to satisfy requirements)
-  const onDragEnd = (result: DropResult) => {
-    // In a real app, we'd reorder the store. For this prototype, we'll keep it visual.
-    if (!result.destination) return;
+  // --- Packing Calculations ---
+  const totalItems = packingList.length;
+  const packedItems = packingList.filter(item => item.packed).length;
+  const packedPercentage = totalItems === 0 ? 0 : Math.round((packedItems / totalItems) * 100);
+
+  const handleAddPackingItem = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newPackingItem.name) return;
+    addPackingItem({
+      id: `pack-${Date.now()}`,
+      category: newPackingItem.category,
+      name: newPackingItem.name,
+      packed: false
+    });
+    setNewPackingItem({ ...newPackingItem, name: '' });
   };
 
   return (
-    <div className="editorial-container pt-32 md:pt-40 pb-24 min-h-screen">
+    <div className="editorial-container pt-32 pb-24">
       
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-luxury-charcoal mb-4">
-            Trip Logistics
-          </h1>
-          <p className="text-xl text-luxury-charcoal/60 font-light leading-relaxed max-w-2xl">
-            Manage your finances and ensure you're fully prepared for {activeTrip.destination.name}.
-          </p>
-        </motion.div>
-
-        <div className="flex p-1 bg-luxury-beige rounded-full border border-black/5 w-fit">
-          <button 
+      {/* Header */}
+      <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-12">
+        <SectionHeader 
+          eyebrow="Logistics Command Center"
+          title="Trip Telemetry"
+          subtitle={activeTrip ? `Managing logistics for ${activeTrip.destination.name}` : "Select a trip to manage logistics."}
+          className="mb-0"
+        />
+        
+        {/* Tab Switcher */}
+        <div className="flex bg-white p-2 rounded-full border border-black/5 shadow-sm shrink-0">
+          <button
             onClick={() => setActiveTab('budget')}
-            className={`px-8 py-3 rounded-full text-sm font-medium transition-colors ${activeTab === 'budget' ? 'bg-white shadow-sm text-luxury-forest' : 'text-luxury-charcoal/60 hover:text-luxury-charcoal'}`}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold tracking-widest uppercase transition-all ${activeTab === 'budget' ? 'bg-luxury-charcoal text-white' : 'text-luxury-charcoal/40 hover:text-luxury-charcoal'}`}
           >
-            Budget
+            <Wallet className="w-4 h-4" /> Finance
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab('packing')}
-            className={`px-8 py-3 rounded-full text-sm font-medium transition-colors ${activeTab === 'packing' ? 'bg-white shadow-sm text-luxury-forest' : 'text-luxury-charcoal/60 hover:text-luxury-charcoal'}`}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold tracking-widest uppercase transition-all ${activeTab === 'packing' ? 'bg-luxury-charcoal text-white' : 'text-luxury-charcoal/40 hover:text-luxury-charcoal'}`}
           >
-            Packing List
+            <Luggage className="w-4 h-4" /> Packing
           </button>
         </div>
       </div>
 
       <AnimatePresence mode="wait">
+        
+        {/* BUDGET TAB */}
         {activeTab === 'budget' && (
           <motion.div
             key="budget"
@@ -76,134 +105,263 @@ export default function BudgetPackingPage() {
             exit={{ opacity: 0, y: -20 }}
             className="grid grid-cols-1 lg:grid-cols-3 gap-8"
           >
-            {/* Overview Cards */}
-            <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="editorial-card p-8 bg-luxury-forest text-white">
-                <p className="text-white/60 font-medium uppercase tracking-widest text-xs mb-2">Total Budget</p>
-                <h3 className="font-serif text-4xl font-medium">${activeTrip.budget.toLocaleString()}</h3>
-              </div>
-              <div className="editorial-card p-8 border border-black/5 bg-white">
-                <p className="text-luxury-charcoal/40 font-medium uppercase tracking-widest text-xs mb-2">Total Spent</p>
-                <h3 className="font-serif text-4xl font-medium text-luxury-charcoal">${totalSpent.toLocaleString()}</h3>
-              </div>
-              <div className="editorial-card p-8 border border-black/5 bg-luxury-beige">
-                <p className="text-luxury-charcoal/40 font-medium uppercase tracking-widest text-xs mb-2">Remaining</p>
-                <h3 className="font-serif text-4xl font-medium text-luxury-ocean">${remaining.toLocaleString()}</h3>
-              </div>
-            </div>
+            {/* Left Column: Analytics */}
+            <div className="lg:col-span-2 space-y-8">
+              
+              {/* Summary Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                 <div className="bg-white p-8 rounded-3xl border border-black/5 shadow-sm relative overflow-hidden">
+                   <div className="absolute top-0 right-0 p-6 opacity-5"><Wallet className="w-24 h-24" /></div>
+                   <p className="text-xs font-bold uppercase tracking-widest text-luxury-charcoal/40 mb-2">Total Budget</p>
+                   <p className="font-serif text-4xl">${budgetLimit.toLocaleString()}</p>
+                 </div>
+                 
+                 <div className="bg-white p-8 rounded-3xl border border-black/5 shadow-sm relative overflow-hidden">
+                   <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-24 h-24" /></div>
+                   <p className="text-xs font-bold uppercase tracking-widest text-luxury-charcoal/40 mb-2">Total Spent</p>
+                   <p className="font-serif text-4xl">${totalExpenses.toLocaleString()}</p>
+                 </div>
 
-            {/* Charts */}
-            <div className="lg:col-span-2 editorial-card p-8 border border-black/5 bg-white min-h-[400px] flex flex-col">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="font-serif text-2xl font-medium">Expense Distribution</h3>
+                 <div className={`p-8 rounded-3xl border shadow-sm relative overflow-hidden transition-colors ${isOverBudget ? 'bg-red-50 border-red-100 text-red-900' : 'bg-luxury-forest text-white border-luxury-forest'}`}>
+                   <div className="absolute top-0 right-0 p-6 opacity-10"><AlertCircle className="w-24 h-24" /></div>
+                   <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">Remaining</p>
+                   <p className="font-serif text-4xl">${Math.abs(budgetRemaining).toLocaleString()}</p>
+                   {isOverBudget && <p className="text-xs font-bold uppercase mt-2 opacity-80">Over Budget Limit!</p>}
+                 </div>
               </div>
-              <div className="flex-1 -mx-4">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={budgetExpenses} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                    <XAxis dataKey="category" axisLine={false} tickLine={false} tick={{ fill: '#888', fontSize: 12 }} />
-                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#888', fontSize: 12 }} tickFormatter={(val) => `$${val}`} />
-                    <Tooltip cursor={{ fill: 'rgba(0,0,0,0.02)' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
-                    <Bar dataKey="amount" fill="#2C5545" radius={[6, 6, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
 
-            {/* Recent Expenses List */}
-            <div className="editorial-card p-8 border border-black/5 bg-white flex flex-col">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="font-serif text-2xl font-medium">Recent</h3>
-                <button className="w-8 h-8 rounded-full bg-luxury-beige flex items-center justify-center hover:bg-luxury-forest hover:text-white transition-colors">
-                  <Plus className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="space-y-6 flex-1 overflow-y-auto pr-2">
-                {budgetExpenses.map((exp, i) => (
-                  <div key={exp.id} className="flex justify-between items-center group">
-                    <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-full bg-luxury-cream border border-black/5 flex items-center justify-center">
-                        <Wallet className="w-4 h-4 text-luxury-charcoal/50" />
-                      </div>
-                      <div>
-                        <p className="font-medium text-luxury-charcoal">{exp.category}</p>
-                        <p className="text-xs text-luxury-charcoal/40">{format(new Date(exp.date), 'MMM dd, yyyy')}</p>
-                      </div>
-                    </div>
-                    <span className="font-serif font-medium text-lg">${exp.amount}</span>
+              {/* Charts Panel */}
+              <div className="bg-white p-8 rounded-3xl border border-black/5 shadow-sm grid md:grid-cols-2 gap-12">
+                <div>
+                  <h3 className="font-serif text-xl font-medium mb-6 flex items-center gap-2"><PieChartIcon className="w-5 h-5 text-luxury-forest" /> Spend by Category</h3>
+                  <div className="h-64">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={categoryData}
+                          cx="50%"
+                          cy="50%"
+                          innerRadius={60}
+                          outerRadius={80}
+                          paddingAngle={5}
+                          dataKey="value"
+                        >
+                          {categoryData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          ))}
+                        </Pie>
+                        <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+                      </PieChart>
+                    </ResponsiveContainer>
                   </div>
-                ))}
+                  <div className="grid grid-cols-2 gap-4 mt-4">
+                    {categoryData.map((entry, index) => (
+                      <div key={entry.name} className="flex items-center gap-2 text-sm">
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index % COLORS.length] }} />
+                        <span className="text-luxury-charcoal/60">{entry.name}</span>
+                        <span className="font-medium ml-auto">${entry.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-serif text-xl font-medium mb-6 flex items-center gap-2"><BarChart3 className="w-5 h-5 text-luxury-forest" /> Expense Flow</h3>
+                  <div className="h-64 mt-4">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={categoryData}>
+                        <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#8C9A9E' }} />
+                        <Tooltip cursor={{ fill: 'rgba(0,0,0,0.02)' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }} />
+                        <Bar dataKey="value" fill="#C4B5A5" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Right Column: Ledger */}
+            <div className="space-y-6">
+              <div className="bg-white p-6 rounded-3xl border border-black/5 shadow-sm">
+                <h3 className="font-serif text-xl font-medium mb-6">Add Expense</h3>
+                <form onSubmit={handleAddExpense} className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs font-bold tracking-widest uppercase text-luxury-charcoal/40 mb-2 block">Amount</label>
+                      <input 
+                        type="number" 
+                        value={newExpense.amount}
+                        onChange={(e) => setNewExpense({...newExpense, amount: e.target.value})}
+                        placeholder="$0.00" 
+                        className="w-full bg-luxury-beige/30 border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest font-serif text-lg" 
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs font-bold tracking-widest uppercase text-luxury-charcoal/40 mb-2 block">Category</label>
+                      <select 
+                        value={newExpense.category}
+                        onChange={(e) => setNewExpense({...newExpense, category: e.target.value})}
+                        className="w-full bg-luxury-beige/30 border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest text-sm"
+                      >
+                        <option>Flights</option>
+                        <option>Accommodation</option>
+                        <option>Dining</option>
+                        <option>Activities</option>
+                        <option>Transport</option>
+                        <option>Misc</option>
+                      </select>
+                    </div>
+                  </div>
+                  <AnimatedButton type="submit" className="w-full">Log Expense</AnimatedButton>
+                </form>
+              </div>
+
+              <div className="bg-luxury-beige p-6 rounded-3xl border border-black/5">
+                <h3 className="font-serif text-xl font-medium mb-6">Recent Transactions</h3>
+                <div className="space-y-3">
+                  <AnimatePresence mode="popLayout">
+                    {budgetExpenses.slice().reverse().map(exp => (
+                      <motion.div 
+                        key={exp.id}
+                        layout
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        className="bg-white p-4 rounded-2xl flex items-center justify-between group shadow-sm"
+                      >
+                        <div>
+                          <p className="font-medium">{exp.category}</p>
+                          <p className="text-xs text-luxury-charcoal/40">{format(new Date(exp.date), 'MMM dd, yyyy')}</p>
+                        </div>
+                        <div className="flex items-center gap-4">
+                          <span className="font-serif text-lg">${exp.amount}</span>
+                          <button 
+                            onClick={() => deleteExpense(exp.id)}
+                            className="w-8 h-8 rounded-full bg-red-50 text-red-400 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500 hover:text-white"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </motion.div>
         )}
 
+        {/* PACKING TAB */}
         {activeTab === 'packing' && (
           <motion.div
             key="packing"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="editorial-card p-8 lg:p-12 border border-black/5 bg-white max-w-3xl mx-auto"
+            className="max-w-4xl mx-auto"
           >
-            <div className="flex items-center justify-between mb-12">
-              <div>
-                <h2 className="font-serif text-3xl font-medium mb-2">Packing Checklist</h2>
-                <p className="text-luxury-charcoal/60 text-sm">
-                  {packingList.filter(i => i.packed).length} of {packingList.length} items packed.
-                </p>
-              </div>
-              <button className="flex items-center gap-2 btn-luxury-outline py-2 px-4 text-sm">
-                <Plus className="w-4 h-4" /> Add Item
-              </button>
+            {/* Progress Bar */}
+            <div className="bg-white p-8 rounded-3xl border border-black/5 shadow-sm mb-8">
+               <div className="flex justify-between items-end mb-4">
+                 <div>
+                   <h3 className="font-serif text-2xl font-medium">Readiness Index</h3>
+                   <p className="text-luxury-charcoal/60">{packedItems} of {totalItems} items packed</p>
+                 </div>
+                 <span className="font-serif text-5xl text-luxury-forest">{packedPercentage}%</span>
+               </div>
+               <div className="w-full h-4 bg-luxury-beige rounded-full overflow-hidden">
+                 <motion.div 
+                   className="h-full bg-luxury-forest"
+                   initial={{ width: 0 }}
+                   animate={{ width: `${packedPercentage}%` }}
+                   transition={{ duration: 1, ease: "easeOut" }}
+                 />
+               </div>
             </div>
 
-            <DragDropContext onDragEnd={onDragEnd}>
-              <div className="space-y-12">
-                {categories.map((category) => {
-                  const items = packingList.filter(i => i.category === category);
-                  return (
-                    <div key={category}>
-                      <h4 className="font-bold tracking-widest uppercase text-xs text-luxury-charcoal/40 mb-4 pb-2 border-b border-black/5">{category}</h4>
-                      <Droppable droppableId={`pack-${category}`}>
-                        {(provided) => (
-                          <div {...provided.droppableProps} ref={provided.innerRef} className="space-y-3">
-                            {items.map((item, index) => (
-                              <Draggable key={item.id} draggableId={item.id} index={index}>
-                                {(provided, snapshot) => (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    className={`flex items-center justify-between p-4 rounded-xl border border-black/5 transition-colors ${snapshot.isDragging ? 'bg-luxury-beige shadow-lg' : 'bg-white hover:bg-luxury-cream'} ${item.packed ? 'opacity-50' : ''}`}
-                                  >
-                                    <div className="flex items-center gap-4">
-                                      <button onClick={() => togglePackingItem(item.id)} className="transition-transform hover:scale-110 active:scale-95">
-                                        {item.packed ? (
-                                          <CheckCircle2 className="w-6 h-6 text-luxury-forest" />
-                                        ) : (
-                                          <Circle className="w-6 h-6 text-luxury-charcoal/20" />
-                                        )}
-                                      </button>
-                                      <span className={`font-medium ${item.packed ? 'line-through text-luxury-charcoal/60' : ''}`}>{item.name}</span>
-                                    </div>
-                                    <div {...provided.dragHandleProps} className="text-luxury-charcoal/20 hover:text-luxury-charcoal/60 cursor-grab">
-                                      <GripVertical className="w-5 h-5" />
-                                    </div>
-                                  </div>
-                                )}
-                              </Draggable>
-                            ))}
-                            {provided.placeholder}
-                          </div>
-                        )}
-                      </Droppable>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Add Item Form */}
+              <div className="md:col-span-1">
+                <div className="bg-luxury-beige p-6 rounded-3xl border border-black/5 sticky top-32">
+                  <h3 className="font-serif text-xl font-medium mb-6">Add to Manifest</h3>
+                  <form onSubmit={handleAddPackingItem} className="space-y-4">
+                    <div>
+                      <label className="text-xs font-bold tracking-widest uppercase text-luxury-charcoal/40 mb-2 block">Item Name</label>
+                      <input 
+                        type="text" 
+                        value={newPackingItem.name}
+                        onChange={(e) => setNewPackingItem({...newPackingItem, name: e.target.value})}
+                        placeholder="e.g., Camera Charger" 
+                        className="w-full bg-white border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest text-sm" 
+                      />
                     </div>
-                  )
-                })}
+                    <div>
+                      <label className="text-xs font-bold tracking-widest uppercase text-luxury-charcoal/40 mb-2 block">Category</label>
+                      <select 
+                        value={newPackingItem.category}
+                        onChange={(e) => setNewPackingItem({...newPackingItem, category: e.target.value})}
+                        className="w-full bg-white border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest text-sm"
+                      >
+                        <option>Clothing</option>
+                        <option>Electronics</option>
+                        <option>Documents</option>
+                        <option>Toiletries</option>
+                        <option>Misc</option>
+                      </select>
+                    </div>
+                    <AnimatedButton type="submit" className="w-full">Add Item</AnimatedButton>
+                  </form>
+                </div>
               </div>
-            </DragDropContext>
+
+              {/* Checklist */}
+              <div className="md:col-span-2 space-y-8">
+                 {/* Group by category */}
+                 {Array.from(new Set(packingList.map(i => i.category))).map(category => {
+                   const items = packingList.filter(i => i.category === category);
+                   return (
+                     <div key={category}>
+                       <h4 className="font-serif text-xl font-medium mb-4 flex items-center gap-2">
+                         <div className="w-2 h-2 rounded-full bg-luxury-forest" /> {category}
+                       </h4>
+                       <div className="space-y-3">
+                         <AnimatePresence mode="popLayout">
+                           {items.map(item => (
+                             <motion.div 
+                               key={item.id}
+                               layout
+                               initial={{ opacity: 0, scale: 0.95 }}
+                               animate={{ opacity: 1, scale: 1 }}
+                               exit={{ opacity: 0, scale: 0.95 }}
+                               className={`p-4 rounded-2xl border flex items-center gap-4 group transition-all cursor-pointer ${item.packed ? 'bg-luxury-beige/50 border-black/5 opacity-60' : 'bg-white border-black/10 shadow-sm hover:border-luxury-forest'}`}
+                               onClick={() => togglePackingItem(item.id)}
+                             >
+                               <button className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${item.packed ? 'bg-luxury-forest border-luxury-forest text-white' : 'border-black/20 text-transparent'}`}>
+                                 <CheckCircle2 className="w-4 h-4" />
+                               </button>
+                               <span className={`flex-1 font-medium transition-all ${item.packed ? 'line-through' : ''}`}>
+                                 {item.name}
+                               </span>
+                               <button 
+                                 onClick={(e) => { e.stopPropagation(); deletePackingItem(item.id); }}
+                                 className="w-8 h-8 rounded-full bg-red-50 text-red-400 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500 hover:text-white"
+                               >
+                                 <Trash2 className="w-4 h-4" />
+                               </button>
+                             </motion.div>
+                           ))}
+                         </AnimatePresence>
+                       </div>
+                     </div>
+                   )
+                 })}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
+
     </div>
   );
 }

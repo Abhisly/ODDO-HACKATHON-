@@ -157,3 +157,72 @@ export const MOCK_NOTES = [
   { id: 'note-1', title: 'Kyoto Restaurant Ideas', content: 'Must try the matcha fondue at Jouvencelle and the tofu at Junsei.', date: '2045-09-01' },
   { id: 'note-2', title: 'Packing Reminder', content: 'Do not forget the JR Pass exchange orders!', date: '2045-09-15' }
 ];
+
+export const MOCK_ACTIVITIES_CATALOG = [
+  {
+    id: 'cat-act-1',
+    title: 'Helicopter Tour over Manhattan',
+    description: 'Experience the iconic New York skyline from above in a luxury VIP helicopter.',
+    image: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?q=80&w=2000&auto=format&fit=crop',
+    type: 'Experience',
+    duration: '45 mins',
+    price: 350,
+    rating: 4.9,
+    reviews: 128
+  },
+  {
+    id: 'cat-act-2',
+    title: 'Private Omakase Dinner',
+    description: 'Exclusive 20-course sushi experience with a master chef in Ginza, Tokyo.',
+    image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=2000&auto=format&fit=crop',
+    type: 'Dining',
+    duration: '2 hours',
+    price: 400,
+    rating: 5.0,
+    reviews: 89
+  },
+  {
+    id: 'cat-act-3',
+    title: 'Sunset Catamaran Cruise',
+    description: 'Sail the caldera of Santorini at golden hour with champagne and local seafood.',
+    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2000&auto=format&fit=crop',
+    type: 'Sightseeing',
+    duration: '4 hours',
+    price: 180,
+    rating: 4.8,
+    reviews: 342
+  },
+  {
+    id: 'cat-act-4',
+    title: 'Alpine Glacier Trek',
+    description: 'Guided ice-climbing and trekking across the spectacular Aletsch Glacier.',
+    image: 'https://images.unsplash.com/photo-1469827160215-9d29e96e72f4?q=80&w=2000&auto=format&fit=crop',
+    type: 'Adventure',
+    duration: '6 hours',
+    price: 220,
+    rating: 4.7,
+    reviews: 56
+  },
+  {
+    id: 'cat-act-5',
+    title: 'Louvre After Hours VIP',
+    description: 'Private, guided evening tour of the Louvre avoiding the daytime crowds.',
+    image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=2000&auto=format&fit=crop',
+    type: 'Cultural',
+    duration: '3 hours',
+    price: 150,
+    rating: 4.9,
+    reviews: 210
+  },
+  {
+    id: 'cat-act-6',
+    title: 'Amalfi Coast Vintage Car Drive',
+    description: 'Drive a classic convertible along the stunning Amalfi coastal roads.',
+    image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000&auto=format&fit=crop',
+    type: 'Experience',
+    duration: 'Half Day',
+    price: 450,
+    rating: 4.9,
+    reviews: 175
+  }
+];

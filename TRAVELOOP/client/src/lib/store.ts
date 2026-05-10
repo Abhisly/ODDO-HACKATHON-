@@ -54,7 +54,10 @@ interface TravelStore {
   addActivity: (tripId: string, dayIndex: number, activity: Activity) => void;
   deleteActivity: (tripId: string, dayIndex: number, activityId: string) => void;
   togglePackingItem: (id: string) => void;
+  addPackingItem: (item: PackingItem) => void;
+  deletePackingItem: (id: string) => void;
   addExpense: (expense: any) => void;
+  deleteExpense: (id: string) => void;
   addNote: (note: Note) => void;
   deleteNote: (id: string) => void;
 }
@@ -116,8 +119,20 @@ export const useTravelStore = create<TravelStore>((set) => ({
     )
   })),
 
+  addPackingItem: (item) => set((state) => ({
+    packingList: [...state.packingList, item]
+  })),
+
+  deletePackingItem: (id) => set((state) => ({
+    packingList: state.packingList.filter(item => item.id !== id)
+  })),
+
   addExpense: (expense) => set((state) => ({
     budgetExpenses: [...state.budgetExpenses, expense]
+  })),
+
+  deleteExpense: (id) => set((state) => ({
+    budgetExpenses: state.budgetExpenses.filter(expense => expense.id !== id)
   })),
 
   addNote: (note) => set((state) => ({
