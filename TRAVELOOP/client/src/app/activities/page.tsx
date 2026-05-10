@@ -80,7 +80,7 @@ export default function ActivitiesPage() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${selectedCategory === category ? 'bg-luxury-forest text-white border-luxury-forest' : 'bg-white text-luxury-charcoal/60 border-black/5 hover:border-black/20 shadow-sm'}`}
+              className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${selectedCategory === category ? 'bg-red-600 text-white border-red-600' : 'bg-white text-luxury-charcoal/60 border-black/5 hover:border-black/20 shadow-sm'}`}
             >
               {category}
             </button>
@@ -121,7 +121,7 @@ export default function ActivitiesPage() {
                 
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="flex items-center gap-2 text-sm font-medium text-luxury-charcoal/80">
-                    <Clock className="w-4 h-4 text-luxury-forest" /> {act.duration}
+                    <Clock className="w-4 h-4 text-red-600" /> {act.duration}
                   </div>
                   <div className="flex items-center gap-2 text-sm font-medium text-luxury-charcoal/80">
                     <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" /> {act.rating} ({act.reviews})
@@ -132,7 +132,7 @@ export default function ActivitiesPage() {
                   <span className="font-serif text-xl font-medium">${act.price} <span className="font-sans text-xs text-luxury-charcoal/50 uppercase tracking-widest font-bold">/ person</span></span>
                   <button 
                     onClick={() => setSelectedActivity(act)}
-                    className="w-10 h-10 rounded-full bg-luxury-forest/10 text-luxury-forest flex items-center justify-center hover:bg-luxury-forest hover:text-white transition-colors"
+                    className="w-10 h-10 rounded-full bg-red-600/10 text-red-600 flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors"
                   >
                     <Plus className="w-5 h-5" />
                   </button>
@@ -181,7 +181,7 @@ export default function ActivitiesPage() {
                       <select 
                         value={selectedDay}
                         onChange={(e) => setSelectedDay(parseInt(e.target.value))}
-                        className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest"
+                        className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600"
                       >
                         {activeTrip.itinerary.map((day, idx) => (
                           <option key={idx} value={idx}>Day {day.day} - {new Date(day.date).toLocaleDateString()}</option>
@@ -200,7 +200,7 @@ export default function ActivitiesPage() {
                           hour = hour % 12 || 12;
                           setSelectedTime(`${hour}:${timeString.split(':')[1]} ${suffix}`);
                         }}
-                        className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest"
+                        className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600"
                       />
                     </div>
                   </div>

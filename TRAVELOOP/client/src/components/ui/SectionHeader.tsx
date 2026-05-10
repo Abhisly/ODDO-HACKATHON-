@@ -25,7 +25,7 @@ export function SectionHeader({ title, subtitle, eyebrow, align = 'left', classN
       className={cn("max-w-3xl mb-12", alignments[align], className)}
     >
       {eyebrow && (
-        <span className="block text-sm font-bold tracking-[0.2em] uppercase text-luxury-forest mb-4">
+        <span className="block text-sm font-bold tracking-[0.2em] uppercase text-red-600 mb-4">
           {eyebrow}
         </span>
       )}

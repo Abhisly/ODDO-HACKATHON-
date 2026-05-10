@@ -55,10 +55,10 @@ export default function ItineraryBuilderPage() {
 
   const getActivityIcon = (type: string) => {
     switch (type) {
-      case 'Flight': return <Plane className="w-4 h-4 text-luxury-forest" />;
-      case 'Accommodation': return <Bed className="w-4 h-4 text-luxury-forest" />;
-      case 'Dining': return <Coffee className="w-4 h-4 text-luxury-forest" />;
-      default: return <Navigation className="w-4 h-4 text-luxury-forest" />;
+      case 'Flight': return <Plane className="w-4 h-4 text-red-600" />;
+      case 'Accommodation': return <Bed className="w-4 h-4 text-red-600" />;
+      case 'Dining': return <Coffee className="w-4 h-4 text-red-600" />;
+      default: return <Navigation className="w-4 h-4 text-red-600" />;
     }
   };
 
@@ -84,7 +84,7 @@ export default function ItineraryBuilderPage() {
                 onClick={() => setActiveDay(idx)}
                 className={`w-full text-left px-6 py-4 rounded-2xl transition-all border ${
                   activeDay === idx 
-                    ? 'bg-white border-luxury-forest shadow-md scale-[1.02]' 
+                    ? 'bg-white border-red-600 shadow-md scale-[1.02]' 
                     : 'bg-luxury-cream border-transparent hover:border-black/10'
                 }`}
               >
@@ -108,7 +108,7 @@ export default function ItineraryBuilderPage() {
           </div>
           <button 
             onClick={() => setIsAddModalOpen(true)}
-            className="w-12 h-12 rounded-full bg-luxury-forest text-white flex items-center justify-center hover:bg-opacity-90 transition-all shadow-sm shrink-0"
+            className="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-opacity-90 transition-all shadow-sm shrink-0"
           >
             <Plus className="w-6 h-6" />
           </button>
@@ -136,10 +136,10 @@ export default function ItineraryBuilderPage() {
                           }`}
                         >
                           {/* Timeline Dot */}
-                          <div className="absolute left-[21px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-luxury-forest hidden md:block" />
+                          <div className="absolute left-[21px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-red-600 hidden md:block" />
                           
                           <div className={`p-5 flex items-center gap-4 md:gap-6 border rounded-2xl transition-all ${
-                            snapshot.isDragging ? 'shadow-2xl bg-white border-luxury-forest' : 'bg-white border-black/5 hover:border-black/10 shadow-sm'
+                            snapshot.isDragging ? 'shadow-2xl bg-white border-red-600' : 'bg-white border-black/5 hover:border-black/10 shadow-sm'
                           }`}>
                             <div 
                               {...provided.dragHandleProps}
@@ -158,7 +158,7 @@ export default function ItineraryBuilderPage() {
                               </div>
                               <div className="flex-1">
                                 <h4 className="font-serif text-xl font-medium">{activity.title}</h4>
-                                <p className="text-xs text-luxury-forest uppercase tracking-widest mt-1 font-bold">{activity.type}</p>
+                                <p className="text-xs text-red-600 uppercase tracking-widest mt-1 font-bold">{activity.type}</p>
                               </div>
                             </div>
                             
@@ -194,14 +194,14 @@ export default function ItineraryBuilderPage() {
             <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-multiply" />
             <img src={activeTrip.destination.image} className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-overlay group-hover:scale-105 transition-transform duration-700" alt="Map background" />
             <div className="p-6 bg-gradient-to-b from-white/80 to-transparent backdrop-blur-sm border-b border-black/5 z-10">
-              <h3 className="font-serif font-medium flex items-center gap-2"><MapIcon className="w-4 h-4 text-luxury-forest" /> Route Map</h3>
+              <h3 className="font-serif font-medium flex items-center gap-2"><MapIcon className="w-4 h-4 text-red-600" /> Route Map</h3>
             </div>
             <div className="flex-1 flex items-center justify-center z-10">
                <motion.div 
                  animate={{ y: [0, -10, 0] }}
                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                >
-                 <MapPin className="w-12 h-12 text-luxury-forest drop-shadow-xl" />
+                 <MapPin className="w-12 h-12 text-red-600 drop-shadow-xl" />
                </motion.div>
             </div>
           </div>
@@ -215,7 +215,7 @@ export default function ItineraryBuilderPage() {
                </div>
                <div className="flex justify-between items-center">
                  <span className="text-sm text-luxury-charcoal/60">Primary Tag</span>
-                 <span className="text-xs font-bold uppercase tracking-widest text-luxury-forest bg-luxury-forest/5 px-2 py-1 rounded-md">Culture</span>
+                 <span className="text-xs font-bold uppercase tracking-widest text-red-600 bg-red-600/5 px-2 py-1 rounded-md">Culture</span>
                </div>
             </div>
           </div>
@@ -236,7 +236,7 @@ export default function ItineraryBuilderPage() {
                 type="text" 
                 value={newActivity.title}
                 onChange={(e) => setNewActivity({...newActivity, title: e.target.value})}
-                className="w-full bg-luxury-beige/30 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest"
+                className="w-full bg-luxury-beige/30 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600"
                 placeholder="e.g., Museum Tour"
               />
             </div>
@@ -253,7 +253,7 @@ export default function ItineraryBuilderPage() {
                     hour = hour % 12 || 12;
                     setNewActivity({...newActivity, time: `${hour}:${timeString.split(':')[1]} ${suffix}`});
                   }}
-                  className="w-full bg-luxury-beige/30 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest"
+                  className="w-full bg-luxury-beige/30 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600"
                 />
               </div>
               <div>
@@ -261,7 +261,7 @@ export default function ItineraryBuilderPage() {
                 <select 
                   value={newActivity.type}
                   onChange={(e) => setNewActivity({...newActivity, type: e.target.value})}
-                  className="w-full bg-luxury-beige/30 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest"
+                  className="w-full bg-luxury-beige/30 border border-black/10 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600"
                 >
                   <option value="Sightseeing">Sightseeing</option>
                   <option value="Dining">Dining</option>

@@ -10,14 +10,17 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { label: 'Dashboard', path: '/dashboard' },
   { label: 'Discover', path: '/discover' },
-  { label: 'Activities', path: '/activities' },
   { label: 'My Trips', path: '/trips' },
+  { label: 'Plan Trip', path: '/planner' },
   { label: 'Route Matrix', path: '/matrix' },
   { label: 'Logistics', path: '/telemetry' },
   { label: 'AI Concierge', path: '/concierge' },
 ];
 
+import { ThemeToggle } from '@/components/ui/curtain-theme-toggle';
+
 export default function ElegantNavbar() {
+// ... existing state
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
@@ -38,22 +41,22 @@ export default function ElegantNavbar() {
           scrolled ? 'py-4' : 'py-6 lg:py-8'
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="w-full px-4 md:px-6">
           <div className={cn(
             'flex items-center justify-between rounded-full transition-all duration-500',
             scrolled 
-              ? 'bg-white/80 backdrop-blur-xl border border-white/20 shadow-sm px-6 py-3' 
+              ? 'bg-white/80 dark:bg-black/60 backdrop-blur-xl border border-white/20 dark:border-white/10 shadow-sm px-6 py-3' 
               : 'bg-transparent px-2 py-2'
           )}>
             
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-full bg-luxury-forest text-white flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-105">
+              <div className="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-105">
                 <Compass className="w-5 h-5 transition-transform duration-700 group-hover:rotate-45" />
               </div>
               <span className={cn(
                 "font-serif text-xl font-bold tracking-tight transition-colors duration-300",
-                scrolled ? "text-luxury-charcoal" : "text-luxury-charcoal lg:text-white"
+                scrolled ? "text-luxury-charcoal dark:text-white" : "text-luxury-charcoal dark:text-white lg:text-white"
               )}>
                 Traveloop.
               </span>
@@ -70,7 +73,7 @@ export default function ElegantNavbar() {
                     className={cn(
                       "text-sm font-medium tracking-wide transition-colors relative group",
                       scrolled 
-                        ? (isActive ? "text-luxury-forest" : "text-luxury-charcoal/70 hover:text-luxury-charcoal")
+                        ? (isActive ? "text-red-600 dark:text-white" : "text-luxury-charcoal/70 dark:text-white/70 hover:text-luxury-charcoal dark:hover:text-white")
                         : (isActive ? "text-white" : "text-white/70 hover:text-white")
                     )}
                   >
@@ -80,7 +83,7 @@ export default function ElegantNavbar() {
                         layoutId="nav-indicator"
                         className={cn(
                           "absolute -bottom-2 left-0 right-0 h-0.5 rounded-full",
-                          scrolled ? "bg-luxury-forest" : "bg-white"
+                          scrolled ? "bg-red-600 dark:bg-white" : "bg-white"
                         )}
                       />
                     )}
@@ -91,10 +94,12 @@ export default function ElegantNavbar() {
 
             {/* Actions */}
             <div className="hidden lg:flex items-center gap-4">
-              <button className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-colors">
-                <User className={cn("w-5 h-5", scrolled ? "text-luxury-charcoal" : "text-luxury-charcoal lg:text-white")} />
-              </button>
-              <Link href="/dashboard" className="btn-luxury text-sm py-2.5 px-6">
+              <ThemeToggle variant="icon" defaultTheme="light" duration={600} />
+              
+              <Link href="/settings" className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md flex items-center justify-center transition-colors">
+                <User className={cn("w-5 h-5", scrolled ? "text-luxury-charcoal dark:text-white" : "text-luxury-charcoal dark:text-white lg:text-white")} />
+              </Link>
+              <Link href="/planner" className="btn-luxury text-sm py-2.5 px-6">
                 Start Planning
               </Link>
             </div>
@@ -125,7 +130,7 @@ export default function ElegantNavbar() {
                 key={link.path} 
                 href={link.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-3xl font-serif text-luxury-charcoal hover:text-luxury-forest transition-colors"
+                className="text-3xl font-serif text-luxury-charcoal hover:text-red-600 transition-colors"
               >
                 {link.label}
               </Link>

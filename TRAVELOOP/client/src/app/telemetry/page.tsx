@@ -122,7 +122,7 @@ export default function TelemetryPage() {
                    <p className="font-serif text-4xl">${totalExpenses.toLocaleString()}</p>
                  </div>
 
-                 <div className={`p-8 rounded-3xl border shadow-sm relative overflow-hidden transition-colors ${isOverBudget ? 'bg-red-50 border-red-100 text-red-900' : 'bg-luxury-forest text-white border-luxury-forest'}`}>
+                 <div className={`p-8 rounded-3xl border shadow-sm relative overflow-hidden transition-colors ${isOverBudget ? 'bg-red-50 border-red-100 text-red-900' : 'bg-red-600 text-white border-red-600'}`}>
                    <div className="absolute top-0 right-0 p-6 opacity-10"><AlertCircle className="w-24 h-24" /></div>
                    <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-2">Remaining</p>
                    <p className="font-serif text-4xl">${Math.abs(budgetRemaining).toLocaleString()}</p>
@@ -133,7 +133,7 @@ export default function TelemetryPage() {
               {/* Charts Panel */}
               <div className="bg-white p-8 rounded-3xl border border-black/5 shadow-sm grid md:grid-cols-2 gap-12">
                 <div>
-                  <h3 className="font-serif text-xl font-medium mb-6 flex items-center gap-2"><PieChartIcon className="w-5 h-5 text-luxury-forest" /> Spend by Category</h3>
+                  <h3 className="font-serif text-xl font-medium mb-6 flex items-center gap-2"><PieChartIcon className="w-5 h-5 text-red-600" /> Spend by Category</h3>
                   <div className="h-64">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
@@ -166,7 +166,7 @@ export default function TelemetryPage() {
                 </div>
 
                 <div>
-                  <h3 className="font-serif text-xl font-medium mb-6 flex items-center gap-2"><BarChart3 className="w-5 h-5 text-luxury-forest" /> Expense Flow</h3>
+                  <h3 className="font-serif text-xl font-medium mb-6 flex items-center gap-2"><BarChart3 className="w-5 h-5 text-red-600" /> Expense Flow</h3>
                   <div className="h-64 mt-4">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={categoryData}>
@@ -194,7 +194,7 @@ export default function TelemetryPage() {
                         value={newExpense.amount}
                         onChange={(e) => setNewExpense({...newExpense, amount: e.target.value})}
                         placeholder="$0.00" 
-                        className="w-full bg-luxury-beige/30 border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest font-serif text-lg" 
+                        className="w-full bg-luxury-beige/30 border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600 font-serif text-lg" 
                       />
                     </div>
                     <div>
@@ -202,7 +202,7 @@ export default function TelemetryPage() {
                       <select 
                         value={newExpense.category}
                         onChange={(e) => setNewExpense({...newExpense, category: e.target.value})}
-                        className="w-full bg-luxury-beige/30 border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest text-sm"
+                        className="w-full bg-luxury-beige/30 border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600 text-sm"
                       >
                         <option>Flights</option>
                         <option>Accommodation</option>
@@ -268,11 +268,11 @@ export default function TelemetryPage() {
                    <h3 className="font-serif text-2xl font-medium">Readiness Index</h3>
                    <p className="text-luxury-charcoal/60">{packedItems} of {totalItems} items packed</p>
                  </div>
-                 <span className="font-serif text-5xl text-luxury-forest">{packedPercentage}%</span>
+                 <span className="font-serif text-5xl text-red-600">{packedPercentage}%</span>
                </div>
                <div className="w-full h-4 bg-luxury-beige rounded-full overflow-hidden">
                  <motion.div 
-                   className="h-full bg-luxury-forest"
+                   className="h-full bg-red-600"
                    initial={{ width: 0 }}
                    animate={{ width: `${packedPercentage}%` }}
                    transition={{ duration: 1, ease: "easeOut" }}
@@ -293,7 +293,7 @@ export default function TelemetryPage() {
                         value={newPackingItem.name}
                         onChange={(e) => setNewPackingItem({...newPackingItem, name: e.target.value})}
                         placeholder="e.g., Camera Charger" 
-                        className="w-full bg-white border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest text-sm" 
+                        className="w-full bg-white border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600 text-sm" 
                       />
                     </div>
                     <div>
@@ -301,7 +301,7 @@ export default function TelemetryPage() {
                       <select 
                         value={newPackingItem.category}
                         onChange={(e) => setNewPackingItem({...newPackingItem, category: e.target.value})}
-                        className="w-full bg-white border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-luxury-forest text-sm"
+                        className="w-full bg-white border border-black/5 rounded-xl px-4 py-3 focus:outline-none focus:border-red-600 text-sm"
                       >
                         <option>Clothing</option>
                         <option>Electronics</option>
@@ -323,7 +323,7 @@ export default function TelemetryPage() {
                    return (
                      <div key={category}>
                        <h4 className="font-serif text-xl font-medium mb-4 flex items-center gap-2">
-                         <div className="w-2 h-2 rounded-full bg-luxury-forest" /> {category}
+                         <div className="w-2 h-2 rounded-full bg-red-600" /> {category}
                        </h4>
                        <div className="space-y-3">
                          <AnimatePresence mode="popLayout">
@@ -334,10 +334,10 @@ export default function TelemetryPage() {
                                initial={{ opacity: 0, scale: 0.95 }}
                                animate={{ opacity: 1, scale: 1 }}
                                exit={{ opacity: 0, scale: 0.95 }}
-                               className={`p-4 rounded-2xl border flex items-center gap-4 group transition-all cursor-pointer ${item.packed ? 'bg-luxury-beige/50 border-black/5 opacity-60' : 'bg-white border-black/10 shadow-sm hover:border-luxury-forest'}`}
+                               className={`p-4 rounded-2xl border flex items-center gap-4 group transition-all cursor-pointer ${item.packed ? 'bg-luxury-beige/50 border-black/5 opacity-60' : 'bg-white border-black/10 shadow-sm hover:border-red-600'}`}
                                onClick={() => togglePackingItem(item.id)}
                              >
-                               <button className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${item.packed ? 'bg-luxury-forest border-luxury-forest text-white' : 'border-black/20 text-transparent'}`}>
+                               <button className={`w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${item.packed ? 'bg-red-600 border-red-600 text-white' : 'border-black/20 text-transparent'}`}>
                                  <CheckCircle2 className="w-4 h-4" />
                                </button>
                                <span className={`flex-1 font-medium transition-all ${item.packed ? 'line-through' : ''}`}>

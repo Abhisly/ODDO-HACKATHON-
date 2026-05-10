@@ -73,7 +73,7 @@ export function ResponsiveSidebar() {
                 className={cn(
                   "flex items-center gap-4 px-6 py-4 rounded-2xl transition-all font-medium",
                   isActive 
-                    ? "bg-luxury-forest text-white shadow-md" 
+                    ? "bg-red-600 text-white shadow-md" 
                     : "text-luxury-charcoal/70 hover:bg-black/5 hover:text-luxury-charcoal"
                 )}
               >

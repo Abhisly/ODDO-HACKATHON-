@@ -54,13 +54,13 @@ export default function MyTripsPage() {
           <div className="flex gap-2">
             <button 
               onClick={() => setViewMode('grid')}
-              className={`p-4 rounded-full border transition-colors ${viewMode === 'grid' ? 'bg-luxury-forest text-white border-luxury-forest' : 'bg-white text-luxury-charcoal/40 border-black/10 hover:border-black/30'}`}
+              className={`p-4 rounded-full border transition-colors ${viewMode === 'grid' ? 'bg-red-600 text-white border-red-600' : 'bg-white text-luxury-charcoal/40 border-black/10 hover:border-black/30'}`}
             >
               <LayoutGrid className="w-5 h-5" />
             </button>
             <button 
               onClick={() => setViewMode('list')}
-              className={`p-4 rounded-full border transition-colors ${viewMode === 'list' ? 'bg-luxury-forest text-white border-luxury-forest' : 'bg-white text-luxury-charcoal/40 border-black/10 hover:border-black/30'}`}
+              className={`p-4 rounded-full border transition-colors ${viewMode === 'list' ? 'bg-red-600 text-white border-red-600' : 'bg-white text-luxury-charcoal/40 border-black/10 hover:border-black/30'}`}
             >
               <ListIcon className="w-5 h-5" />
             </button>
@@ -130,7 +130,7 @@ export default function MyTripsPage() {
                 <div className="flex-1">
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="font-serif text-2xl font-medium text-luxury-charcoal">{trip.destination.name}</h3>
-                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${trip.status === 'Completed' ? 'bg-luxury-beige text-luxury-charcoal/60 border-black/5' : 'bg-luxury-forest/5 text-luxury-forest border-luxury-forest/20'}`}>
+                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${trip.status === 'Completed' ? 'bg-luxury-beige text-luxury-charcoal/60 border-black/5' : 'bg-red-600/5 text-red-600 border-red-600/20'}`}>
                       {trip.status}
                     </span>
                   </div>
@@ -141,7 +141,7 @@ export default function MyTripsPage() {
                   </div>
                   
                   <div className="flex justify-between items-center">
-                    <Link href={`/trips/${trip.id}`} className="text-luxury-forest font-bold tracking-widest text-xs uppercase hover:underline flex items-center gap-2">
+                    <Link href={`/trips/${trip.id}`} className="text-red-600 font-bold tracking-widest text-xs uppercase hover:underline flex items-center gap-2">
                       View Document <ArrowRight className="w-3 h-3" />
                     </Link>
                     <button 

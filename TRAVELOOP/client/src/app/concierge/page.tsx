@@ -66,10 +66,10 @@ export default function ConciergePage() {
             Your personal expert for crafting perfect itineraries.
           </p>
         </div>
-        <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-luxury-cream rounded-full border border-black/5 text-xs font-medium text-luxury-forest">
+        <div className="hidden sm:flex items-center gap-2 px-4 py-2 bg-luxury-cream rounded-full border border-black/5 text-xs font-medium text-red-600">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxury-forest opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-luxury-forest"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
           </span>
           Online & Context-Aware
         </div>
@@ -88,7 +88,7 @@ export default function ConciergePage() {
                 className={`flex gap-6 ${msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
               >
                 {/* Avatar */}
-                <div className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${msg.sender === 'ai' ? 'bg-luxury-forest text-white' : 'bg-luxury-beige text-luxury-charcoal'}`}>
+                <div className={`shrink-0 w-12 h-12 rounded-full flex items-center justify-center ${msg.sender === 'ai' ? 'bg-red-600 text-white' : 'bg-luxury-beige text-luxury-charcoal'}`}>
                   {msg.sender === 'ai' ? <Compass className="w-6 h-6" /> : <User className="w-6 h-6" />}
                 </div>
 
@@ -105,7 +105,7 @@ export default function ConciergePage() {
                         <button
                           key={idx}
                           onClick={() => handleSend(suggestion)}
-                          className="px-4 py-2 text-xs font-medium rounded-full bg-white border border-black/10 text-luxury-charcoal hover:border-luxury-forest hover:text-luxury-forest transition-colors shadow-sm"
+                          className="px-4 py-2 text-xs font-medium rounded-full bg-white border border-black/10 text-luxury-charcoal hover:border-red-600 hover:text-red-600 transition-colors shadow-sm"
                         >
                           {suggestion}
                         </button>
@@ -120,7 +120,7 @@ export default function ConciergePage() {
           {/* Typing Indicator */}
           {isTyping && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-6">
-              <div className="shrink-0 w-12 h-12 rounded-full bg-luxury-forest text-white flex items-center justify-center">
+              <div className="shrink-0 w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center">
                 <Compass className="w-6 h-6 animate-spin-slow" />
               </div>
               <div className="p-6 rounded-2xl bg-luxury-cream border border-black/5 rounded-tl-sm flex items-center gap-2">
@@ -142,12 +142,12 @@ export default function ConciergePage() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSend(input)}
               placeholder="Ask for recommendations, budget advice, or itinerary changes..."
-              className="w-full bg-luxury-cream border border-black/5 rounded-full py-4 pl-6 pr-16 text-luxury-charcoal placeholder:text-luxury-charcoal/40 focus:outline-none focus:border-luxury-forest focus:ring-1 focus:ring-luxury-forest transition-all"
+              className="w-full bg-luxury-cream border border-black/5 rounded-full py-4 pl-6 pr-16 text-luxury-charcoal placeholder:text-luxury-charcoal/40 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600 transition-all"
             />
             <button
               onClick={() => handleSend(input)}
               disabled={!input.trim() || isTyping}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-luxury-forest text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 transition-all shadow-md"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-opacity-90 transition-all shadow-md"
             >
               <Send className="w-4 h-4 ml-0.5" />
             </button>

@@ -57,14 +57,14 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Luxury Editorial Palette
+        // Luxury Editorial Palette (Red & Grey Theme)
         luxury: {
-          beige: "#F5F5F0",
-          cream: "#FAFAFA",
-          sand: "#EBE8E0",
-          charcoal: "#1A1A1A",
-          softBlack: "#2A2A2A",
-          forest: "#2C5545",
+          beige: "#e5e7eb", // gray-200
+          cream: "#f3f4f6", // gray-100
+          sand: "#d1d5db",  // gray-300
+          charcoal: "#111827", // gray-900
+          softBlack: "#030712", // gray-950
+          forest: "#dc2626", // red-600 (replacing forest green)
           ocean: "#1D3557",
           sunset: "#E07A5F",
         }
@@ -90,12 +90,50 @@ const config = {
         "image-zoom": {
           "0%": { transform: "scale(1)" },
           "100%": { transform: "scale(1.05)" },
-        }
+        },
+        moveHorizontal: {
+          "0%": {
+            transform: "translateX(-50%) translateY(-10%)",
+          },
+          "50%": {
+            transform: "translateX(50%) translateY(10%)",
+          },
+          "100%": {
+            transform: "translateX(-50%) translateY(-10%)",
+          },
+        },
+        moveInCircle: {
+          "0%": {
+            transform: "rotate(0deg)",
+          },
+          "50%": {
+            transform: "rotate(180deg)",
+          },
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+        moveVertical: {
+          "0%": {
+            transform: "translateY(-50%)",
+          },
+          "50%": {
+            transform: "translateY(50%)",
+          },
+          "100%": {
+            transform: "translateY(-50%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        first: "moveVertical 30s ease infinite",
+        second: "moveInCircle 20s reverse infinite",
+        third: "moveInCircle 40s linear infinite",
+        fourth: "moveHorizontal 40s ease infinite",
+        fifth: "moveInCircle 20s ease infinite",
       },
       boxShadow: {
         'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.04)',

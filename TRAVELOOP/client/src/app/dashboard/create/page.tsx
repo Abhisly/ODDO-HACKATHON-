@@ -199,13 +199,13 @@ export default function CreateTripPage() {
               <div key={i} className="flex items-center gap-4 shrink-0">
                 <div className={cn(
                   "w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors shrink-0",
-                  step >= i ? "bg-luxury-forest text-white shadow-sm" : "bg-luxury-beige text-luxury-charcoal/40"
+                  step >= i ? "bg-red-600 text-white shadow-sm" : "bg-luxury-beige text-luxury-charcoal/40"
                 )}>
                   {i}
                 </div>
                 {i < TOTAL_STEPS && <div className={cn(
                   "h-px w-8 md:w-16 transition-colors",
-                  step > i ? "bg-luxury-forest" : "bg-luxury-charcoal/10"
+                  step > i ? "bg-red-600" : "bg-luxury-charcoal/10"
                 )} />}
               </div>
             );
@@ -221,7 +221,7 @@ export default function CreateTripPage() {
               transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
               className="mb-8"
             >
-              <Compass className="w-16 h-16 text-luxury-forest" />
+              <Compass className="w-16 h-16 text-red-600" />
             </motion.div>
             <h2 className="text-3xl font-serif font-medium mb-4">Establishing Route Vector...</h2>
             <p className="text-luxury-charcoal/60 max-w-md mx-auto text-lg">
@@ -269,7 +269,7 @@ export default function CreateTripPage() {
 
                     <div className="space-y-3">
                       <label className="text-sm font-bold tracking-widest uppercase text-luxury-charcoal/60 flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-luxury-forest" /> Target Destination
+                        <MapPin className="w-4 h-4 text-red-600" /> Target Destination
                       </label>
                       <Controller
                         name="destination"
@@ -305,7 +305,7 @@ export default function CreateTripPage() {
                          onClick={() => setValue('transportMode', mode.id as any)}
                          className={cn(
                            "p-4 rounded-xl border flex flex-col items-center justify-center gap-3 cursor-pointer transition-all",
-                           transportMode === mode.id ? "border-luxury-forest bg-luxury-forest/5 text-luxury-forest shadow-sm" : "border-black/10 hover:border-black/30 text-luxury-charcoal/70"
+                           transportMode === mode.id ? "border-red-600 bg-red-600/5 text-red-600 shadow-sm" : "border-black/10 hover:border-black/30 text-luxury-charcoal/70"
                          )}
                        >
                          <mode.icon className="w-6 h-6" />
@@ -323,7 +323,7 @@ export default function CreateTripPage() {
                       className="bg-luxury-beige rounded-2xl p-6 border border-black/5 space-y-6"
                     >
                       <h3 className="font-serif font-medium text-lg flex items-center gap-2">
-                        <Route className="w-5 h-5 text-luxury-forest" /> Route Telemetry
+                        <Route className="w-5 h-5 text-red-600" /> Route Telemetry
                       </h3>
                       
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -381,8 +381,8 @@ export default function CreateTripPage() {
                           onSelect={field.onChange}
                           className="border border-black/10 rounded-2xl p-4 bg-luxury-beige/30"
                           classNames={{
-                            day_selected: "bg-luxury-forest text-white hover:bg-luxury-forest hover:text-white focus:bg-luxury-forest focus:text-white",
-                            day_today: "font-bold text-luxury-forest",
+                            day_selected: "bg-red-600 text-white hover:bg-red-600 hover:text-white focus:bg-red-600 focus:text-white",
+                            day_today: "font-bold text-red-600",
                           }}
                         />
                       )}
@@ -412,7 +412,7 @@ export default function CreateTripPage() {
                         max="20000" 
                         step="500"
                         {...register('budget', { valueAsNumber: true })}
-                        className="w-full accent-luxury-forest"
+                        className="w-full accent-red-600"
                       />
                       <div className="flex justify-between mt-2 font-serif text-lg">
                         <span>${watch('budget').toLocaleString()}</span>
@@ -437,7 +437,7 @@ export default function CreateTripPage() {
                 
                 <textarea 
                   {...register('preferences')}
-                  className="w-full h-40 p-4 rounded-xl border border-black/10 bg-luxury-beige/30 focus:outline-none focus:border-luxury-forest resize-none"
+                  className="w-full h-40 p-4 rounded-xl border border-black/10 bg-luxury-beige/30 focus:outline-none focus:border-red-600 resize-none"
                   placeholder="E.g., I love modern art museums, hidden local restaurants, and prefer slow mornings..."
                 />
               </motion.div>
@@ -463,7 +463,7 @@ export default function CreateTripPage() {
                     <input 
                       type="text" 
                       {...register('name')}
-                      className="w-full bg-white border border-black/10 rounded-xl py-4 px-6 text-luxury-charcoal focus:outline-none focus:border-luxury-forest transition-colors"
+                      className="w-full bg-white border border-black/10 rounded-xl py-4 px-6 text-luxury-charcoal focus:outline-none focus:border-red-600 transition-colors"
                       placeholder={`e.g., Summer in ${destination?.label.split(',')[0] || 'Paradise'}`}
                     />
                     {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
@@ -475,7 +475,7 @@ export default function CreateTripPage() {
                     </label>
                     <textarea 
                       {...register('description')}
-                      className="w-full bg-white border border-black/10 rounded-xl py-4 px-6 text-luxury-charcoal focus:outline-none focus:border-luxury-forest transition-colors resize-none h-24"
+                      className="w-full bg-white border border-black/10 rounded-xl py-4 px-6 text-luxury-charcoal focus:outline-none focus:border-red-600 transition-colors resize-none h-24"
                       placeholder="A short summary of this journey..."
                     />
                   </div>
@@ -487,7 +487,7 @@ export default function CreateTripPage() {
                     <input 
                       type="text" 
                       {...register('coverImage')}
-                      className="w-full bg-white border border-black/10 rounded-xl py-4 px-6 text-luxury-charcoal focus:outline-none focus:border-luxury-forest transition-colors"
+                      className="w-full bg-white border border-black/10 rounded-xl py-4 px-6 text-luxury-charcoal focus:outline-none focus:border-red-600 transition-colors"
                       placeholder="https://images.unsplash.com/..."
                     />
                     {errors.coverImage && <p className="text-red-500 text-sm mt-1">{errors.coverImage.message}</p>}
@@ -522,7 +522,7 @@ export default function CreateTripPage() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="p-6 bg-luxury-cream rounded-2xl border border-black/5">
-                    <h4 className="font-serif font-medium mb-4 flex items-center gap-2"><Route className="w-5 h-5 text-luxury-forest" /> Logistics</h4>
+                    <h4 className="font-serif font-medium mb-4 flex items-center gap-2"><Route className="w-5 h-5 text-red-600" /> Logistics</h4>
                     <ul className="space-y-3 text-sm text-luxury-charcoal/80">
                       <li className="flex items-center gap-2"><strong>Origin:</strong> {origin?.label}</li>
                       <li className="flex items-center gap-2"><strong>Destination:</strong> {destination?.label}</li>
@@ -532,7 +532,7 @@ export default function CreateTripPage() {
                   </div>
                   
                   <div className="p-6 bg-luxury-cream rounded-2xl border border-black/5">
-                    <h4 className="font-serif font-medium mb-4 flex items-center gap-2"><Wallet className="w-5 h-5 text-luxury-forest" /> Parameters</h4>
+                    <h4 className="font-serif font-medium mb-4 flex items-center gap-2"><Wallet className="w-5 h-5 text-red-600" /> Parameters</h4>
                     <ul className="space-y-3 text-sm text-luxury-charcoal/80">
                       <li className="flex items-center gap-2"><strong>Travelers:</strong> {watch('travelers')}</li>
                       <li className="flex items-center gap-2"><strong>Budget:</strong> ${watch('budget').toLocaleString()}</li>

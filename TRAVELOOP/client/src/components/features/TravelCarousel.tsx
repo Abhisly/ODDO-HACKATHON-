@@ -65,7 +65,7 @@ export function TravelCarousel({ destinations, onSelectDestination, selectedId }
           disabled={!prevBtnEnabled}
           className={cn(
             "w-10 h-10 rounded-full border border-black/10 flex items-center justify-center transition-all",
-            prevBtnEnabled ? "hover:border-luxury-forest text-luxury-charcoal" : "opacity-30 cursor-not-allowed"
+            prevBtnEnabled ? "hover:border-red-600 text-luxury-charcoal" : "opacity-30 cursor-not-allowed"
           )}
         >
           <ChevronLeft className="w-5 h-5" />
@@ -75,7 +75,7 @@ export function TravelCarousel({ destinations, onSelectDestination, selectedId }
           disabled={!nextBtnEnabled}
           className={cn(
             "w-10 h-10 rounded-full border border-black/10 flex items-center justify-center transition-all",
-            nextBtnEnabled ? "hover:border-luxury-forest text-luxury-charcoal" : "opacity-30 cursor-not-allowed"
+            nextBtnEnabled ? "hover:border-red-600 text-luxury-charcoal" : "opacity-30 cursor-not-allowed"
           )}
         >
           <ChevronRight className="w-5 h-5" />

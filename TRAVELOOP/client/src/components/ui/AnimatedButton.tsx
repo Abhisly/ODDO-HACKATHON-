@@ -17,7 +17,7 @@ export const AnimatedButton = React.forwardRef<HTMLButtonElement, AnimatedButton
     const baseStyles = "relative inline-flex items-center justify-center font-bold uppercase tracking-widest transition-colors overflow-hidden";
     
     const variants = {
-      primary: "bg-luxury-forest text-white hover:bg-opacity-90 shadow-sm",
+      primary: "bg-red-600 text-white hover:bg-opacity-90 shadow-sm",
       secondary: "bg-luxury-charcoal text-white hover:bg-black shadow-sm",
       outline: "border-2 border-luxury-charcoal text-luxury-charcoal hover:bg-luxury-charcoal hover:text-white",
       ghost: "text-luxury-charcoal hover:bg-black/5"

@@ -31,7 +31,7 @@ export function TimelineCard({ activity, dragHandleProps, isDragging }: Timeline
       <div className="absolute left-[11px] top-8 bottom-0 w-px bg-black/10 group-last:bg-transparent" />
       
       {/* Timeline Dot */}
-      <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-luxury-forest flex items-center justify-center shadow-sm">
+      <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-red-600 flex items-center justify-center shadow-sm">
         {getActivityIcon(activity.type)}
       </div>
 
@@ -44,7 +44,7 @@ export function TimelineCard({ activity, dragHandleProps, isDragging }: Timeline
         <div className="flex-1">
           <div className="flex justify-between items-start mb-2">
             <h4 className="font-serif font-medium text-lg">{activity.title}</h4>
-            <span className="text-xs font-bold tracking-widest uppercase text-luxury-forest bg-luxury-forest/5 px-3 py-1 rounded-full">
+            <span className="text-xs font-bold tracking-widest uppercase text-red-600 bg-red-600/5 px-3 py-1 rounded-full">
               {activity.type}
             </span>
           </div>

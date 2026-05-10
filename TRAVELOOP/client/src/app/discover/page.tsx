@@ -11,7 +11,7 @@ import { AnimatedButton } from '@/components/ui/AnimatedButton';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/Dialog';
 import { useRouter } from 'next/navigation';
 
-const REGIONS = ['All', 'Europe', 'Asia', 'North America', 'South America', 'Africa'];
+const REGIONS = ['All', 'Europe', 'Asia', 'North America', 'South America', 'Africa', 'Oceania'];
 const CATEGORIES = ['All', 'Cultural', 'Coastal Luxury', 'Romantic', 'Nature & Adventure', 'Urban'];
 
 const getWeatherIcon = (icon: string) => {
@@ -90,7 +90,7 @@ export default function DiscoverPage() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${selectedCategory === category ? 'bg-luxury-forest text-white border-luxury-forest' : 'bg-white text-luxury-charcoal/60 border-black/5 hover:border-black/20 shadow-sm'}`}
+              className={`px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${selectedCategory === category ? 'bg-red-600 text-white border-red-600' : 'bg-white text-luxury-charcoal/60 border-black/5 hover:border-black/20 shadow-sm'}`}
             >
               {category}
             </button>

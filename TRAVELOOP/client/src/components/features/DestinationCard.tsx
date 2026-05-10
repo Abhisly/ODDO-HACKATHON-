@@ -20,7 +20,7 @@ export function DestinationCard({ id, name, image, category, priceLevel, onClick
       onClick={onClick}
       className={cn(
         "group relative h-80 rounded-3xl overflow-hidden cursor-pointer border-2 transition-all duration-300",
-        isSelected ? "border-luxury-forest shadow-lg scale-[1.02]" : "border-transparent"
+        isSelected ? "border-red-600 shadow-lg scale-[1.02]" : "border-transparent"
       )}
     >
       <div className="absolute inset-0 cinematic-image-container">

@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Calendar, Users, Wallet, Clock, ArrowRight, ArrowLeft, Coffee, Bed, Plane, Navigation, Edit3 } from 'lucide-react';
+import { MapPin, Calendar, Users, Wallet, Clock, ArrowRight, ArrowLeft, Coffee, Bed, Plane, Navigation, Edit3, Share2, Link as LinkIcon, Copy, Check } from 'lucide-react';
 import { useTravelStore } from '@/lib/store';
 import { useParams, useRouter } from 'next/navigation';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
 import { GlassPanel } from '@/components/ui/GlassPanel';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/Dialog';
 import { format } from 'date-fns';
 import Link from 'next/link';
 import { BudgetWidget } from '@/components/features/CommandCenter/BudgetWidget';
@@ -19,6 +20,15 @@ export default function TripViewPage() {
   
   const tripId = params.id as string;
   const trip = trips.find(t => t.id === tripId);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = () => {
+    const url = `${window.location.origin}/share/${trip?.id}`;
+    navigator.clipboard.writeText(url);
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -98,10 +108,14 @@ export default function TripViewPage() {
              initial={{ opacity: 0, scale: 0.9 }}
              animate={{ opacity: 1, scale: 1 }}
              transition={{ delay: 0.3, duration: 0.6 }}
+             className="flex items-center gap-4"
           >
+            <AnimatedButton onClick={() => setIsShareModalOpen(true)} variant="ghost" className="bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white hover:text-luxury-charcoal" leftIcon={<Share2 className="w-4 h-4" />}>
+              Share Trip
+            </AnimatedButton>
             <Link href="/matrix">
               <AnimatedButton variant="ghost" className="bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white hover:text-luxury-charcoal" leftIcon={<Edit3 className="w-4 h-4" />}>
-                Edit in Route Matrix
+                Edit Matrix
               </AnimatedButton>
             </Link>
           </motion.div>
@@ -136,7 +150,7 @@ export default function TripViewPage() {
                             viewport={{ once: true }}
                             className="group relative pl-0 md:pl-16"
                           >
-                            <div className="absolute left-[21px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-luxury-forest hidden md:block group-hover:scale-125 transition-transform" />
+                            <div className="absolute left-[21px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-red-600 hidden md:block group-hover:scale-125 transition-transform" />
                             
                             <div className="bg-white border border-black/5 rounded-3xl p-6 shadow-sm hover:shadow-md hover:border-black/10 transition-all flex flex-col sm:flex-row sm:items-center gap-6">
                               <div className="w-14 h-14 rounded-full bg-luxury-cream flex items-center justify-center shrink-0 border border-black/5 text-luxury-charcoal">
@@ -147,7 +161,7 @@ export default function TripViewPage() {
                                   <h4 className="font-serif text-xl font-medium">{act.title}</h4>
                                   <span className="text-sm font-bold tracking-widest text-luxury-charcoal/50 shrink-0">{act.time}</span>
                                 </div>
-                                <span className="text-xs uppercase tracking-widest text-luxury-forest font-bold bg-luxury-forest/5 px-3 py-1 rounded-full">{act.type}</span>
+                                <span className="text-xs uppercase tracking-widest text-red-600 font-bold bg-red-600/5 px-3 py-1 rounded-full">{act.type}</span>
                               </div>
                             </div>
                           </motion.div>
@@ -205,6 +219,32 @@ export default function TripViewPage() {
 
         </div>
       </div>
+
+      {/* Share Modal */}
+      <Dialog open={isShareModalOpen} onOpenChange={setIsShareModalOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Share Your Journey</DialogTitle>
+            <DialogDescription>
+              Anyone with this link can view a beautiful, read-only version of your itinerary.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex items-center space-x-2 mt-4">
+            <div className="flex-1 bg-luxury-beige/30 border border-black/10 rounded-xl px-4 py-3 flex items-center justify-between overflow-hidden">
+              <div className="flex items-center gap-2 text-luxury-charcoal/60 truncate">
+                <LinkIcon className="w-4 h-4 shrink-0" />
+                <span className="text-sm truncate">{typeof window !== 'undefined' ? `${window.location.origin}/share/${trip.id}` : ''}</span>
+              </div>
+            </div>
+            <button 
+              onClick={handleCopy}
+              className={`p-3 rounded-xl flex items-center justify-center transition-all ${isCopied ? 'bg-red-600 text-white' : 'bg-red-600 text-white hover:bg-red-600/90'}`}
+            >
+              {isCopied ? <Check className="w-5 h-5" /> : <Copy className="w-5 h-5" />}
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
