@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Geist';
+  src: url('https://fonts.gstatic.com/s/geist/v1/Geist-VariableFont_wght.woff2') format('woff2');
+}
+
+:root {
+  --background: 240 10% 2%;
+  --foreground: 0 0% 100%;
+  --primary: 20 100% 50%;
+  --cyan: 180 100% 50%;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --neon-glow: 0 0 20px rgba(255, 77, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+}
+
+body {
+  background: #050505;
+  color: #fff;
+  font-family: 'Geist', 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cinematic Spacing & Layout */
+.spatial-container {
+  padding: 2rem;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* Glassmorphism System */
+.glass-panel {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.glass-panel:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Neon Typography */
+.text-neon-orange {
+  color: #FF4D00;
+  text-shadow: 0 0 15px rgba(255, 77, 0, 0.4);
+}
+
+.text-neon-cyan {
+  color: #00F3FF;
+  text-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+}
+
+/* Futuristic Gradients */
+.bg-gradient-futuristic {
+  background: linear-gradient(135deg, #0B0F19 0%, #050505 100%);
+}
+
+.bg-mesh-glow {
+  background: radial-gradient(circle at 50% -20%, rgba(255, 77, 0, 0.15), transparent 70%),
+              radial-gradient(circle at 0% 50%, rgba(0, 243, 255, 0.05), transparent 50%);
+}
+
+/* Interactive Elements */
+.magnetic-btn {
+  position: relative;
+  transition: transform 0.2s ease-out;
+}
+
+/* AI Hologram Effects */
+.hologram-overlay {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 243, 255, 0.03) 0px,
+    rgba(0, 243, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes scanning {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.animate-scan {
+  animation: scanning 4s linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 77, 0, 0.3);
+}

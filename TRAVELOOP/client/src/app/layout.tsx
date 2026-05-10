@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import SpatialLayout from "@/components/layout/SpatialLayout";
 
 export const metadata: Metadata = {
-  title: "Traveloop - AI Travel Planner",
-  description: "Plan your next trip with AI",
+  title: "Traveloop OS | Cinematic AI Travel OS",
+  description: "Futuristic AI Travel Operating System from 2045",
 };
 
 export default function RootLayout({
@@ -16,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="bg-[#050505]">
+        <SpatialLayout>{children}</SpatialLayout>
+      </body>
     </html>
   );
 }

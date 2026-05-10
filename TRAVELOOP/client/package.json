@@ -1,0 +1,39 @@
+{
+  "name": "traveloop-client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "15.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "framer-motion": "^11.11.11",
+    "gsap": "^3.12.5",
+    "@studio-freight/lenis": "^1.0.42",
+    "three": "^0.170.0",
+    "@types/three": "^0.170.0",
+    "@react-three/fiber": "^8.17.10",
+    "@react-three/drei": "^9.117.0",
+    "lucide-react": "^0.456.0",
+    "recharts": "^2.13.3",
+    "zustand": "^5.0.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.4",
+    "lucide": "^0.456.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "@types/node": "^20.17.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "15.0.0"
+  }
+}
