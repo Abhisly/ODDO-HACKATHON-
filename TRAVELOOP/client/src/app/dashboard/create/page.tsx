@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { CalendarIcon, MapPin, Users, Wallet, ArrowRight, Loader2, Plane, Train, Car, Route, Clock } from 'lucide-react';
+import { CalendarIcon, MapPin, Users, Wallet, ArrowRight, Loader2, Plane, Train, Car, Route, Clock, Compass } from 'lucide-react';
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
@@ -230,6 +230,7 @@ export default function CreateTripPage() {
                           render={({ field }) => (
                             <AsyncSelect
                               {...field}
+                              instanceId="origin-select"
                               loadOptions={loadCityOptions}
                               placeholder="Search any global city..."
                               styles={customSelectStyles}
@@ -251,6 +252,7 @@ export default function CreateTripPage() {
                           render={({ field }) => (
                             <AsyncSelect
                               {...field}
+                              instanceId="destination-select"
                               loadOptions={loadCityOptions}
                               placeholder="Search destination city..."
                               styles={customSelectStyles}
