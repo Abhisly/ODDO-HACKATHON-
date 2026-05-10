@@ -3,32 +3,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Compass, Calendar, Map as MapIcon, ArrowRight, Plane, Coffee } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import Image from 'next/image';
-
-const upcomingTrips = [
-  { 
-    id: 1, 
-    destination: 'Kyoto, Japan', 
-    dates: 'Oct 12 - 25, 2045', 
-    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop',
-    status: 'Upcoming'
-  },
-  { 
-    id: 2, 
-    destination: 'Amalfi Coast, Italy', 
-    dates: 'Dec 05 - 18, 2045', 
-    image: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800&auto=format&fit=crop',
-    status: 'Planning'
-  },
-];
-
-const aiSuggestions = [
-  { title: 'Hidden Cafes in Kyoto', type: 'Experience', icon: Coffee },
-  { title: 'Optimal flight route to Naples found', type: 'Logistics', icon: Plane },
-];
+import { useTravelStore } from '@/lib/store';
+import Link from 'next/link';
 
 export default function DashboardPage() {
+  const { trips } = useTravelStore();
+
+  const upcomingTrips = trips.filter(trip => trip.status === 'Upcoming' || trip.status === 'Planning');
+
+  const aiSuggestions = [
+    { title: 'Hidden Cafes in Kyoto', type: 'Experience', icon: Coffee },
+    { title: 'Optimal flight route to Naples found', type: 'Logistics', icon: Plane },
+  ];
+
   return (
     <div className="editorial-container pt-32 md:pt-40 pb-24 space-y-20">
       
@@ -44,7 +31,9 @@ export default function DashboardPage() {
             Welcome back.
           </h1>
           <p className="text-xl text-luxury-charcoal/60 font-light leading-relaxed">
-            Your journey to Kyoto is approaching. Let's refine your itinerary.
+            {upcomingTrips.length > 0 
+              ? `Your journey to ${upcomingTrips[0].destination.name} is approaching. Let's refine your itinerary.`
+              : `You have no upcoming trips. Let's start planning.`}
           </p>
         </motion.div>
       </section>
@@ -65,9 +54,9 @@ export default function DashboardPage() {
           <div>
             <h3 className="font-serif text-2xl font-semibold mb-2">Plan a New Journey</h3>
             <p className="text-luxury-charcoal/60 font-medium mb-8">Start with a blank canvas or let AI guide your destination choice.</p>
-            <button className="flex items-center gap-2 text-luxury-forest font-bold tracking-wide uppercase text-xs group">
+            <Link href="/dashboard/create" className="flex items-center gap-2 text-luxury-forest font-bold tracking-wide uppercase text-xs group w-fit">
               Start Planning <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
         </motion.div>
 
@@ -75,7 +64,7 @@ export default function DashboardPage() {
         <div className="lg:col-span-2 space-y-6">
           <div className="flex justify-between items-end">
             <h2 className="font-serif text-3xl font-medium tracking-tight text-luxury-charcoal">Your Journeys</h2>
-            <button className="text-sm font-medium text-luxury-charcoal/60 hover:text-luxury-charcoal transition-colors">View All</button>
+            <Link href="/missions" className="text-sm font-medium text-luxury-charcoal/60 hover:text-luxury-charcoal transition-colors">View All</Link>
           </div>
           
           <div className="grid sm:grid-cols-2 gap-6">
@@ -88,7 +77,7 @@ export default function DashboardPage() {
                 className="editorial-card group relative h-[300px]"
               >
                 <div className="absolute inset-0 cinematic-image-container">
-                  <img src={trip.image} alt={trip.destination} className="cinematic-image" />
+                  <img src={trip.destination.image} alt={trip.destination.name} className="cinematic-image" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 </div>
                 
@@ -97,10 +86,10 @@ export default function DashboardPage() {
                     {trip.status}
                   </div>
                   <div>
-                    <h3 className="font-serif text-3xl text-white font-medium tracking-tight mb-2">{trip.destination}</h3>
+                    <h3 className="font-serif text-3xl text-white font-medium tracking-tight mb-2">{trip.destination.name}</h3>
                     <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
                       <Calendar className="w-4 h-4" />
-                      {trip.dates}
+                      {new Date(trip.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - {new Date(trip.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                     </div>
                   </div>
                 </div>
@@ -125,7 +114,7 @@ export default function DashboardPage() {
                 <span className="text-sm font-bold tracking-[0.2em] uppercase text-luxury-forest">Traveloop AI Concierge</span>
               </div>
               <h2 className="font-serif text-3xl md:text-4xl font-medium tracking-tight mb-6">
-                Insights for your upcoming journey to Kyoto.
+                Insights for your upcoming journey to {upcomingTrips.length > 0 ? upcomingTrips[0].destination.name : 'your next destination'}.
               </h2>
               <div className="space-y-4">
                 {aiSuggestions.map((suggestion, i) => (
@@ -148,9 +137,9 @@ export default function DashboardPage() {
                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-multiply" />
                <MapIcon className="w-12 h-12 text-luxury-forest/30 group-hover:scale-110 transition-transform duration-500" />
                <div className="absolute bottom-6 left-6 right-6">
-                 <button className="w-full bg-white/80 backdrop-blur-md text-luxury-charcoal font-medium py-3 rounded-xl shadow-sm border border-white/50">
+                 <Link href="/matrix" className="w-full bg-white/80 backdrop-blur-md text-luxury-charcoal font-medium py-3 rounded-xl shadow-sm border border-white/50 flex justify-center hover:bg-white transition-colors">
                    Open Route Matrix
-                 </button>
+                 </Link>
                </div>
             </div>
           </div>
