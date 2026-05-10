@@ -19,6 +19,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)", "sans-serif"],
+        serif: ["var(--font-playfair)", "serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -53,14 +57,17 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        cyan: {
-          DEFAULT: "hsl(180 100% 50%)",
-          glow: "rgba(0, 243, 255, 0.3)",
-        },
-        orange: {
-          500: "#FF4D00",
-          600: "#E64500",
-        },
+        // Luxury Editorial Palette
+        luxury: {
+          beige: "#F5F5F0",
+          cream: "#FAFAFA",
+          sand: "#EBE8E0",
+          charcoal: "#1A1A1A",
+          softBlack: "#2A2A2A",
+          forest: "#2C5545",
+          ocean: "#1D3557",
+          sunset: "#E07A5F",
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -76,21 +83,24 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        "pulse-glow": {
-          "0%, 100%": { opacity: "0.5", filter: "blur(4px)" },
-          "50%": { opacity: "1", filter: "blur(8px)" },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
+        "image-zoom": {
+          "0%": { transform: "scale(1)" },
+          "100%": { transform: "scale(1.05)" },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "float": "float 6s ease-in-out infinite",
+        "fade-in-up": "fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
       },
+      boxShadow: {
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.04)',
+        'luxury': '0 20px 40px -10px rgba(0,0,0,0.05)',
+      }
     },
   },
   plugins: [tailwindcssAnimate],

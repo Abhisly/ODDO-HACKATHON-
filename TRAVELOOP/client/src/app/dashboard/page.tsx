@@ -1,147 +1,162 @@
 'use client';
 
 import React from 'react';
-import HeroSection from '@/components/features/CommandCenter/HeroSection';
-import LiveTracker from '@/components/features/CommandCenter/LiveTracker';
-import MissionStats from '@/components/features/CommandCenter/MissionStats';
 import { motion } from 'framer-motion';
-import { Train, Plane, Plus, LayoutPanelTop, Terminal, Map as MapIcon, ArrowRight, Orbit } from 'lucide-react';
+import { Plus, Compass, Calendar, Map as MapIcon, ArrowRight, Plane, Coffee } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
-const popularSectors = [
-  { name: 'Neo-Kyoto Alpha', type: 'High-speed Rail', time: '2h 15m', status: 'Cleared', icon: Train, efficiency: 98 },
-  { name: 'Orbital Station V', type: 'Shuttle Transport', time: '45m', status: 'Boarding', icon: Orbit, efficiency: 94 },
+const upcomingTrips = [
+  { 
+    id: 1, 
+    destination: 'Kyoto, Japan', 
+    dates: 'Oct 12 - 25, 2045', 
+    image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop',
+    status: 'Upcoming'
+  },
+  { 
+    id: 2, 
+    destination: 'Amalfi Coast, Italy', 
+    dates: 'Dec 05 - 18, 2045', 
+    image: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=800&auto=format&fit=crop',
+    status: 'Planning'
+  },
 ];
 
-const quickActions = [
-  { icon: Plus, label: 'Initialize', color: 'primary' },
-  { icon: LayoutPanelTop, label: 'Timeline', color: 'zinc' },
-  { icon: Terminal, label: 'Concierge', color: 'cyan' },
-  { icon: MapIcon, label: 'Matrix', color: 'zinc' },
+const aiSuggestions = [
+  { title: 'Hidden Cafes in Kyoto', type: 'Experience', icon: Coffee },
+  { title: 'Optimal flight route to Naples found', type: 'Logistics', icon: Plane },
 ];
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-16">
-      <HeroSection />
+    <div className="editorial-container pt-32 md:pt-40 pb-24 space-y-20">
+      
+      {/* Welcome Section */}
+      <section>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl"
+        >
+          <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-luxury-charcoal mb-4">
+            Welcome back.
+          </h1>
+          <p className="text-xl text-luxury-charcoal/60 font-light leading-relaxed">
+            Your journey to Kyoto is approaching. Let's refine your itinerary.
+          </p>
+        </motion.div>
+      </section>
 
-      {/* Primary Intelligence Layer */}
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-12 relative z-10">
+      {/* Primary Action Grid */}
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        {/* Create Trip Card */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="xl:col-span-8"
+          className="editorial-card p-8 flex flex-col justify-between min-h-[300px] border border-black/5 bg-luxury-beige"
         >
-          <LiveTracker />
-        </motion.div>
-        
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          className="xl:col-span-4 h-full"
-        >
-          <MissionStats />
-        </motion.div>
-      </div>
-
-      {/* Tactical Overview Layer */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10"
-      >
-        {/* Popular Sector Telemetry */}
-        <div className="space-y-8">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <h3 className="text-sm font-bold tracking-[0.3em] uppercase text-muted-foreground flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
-              Active Sectors
-            </h3>
-            <button className="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em] hover:text-cyan-300 transition-colors flex items-center gap-2 group">
-              Deep Scan <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+          <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm mb-8">
+            <Plus className="w-6 h-6 text-luxury-forest" />
+          </div>
+          <div>
+            <h3 className="font-serif text-2xl font-semibold mb-2">Plan a New Journey</h3>
+            <p className="text-luxury-charcoal/60 font-medium mb-8">Start with a blank canvas or let AI guide your destination choice.</p>
+            <button className="flex items-center gap-2 text-luxury-forest font-bold tracking-wide uppercase text-xs group">
+              Start Planning <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
-          <div className="space-y-4">
-            {popularSectors.map((sector, i) => (
-              <motion.div 
-                whileHover={{ scale: 1.01, x: 5 }}
-                key={sector.name} 
-                className="glass-panel p-6 flex flex-col sm:flex-row sm:items-center justify-between group gap-6 sm:gap-0"
+        </motion.div>
+
+        {/* Upcoming Trips */}
+        <div className="lg:col-span-2 space-y-6">
+          <div className="flex justify-between items-end">
+            <h2 className="font-serif text-3xl font-medium tracking-tight text-luxury-charcoal">Your Journeys</h2>
+            <button className="text-sm font-medium text-luxury-charcoal/60 hover:text-luxury-charcoal transition-colors">View All</button>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 gap-6">
+            {upcomingTrips.map((trip, i) => (
+              <motion.div
+                key={trip.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + (i * 0.1), duration: 0.8 }}
+                className="editorial-card group relative h-[300px]"
               >
-                <div className="flex items-center gap-6">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-primary/20 blur-md rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 relative z-10 group-hover:border-primary/30 transition-colors">
-                      <sector.icon className="w-7 h-7 text-primary drop-shadow-[0_0_8px_rgba(255,77,0,0.5)]" />
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-2xl tracking-tight text-white group-hover:text-primary transition-colors">{sector.name}</h4>
-                    <div className="flex items-center gap-3 mt-2">
-                      <p className="text-xs font-mono text-muted-foreground uppercase tracking-[0.2em]">{sector.type}</p>
-                      <span className="w-1 h-1 rounded-full bg-white/20" />
-                      <p className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-bold">EFF {sector.efficiency}%</p>
-                    </div>
-                  </div>
+                <div className="absolute inset-0 cinematic-image-container">
+                  <img src={trip.image} alt={trip.destination} className="cinematic-image" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 </div>
                 
-                <div className="text-left sm:text-right flex sm:flex-col justify-between sm:justify-start items-center sm:items-end w-full sm:w-auto border-t border-white/10 sm:border-t-0 pt-4 sm:pt-0 mt-4 sm:mt-0">
-                  <p className="font-black text-2xl tracking-tighter text-white">{sector.time}</p>
-                  <div className="flex items-center gap-2 mt-1 px-3 py-1 bg-white/5 rounded-full border border-white/5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 drop-shadow-[0_0_5px_rgba(0,243,255,0.8)] animate-pulse" />
-                    <p className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest font-bold">{sector.status}</p>
+                <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
+                  <div className="self-end px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-[10px] font-bold uppercase tracking-widest border border-white/20">
+                    {trip.status}
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-3xl text-white font-medium tracking-tight mb-2">{trip.destination}</h3>
+                    <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
+                      <Calendar className="w-4 h-4" />
+                      {trip.dates}
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Rapid Deployment Dock */}
-        <div className="space-y-8">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <h3 className="text-sm font-bold tracking-[0.3em] uppercase text-muted-foreground">Quick Command</h3>
+      {/* AI Intelligence Section */}
+      <section>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="editorial-card p-8 lg:p-12 border border-black/5 bg-white"
+        >
+          <div className="flex flex-col md:flex-row gap-12 items-start justify-between">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <Compass className="w-5 h-5 text-luxury-forest" />
+                <span className="text-sm font-bold tracking-[0.2em] uppercase text-luxury-forest">Traveloop AI Concierge</span>
+              </div>
+              <h2 className="font-serif text-3xl md:text-4xl font-medium tracking-tight mb-6">
+                Insights for your upcoming journey to Kyoto.
+              </h2>
+              <div className="space-y-4">
+                {aiSuggestions.map((suggestion, i) => (
+                  <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-luxury-cream border border-black/5 hover:border-black/10 transition-colors cursor-pointer group">
+                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+                      <suggestion.icon className="w-5 h-5 text-luxury-charcoal" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-medium text-luxury-charcoal group-hover:text-luxury-forest transition-colors">{suggestion.title}</h4>
+                      <p className="text-xs text-luxury-charcoal/50 font-medium uppercase tracking-wider">{suggestion.type}</p>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-luxury-charcoal/30 group-hover:translate-x-1 group-hover:text-luxury-forest transition-all" />
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Quick Map Preview */}
+            <div className="w-full md:w-80 h-80 rounded-2xl bg-luxury-beige relative overflow-hidden border border-black/5 flex items-center justify-center group cursor-pointer">
+               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-multiply" />
+               <MapIcon className="w-12 h-12 text-luxury-forest/30 group-hover:scale-110 transition-transform duration-500" />
+               <div className="absolute bottom-6 left-6 right-6">
+                 <button className="w-full bg-white/80 backdrop-blur-md text-luxury-charcoal font-medium py-3 rounded-xl shadow-sm border border-white/50">
+                   Open Route Matrix
+                 </button>
+               </div>
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-6 h-[calc(100%-4rem)]">
-            {quickActions.map((action) => (
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                key={action.label}
-                className="glass-panel p-8 flex flex-col items-center justify-center gap-6 group relative h-full min-h-[160px]"
-              >
-                {/* Advanced Hover Glow */}
-                <div className={cn(
-                  "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none",
-                  action.color === 'primary' ? "from-primary/10 to-transparent" :
-                  action.color === 'cyan' ? "from-cyan-500/10 to-transparent" :
-                  "from-white/5 to-transparent"
-                )} />
-                
-                <div className={cn(
-                  "w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 relative z-10 border",
-                  action.color === 'primary' ? "bg-primary/10 border-primary/20 shadow-[0_0_30px_rgba(255,77,0,0.1)] group-hover:bg-primary/20" :
-                  action.color === 'cyan' ? "bg-cyan-500/10 border-cyan-500/20 shadow-[0_0_30px_rgba(0,243,255,0.1)] group-hover:bg-cyan-500/20" :
-                  "bg-white/5 border-white/5 group-hover:bg-white/10"
-                )}>
-                  <action.icon className={cn(
-                    "w-8 h-8 transition-colors duration-500",
-                    action.color === 'primary' ? "text-primary drop-shadow-[0_0_10px_rgba(255,77,0,0.5)]" :
-                    action.color === 'cyan' ? "text-cyan-400 drop-shadow-[0_0_10px_rgba(0,243,255,0.5)]" :
-                    "text-muted-foreground group-hover:text-white"
-                  )} />
-                </div>
-                <span className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground group-hover:text-white transition-colors relative z-10">
-                  {action.label}
-                </span>
-              </motion.button>
-            ))}
-          </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </section>
+      
     </div>
   );
 }

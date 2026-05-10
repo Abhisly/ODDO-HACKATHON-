@@ -4,35 +4,39 @@
 
 @layer base {
   :root {
-    --background: 240 10% 2.5%;
-    --foreground: 0 0% 100%;
+    /* Soft Cream Background */
+    --background: 60 33% 98%; /* #FAFAFA approx */
+    --foreground: 0 0% 10%; /* Dark Charcoal */
     
-    --card: 240 10% 2.5%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
     
-    --popover: 240 10% 2.5%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
     
-    --primary: 20 100% 50%;
+    /* Forest Green Primary */
+    --primary: 156 32% 25%; /* #2C5545 */
     --primary-foreground: 0 0% 100%;
     
-    --secondary: 240 10% 10%;
-    --secondary-foreground: 0 0% 100%;
+    /* Sand/Beige Secondary */
+    --secondary: 45 20% 90%; /* #EBE8E0 */
+    --secondary-foreground: 0 0% 15%;
     
-    --muted: 240 10% 10%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 60 5% 90%;
+    --muted-foreground: 0 0% 45%;
     
-    --accent: 180 100% 50%;
+    /* Sunset Orange Accent */
+    --accent: 15 65% 60%; /* #E07A5F */
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 20 100% 50%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 156 32% 25%;
     
-    --radius: 1.5rem;
+    --radius: 1rem;
   }
 }
 
@@ -41,46 +45,43 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/30;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    @apply bg-background text-foreground antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
   }
 }
 
 @layer components {
-  .glass-panel {
-    @apply bg-white/[0.02] backdrop-blur-[40px] border border-white/[0.05] rounded-3xl transition-all duration-500 relative overflow-hidden;
+  .glass-nav {
+    @apply bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-sm transition-all duration-300;
   }
   
-  .glass-panel::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-white/[0.05] to-transparent opacity-0 transition-opacity duration-500 pointer-events-none;
+  .editorial-card {
+    @apply bg-white rounded-2xl shadow-luxury overflow-hidden transition-transform duration-500 hover:-translate-y-1;
   }
 
-  .glass-panel:hover {
-    @apply bg-white/[0.04] border-white/[0.1] shadow-[0_0_40px_rgba(255,77,0,0.05)];
+  .cinematic-image-container {
+    @apply relative overflow-hidden rounded-2xl;
+  }
+  
+  .cinematic-image {
+    @apply object-cover w-full h-full transition-transform duration-1000 ease-out hover:scale-105;
   }
 
-  .glass-panel:hover::before {
-    @apply opacity-100;
+  .btn-luxury {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full bg-luxury-forest text-white font-medium tracking-wide transition-all hover:bg-opacity-90 shadow-md hover:shadow-lg hover:-translate-y-0.5;
   }
-
-  .text-neon-orange {
-    @apply text-[#FF4D00] drop-shadow-[0_0_20px_rgba(255,77,0,0.6)];
-  }
-
-  .text-neon-cyan {
-    @apply text-[#00F3FF] drop-shadow-[0_0_20px_rgba(0,243,255,0.6)];
-  }
-
-  .bg-mesh-glow {
-    background: radial-gradient(circle at 50% -20%, rgba(255, 77, 0, 0.08), transparent 60%),
-                radial-gradient(circle at 0% 50%, rgba(0, 243, 255, 0.03), transparent 40%);
+  
+  .btn-luxury-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-luxury-charcoal text-luxury-charcoal font-medium tracking-wide transition-all hover:bg-luxury-charcoal hover:text-white;
   }
 }
 
-/* Custom Scrollbar - Minimalist Apple Vision Pro style */
+/* Minimalist Scrollbar */
 ::-webkit-scrollbar {
-  @apply w-1;
+  @apply w-1.5;
 }
 
 ::-webkit-scrollbar-track {
@@ -88,9 +89,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-white/20 rounded-full hover:bg-white/40 transition-colors;
+  @apply bg-black/10 rounded-full hover:bg-black/20 transition-colors;
 }
 
-.spatial-container {
-  @apply p-8 lg:p-12 xl:p-16 w-full max-w-[2000px] mx-auto;
+/* Base structural utility */
+.editorial-container {
+  @apply w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-24;
 }
