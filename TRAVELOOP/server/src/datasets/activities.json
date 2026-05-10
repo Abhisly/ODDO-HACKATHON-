@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Sushi Making Class",
+    "city": "Tokyo",
+    "category": "Culinary",
+    "duration": "3 hours",
+    "estimatedPrice": 80,
+    "images": ["sushi-class.jpg"],
+    "description": "Learn to make authentic sushi with a master chef.",
+    "rating": 4.9
+  },
+  {
+    "title": "Louvre Guided Tour",
+    "city": "Paris",
+    "category": "Art",
+    "duration": "2.5 hours",
+    "estimatedPrice": 60,
+    "images": ["louvre.jpg"],
+    "description": "Skip the line and see the Mona Lisa.",
+    "rating": 4.7
+  },
+  {
+    "title": "Surf Lesson",
+    "city": "Bali",
+    "category": "Adventure",
+    "duration": "2 hours",
+    "estimatedPrice": 30,
+    "images": ["surf-bali.jpg"],
+    "description": "Learn to catch waves at Kuta Beach.",
+    "rating": 4.6
+  }
+]

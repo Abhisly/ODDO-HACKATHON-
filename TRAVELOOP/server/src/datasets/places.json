@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Tokyo Tower",
+    "city": "Tokyo",
+    "description": "Iconic red-and-white communications tower.",
+    "images": ["tokyo-tower-1.jpg"],
+    "timings": "09:00 - 23:00",
+    "estimatedCost": 10,
+    "category": "Landmark",
+    "ratings": 4.5,
+    "location": "Minato, Tokyo",
+    "bestTimeToVisit": "Evening"
+  },
+  {
+    "name": "Eiffel Tower",
+    "city": "Paris",
+    "description": "Wrought-iron lattice tower on the Champ de Mars.",
+    "images": ["eiffel-1.jpg"],
+    "timings": "09:30 - 22:45",
+    "estimatedCost": 25,
+    "category": "Landmark",
+    "ratings": 4.8,
+    "location": "Paris",
+    "bestTimeToVisit": "Sunset"
+  },
+  {
+    "name": "Uluwatu Temple",
+    "city": "Bali",
+    "description": "Balinese sea temple perched on a cliff.",
+    "images": ["uluwatu-1.jpg"],
+    "timings": "07:00 - 19:00",
+    "estimatedCost": 5,
+    "category": "Cultural",
+    "ratings": 4.7,
+    "location": "Pecatu, Bali",
+    "bestTimeToVisit": "Late Afternoon"
+  }
+]
