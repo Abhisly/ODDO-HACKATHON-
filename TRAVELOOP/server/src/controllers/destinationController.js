@@ -1,10 +1,8 @@
-const City = require('../models/City');
-const Place = require('../models/Place');
-const Activity = require('../models/Activity');
+const { prisma } = require('../config/db');
 
 exports.getAllCities = async (req, res) => {
   try {
-    const cities = await City.find({});
+    const cities = await prisma.city.findMany();
     res.status(200).json(cities);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -13,16 +11,20 @@ exports.getAllCities = async (req, res) => {
 
 exports.getCityDetails = async (req, res) => {
   try {
-    const city = await City.findOne({ cityName: req.params.cityName });
+    const city = await prisma.city.findUnique({
+      where: { cityName: req.params.cityName },
+      include: {
+        places: true,
+        activities: true
+      }
+    });
+    
     if (!city) return res.status(404).json({ message: 'City not found' });
-
-    const places = await Place.find({ city: city.cityName });
-    const activities = await Activity.find({ city: city.cityName });
 
     res.status(200).json({
       city,
-      famousPlaces: places,
-      activities
+      famousPlaces: city.places,
+      activities: city.activities
     });
   } catch (error) {
     res.status(500).json({ error: error.message });

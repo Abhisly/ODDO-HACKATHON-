@@ -1,10 +1,6 @@
-const mongoose = require('mongoose');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 const dotenv = require('dotenv');
-const connectDB = require('../config/db');
-
-const City = require('../models/City');
-const Place = require('../models/Place');
-const Activity = require('../models/Activity');
 
 const citiesData = require('../datasets/cities.json');
 const placesData = require('../datasets/places.json');
@@ -14,21 +10,42 @@ dotenv.config();
 
 const importData = async () => {
   try {
-    await connectDB();
+    await prisma.$connect();
+    
+    // Clear existing data safely due to relations
+    await prisma.activity.deleteMany();
+    await prisma.place.deleteMany();
+    await prisma.city.deleteMany();
+    await prisma.trip.deleteMany();
 
-    await City.deleteMany();
-    await Place.deleteMany();
-    await Activity.deleteMany();
+    // Insert Cities
+    for (const city of citiesData) {
+      await prisma.city.create({
+        data: city
+      });
+    }
 
-    await City.insertMany(citiesData);
-    await Place.insertMany(placesData);
-    await Activity.insertMany(activitiesData);
+    // Insert Places
+    for (const place of placesData) {
+      await prisma.place.create({
+        data: place
+      });
+    }
 
-    console.log('Data Imported successfully into MongoDB!');
+    // Insert Activities
+    for (const activity of activitiesData) {
+      await prisma.activity.create({
+        data: activity
+      });
+    }
+
+    console.log('Data Imported successfully into PostgreSQL!');
     process.exit();
   } catch (error) {
     console.error(`Error importing data: ${error.message}`);
     process.exit(1);
+  } finally {
+    await prisma.$disconnect();
   }
 };
 

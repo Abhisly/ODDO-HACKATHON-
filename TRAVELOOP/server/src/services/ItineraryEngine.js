@@ -1,6 +1,4 @@
-const City = require('../models/City');
-const Place = require('../models/Place');
-const Activity = require('../models/Activity');
+const { prisma } = require('../config/db');
 
 class ItineraryEngine {
   static async generate(destinations) {
@@ -9,16 +7,21 @@ class ItineraryEngine {
     let totalDuration = 0;
 
     for (const dest of destinations) {
-      const cityData = await City.findOne({ cityName: dest.city });
-      const places = await Place.find({ city: dest.city }).limit(dest.duration * 2);
-      const activities = await Activity.find({ city: dest.city }).limit(dest.duration);
+      const places = await prisma.place.findMany({
+        where: { city: dest.city },
+        take: dest.duration * 2
+      });
+      const activities = await prisma.activity.findMany({
+        where: { city: dest.city },
+        take: dest.duration
+      });
 
       for (let i = 0; i < dest.duration; i++) {
         itinerary.push({
           day: currentDay,
           city: dest.city,
-          places: places.slice(i * 2, (i + 1) * 2).map(p => p._id),
-          activities: activities.slice(i, i + 1).map(a => a._id)
+          places: places.slice(i * 2, (i + 1) * 2).map(p => ({ placeId: p.id })),
+          activities: activities.slice(i, i + 1).map(a => ({ activityId: a.id }))
         });
         currentDay++;
         totalDuration++;
