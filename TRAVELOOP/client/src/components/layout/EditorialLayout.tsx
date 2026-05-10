@@ -19,7 +19,7 @@ export default function EditorialLayout({ children }: { children: React.ReactNod
         
         <ResponsiveSidebar />
         
-        <div className="flex-1 flex flex-col min-h-screen w-full lg:w-auto overflow-hidden relative z-10">
+        <div className="flex-1 flex flex-col min-h-screen w-full lg:w-auto overflow-x-hidden relative z-10">
           <ElegantNavbar />
           
           <main className="flex-1 w-full relative">

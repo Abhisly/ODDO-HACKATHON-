@@ -95,7 +95,7 @@ export default function MyTripsPage() {
                 transition={{ duration: 0.4 }}
                 className="group relative"
               >
-                <Link href={`/matrix`}>
+                <Link href={`/trips/${trip.id}`}>
                   <TripCard trip={trip} index={i} />
                 </Link>
                 <button 
@@ -141,8 +141,8 @@ export default function MyTripsPage() {
                   </div>
                   
                   <div className="flex justify-between items-center">
-                    <Link href="/matrix" className="text-luxury-forest font-bold tracking-widest text-xs uppercase hover:underline flex items-center gap-2">
-                      Manage Itinerary <ArrowRight className="w-3 h-3" />
+                    <Link href={`/trips/${trip.id}`} className="text-luxury-forest font-bold tracking-widest text-xs uppercase hover:underline flex items-center gap-2">
+                      View Document <ArrowRight className="w-3 h-3" />
                     </Link>
                     <button 
                       onClick={(e) => handleDelete(e, trip.id)}

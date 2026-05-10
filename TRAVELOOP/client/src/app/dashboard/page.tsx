@@ -71,9 +71,9 @@ export default function DashboardPage() {
                 </AnimatedButton>
               </Link>
               {heroTrip && (
-                <Link href="/matrix">
+                <Link href={`/trips/${heroTrip.id}`}>
                   <AnimatedButton variant="ghost" className="text-white hover:bg-white/10 hover:text-white border border-white/20">
-                    View Itinerary
+                    View Document
                   </AnimatedButton>
                 </Link>
               )}
@@ -120,7 +120,7 @@ export default function DashboardPage() {
               {upcomingTrips.length > 0 ? (
                 <div className="grid sm:grid-cols-2 gap-6">
                   {upcomingTrips.map((trip, i) => (
-                    <Link key={trip.id} href="/matrix">
+                    <Link key={trip.id} href={`/trips/${trip.id}`}>
                       <TripCard trip={trip} index={i} />
                     </Link>
                   ))}

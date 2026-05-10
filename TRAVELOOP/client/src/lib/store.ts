@@ -51,6 +51,8 @@ interface TravelStore {
   setActiveTrip: (id: string) => void;
   addTrip: (trip: Trip) => void;
   updateItineraryDay: (tripId: string, dayIndex: number, newActivities: Activity[]) => void;
+  addActivity: (tripId: string, dayIndex: number, activity: Activity) => void;
+  deleteActivity: (tripId: string, dayIndex: number, activityId: string) => void;
   togglePackingItem: (id: string) => void;
   addExpense: (expense: any) => void;
   addNote: (note: Note) => void;
@@ -74,6 +76,34 @@ export const useTravelStore = create<TravelStore>((set) => ({
       if (trip.id === tripId) {
         const newItinerary = [...trip.itinerary];
         newItinerary[dayIndex] = { ...newItinerary[dayIndex], activities: newActivities };
+        return { ...trip, itinerary: newItinerary };
+      }
+      return trip;
+    })
+  })),
+
+  addActivity: (tripId, dayIndex, activity) => set((state) => ({
+    trips: state.trips.map(trip => {
+      if (trip.id === tripId) {
+        const newItinerary = [...trip.itinerary];
+        newItinerary[dayIndex] = { 
+          ...newItinerary[dayIndex], 
+          activities: [...newItinerary[dayIndex].activities, activity] 
+        };
+        return { ...trip, itinerary: newItinerary };
+      }
+      return trip;
+    })
+  })),
+
+  deleteActivity: (tripId, dayIndex, activityId) => set((state) => ({
+    trips: state.trips.map(trip => {
+      if (trip.id === tripId) {
+        const newItinerary = [...trip.itinerary];
+        newItinerary[dayIndex] = { 
+          ...newItinerary[dayIndex], 
+          activities: newItinerary[dayIndex].activities.filter(a => a.id !== activityId) 
+        };
         return { ...trip, itinerary: newItinerary };
       }
       return trip;
