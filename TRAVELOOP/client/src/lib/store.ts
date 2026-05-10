@@ -51,11 +51,13 @@ interface TravelStore {
   notes: Note[];
   user: any | null;
   currency: string;
+  maxBudget: number;
   loading: boolean;
   
   // Actions
   setUser: (user: any | null) => void;
   setCurrency: (currency: string) => void;
+  setMaxBudget: (budget: number) => void;
   setActiveTrip: (id: string | null) => void;
   fetchTrips: () => Promise<void>;
   fetchDestinations: () => Promise<void>;
@@ -84,10 +86,12 @@ export const useTravelStore = create<TravelStore>((set, get) => ({
   notes: MOCK_NOTES,
   user: null,
   currency: 'USD',
+  maxBudget: 5000,
   loading: false,
 
   setUser: (user) => set({ user }),
   setCurrency: (currency) => set({ currency }),
+  setMaxBudget: (maxBudget) => set({ maxBudget }),
   setActiveTrip: (id) => set({ activeTripId: id }),
   setDestinations: (destinations) => set({ destinations }),
 
