@@ -2,51 +2,67 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search } from 'lucide-react';
+import { Search, Command, Terminal as TerminalIcon } from 'lucide-react';
 
 export default function HeroSection() {
   return (
-    <div className="relative mb-12">
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+    <div className="relative mb-20 pt-8">
+      <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-12">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+          className="space-y-6"
         >
-          <div className="flex items-center gap-2 mb-4">
-            <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse-glow" />
-            <p className="text-[10px] font-mono tracking-[0.3em] uppercase text-orange-500/80">System Active</p>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20">
+              <span className="w-1.5 h-1.5 bg-orange-500 rounded-full animate-pulse" />
+              <p className="text-[10px] font-mono tracking-[0.4em] uppercase text-orange-500 font-bold">Protocol Active</p>
+            </div>
+            <div className="h-px w-12 bg-white/10" />
+            <p className="text-[10px] font-mono tracking-[0.4em] uppercase text-zinc-600">ID: CDR-2045-ALPHA</p>
           </div>
-          <h1 className="text-6xl lg:text-8xl font-bold tracking-tighter leading-none mb-4">
-            Hello, <span className="text-orange-500 italic">Commander</span>
+          
+          <h1 className="text-7xl lg:text-9xl font-black tracking-[calc(-0.06em)] leading-[0.85] uppercase italic">
+            Hello,<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-orange-500 to-orange-400 drop-shadow-[0_0_30px_rgba(255,77,0,0.3)]">Commander</span>
           </h1>
-          <p className="text-zinc-400 text-lg lg:text-xl max-w-xl font-medium tracking-tight">
-            All systems nominal. Your next travel mission is scheduled for 14:20:05 UTC.
-          </p>
+          
+          <div className="flex items-center gap-6 pt-4">
+            <p className="text-zinc-400 text-xl lg:text-2xl max-w-xl font-medium tracking-tight leading-snug">
+              System readiness: <span className="text-white font-bold italic">100%</span>. All orbital travel routes are clear for mission deployment.
+            </p>
+          </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="relative w-full lg:w-96"
+          transition={{ delay: 0.4, duration: 1 }}
+          className="relative w-full xl:w-[450px]"
         >
-          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-            <Search className="w-5 h-5 text-zinc-500" />
-          </div>
-          <input 
-            type="text" 
-            placeholder="Search systems, routes, tickets..."
-            className="w-full glass-panel bg-white/[0.02] py-4 pl-12 pr-6 focus:outline-none focus:border-orange-500/50 transition-all placeholder:text-zinc-600 font-medium text-sm"
-          />
-          <div className="absolute top-1/2 -translate-y-1/2 right-4 text-[10px] font-mono text-zinc-600 bg-white/5 px-2 py-1 rounded">
-            ⌘ K
+          <div className="absolute -inset-1 bg-gradient-to-r from-orange-500/20 to-cyan-500/20 blur-2xl opacity-50" />
+          <div className="relative glass-panel bg-[#0B0F19]/60 border-white/10 p-2 flex items-center group">
+            <div className="pl-6 pr-4">
+              <Search className="w-6 h-6 text-zinc-500 group-focus-within:text-orange-500 transition-colors" />
+            </div>
+            <input 
+              type="text" 
+              placeholder="Search orbital routes, missions, logs..."
+              className="flex-1 bg-transparent py-5 text-lg font-bold tracking-tight focus:outline-none placeholder:text-zinc-700 text-white"
+            />
+            <div className="pr-6 flex items-center gap-2">
+              <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-white/5 border border-white/5 text-[10px] font-black text-zinc-500">
+                <Command className="w-3 h-3" /> K
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
 
-      {/* Decorative Glow */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange-600/10 blur-[120px] rounded-full pointer-events-none" />
+      {/* Atmospheric FX */}
+      <div className="absolute -top-40 -left-60 w-[800px] h-[800px] bg-orange-600/5 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 -right-40 w-[600px] h-[600px] bg-cyan-600/5 blur-[160px] rounded-full pointer-events-none" />
     </div>
   );
 }
