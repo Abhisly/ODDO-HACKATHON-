@@ -1,151 +1,194 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Compass, Calendar, Map as MapIcon, ArrowRight, Plane, Coffee } from 'lucide-react';
+import { Plus, Compass, Calendar, ArrowRight, Sun, Cloud, CloudRain, Snowflake, Clock } from 'lucide-react';
 import { useTravelStore } from '@/lib/store';
 import Link from 'next/link';
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
+import { GlassPanel } from '@/components/ui/GlassPanel';
+import { TripCard } from '@/components/features/TripCard';
+import { TravelCarousel } from '@/components/features/TravelCarousel';
+import { MOCK_ACTIVITY_FEED } from '@/lib/mockData';
+
+const getWeatherIcon = (icon: string) => {
+  switch(icon) {
+    case 'Sun': return <Sun className="w-8 h-8 text-yellow-500" />;
+    case 'Cloud': return <Cloud className="w-8 h-8 text-gray-400" />;
+    case 'CloudRain': return <CloudRain className="w-8 h-8 text-blue-400" />;
+    case 'Snowflake': return <Snowflake className="w-8 h-8 text-blue-200" />;
+    default: return <Sun className="w-8 h-8" />;
+  }
+};
 
 export default function DashboardPage() {
-  const { trips } = useTravelStore();
+  const { trips, destinations } = useTravelStore();
 
   const upcomingTrips = trips.filter(trip => trip.status === 'Upcoming' || trip.status === 'Planning');
+  const recentTrips = trips.filter(trip => trip.status === 'Completed');
+  const heroTrip = upcomingTrips.length > 0 ? upcomingTrips[0] : null;
 
-  const aiSuggestions = [
-    { title: 'Hidden Cafes in Kyoto', type: 'Experience', icon: Coffee },
-    { title: 'Optimal flight route to Naples found', type: 'Logistics', icon: Plane },
-  ];
+  const trendingDestinations = useMemo(() => {
+    return destinations.filter(dest => dest.priceLevel === '$$$$' || dest.category === 'Cultural');
+  }, [destinations]);
 
   return (
-    <div className="editorial-container pt-32 md:pt-40 pb-24 space-y-20">
+    <div className="pb-24">
       
-      {/* Welcome Section */}
-      <section>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl"
-        >
-          <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-luxury-charcoal mb-4">
-            Welcome back.
-          </h1>
-          <p className="text-xl text-luxury-charcoal/60 font-light leading-relaxed">
-            {upcomingTrips.length > 0 
-              ? `Your journey to ${upcomingTrips[0].destination.name} is approaching. Let's refine your itinerary.`
-              : `You have no upcoming trips. Let's start planning.`}
-          </p>
-        </motion.div>
-      </section>
-
-      {/* Primary Action Grid */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {/* Immersive Hero Section */}
+      <section className="relative h-[80vh] min-h-[600px] w-full flex items-end pb-24">
+        {heroTrip ? (
+          <div className="absolute inset-0 cinematic-image-container">
+            <img src={heroTrip.destination.image} alt={heroTrip.destination.name} className="cinematic-image" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+          </div>
+        ) : (
+          <div className="absolute inset-0 bg-luxury-charcoal" />
+        )}
         
-        {/* Create Trip Card */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          className="editorial-card p-8 flex flex-col justify-between min-h-[300px] border border-black/5 bg-luxury-beige"
-        >
-          <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-sm mb-8">
-            <Plus className="w-6 h-6 text-luxury-forest" />
-          </div>
-          <div>
-            <h3 className="font-serif text-2xl font-semibold mb-2">Plan a New Journey</h3>
-            <p className="text-luxury-charcoal/60 font-medium mb-8">Start with a blank canvas or let AI guide your destination choice.</p>
-            <Link href="/dashboard/create" className="flex items-center gap-2 text-luxury-forest font-bold tracking-wide uppercase text-xs group w-fit">
-              Start Planning <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-        </motion.div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-end gap-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl text-white"
+          >
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-white/70 mb-4 block">
+              {heroTrip ? 'Your Next Journey' : 'Welcome to Traveloop'}
+            </span>
+            <h1 className="text-5xl md:text-7xl font-serif font-medium tracking-tight mb-6 leading-tight">
+              {heroTrip ? heroTrip.destination.name : 'Ready for your next adventure?'}
+            </h1>
+            <p className="text-xl text-white/70 font-light leading-relaxed mb-8">
+              {heroTrip 
+                ? `Departing on ${new Date(heroTrip.startDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}. The world is waiting.`
+                : 'Plan your next luxury escape with our AI-powered travel concierge.'}
+            </p>
+            <div className="flex gap-4">
+              <Link href="/dashboard/create">
+                <AnimatedButton leftIcon={<Plus className="w-4 h-4" />}>
+                  Plan New Trip
+                </AnimatedButton>
+              </Link>
+              {heroTrip && (
+                <Link href="/matrix">
+                  <AnimatedButton variant="ghost" className="text-white hover:bg-white/10 hover:text-white border border-white/20">
+                    View Itinerary
+                  </AnimatedButton>
+                </Link>
+              )}
+            </div>
+          </motion.div>
 
-        {/* Upcoming Trips */}
-        <div className="lg:col-span-2 space-y-6">
-          <div className="flex justify-between items-end">
-            <h2 className="font-serif text-3xl font-medium tracking-tight text-luxury-charcoal">Your Journeys</h2>
-            <Link href="/missions" className="text-sm font-medium text-luxury-charcoal/60 hover:text-luxury-charcoal transition-colors">View All</Link>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 gap-6">
-            {upcomingTrips.map((trip, i) => (
-              <motion.div
-                key={trip.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + (i * 0.1), duration: 0.8 }}
-                className="editorial-card group relative h-[300px]"
-              >
-                <div className="absolute inset-0 cinematic-image-container">
-                  <img src={trip.destination.image} alt={trip.destination.name} className="cinematic-image" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          {/* Weather Widget (Only if upcoming trip exists and has weather data) */}
+          {heroTrip && heroTrip.destination.weather && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <GlassPanel intensity="light" className="p-6 w-64 border-white/20 text-white">
+                <div className="flex justify-between items-start mb-6">
+                  <span className="text-xs font-bold tracking-widest uppercase text-white/60 block">Current Weather</span>
+                  {getWeatherIcon(heroTrip.destination.weather.icon)}
                 </div>
-                
-                <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
-                  <div className="self-end px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-[10px] font-bold uppercase tracking-widest border border-white/20">
-                    {trip.status}
-                  </div>
-                  <div>
-                    <h3 className="font-serif text-3xl text-white font-medium tracking-tight mb-2">{trip.destination.name}</h3>
-                    <div className="flex items-center gap-2 text-white/80 text-sm font-medium">
-                      <Calendar className="w-4 h-4" />
-                      {new Date(trip.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - {new Date(trip.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                <h3 className="font-serif text-5xl font-medium mb-1">
+                  {heroTrip.destination.weather.temp}°C
+                </h3>
+                <p className="text-white/80">{heroTrip.destination.weather.condition} in {heroTrip.destination.name.split(',')[0]}</p>
+              </GlassPanel>
+            </motion.div>
+          )}
         </div>
       </section>
 
-      {/* AI Intelligence Section */}
-      <section>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="editorial-card p-8 lg:p-12 border border-black/5 bg-white"
-        >
-          <div className="flex flex-col md:flex-row gap-12 items-start justify-between">
-            <div className="max-w-xl">
-              <div className="flex items-center gap-3 mb-4">
-                <Compass className="w-5 h-5 text-luxury-forest" />
-                <span className="text-sm font-bold tracking-[0.2em] uppercase text-luxury-forest">Traveloop AI Concierge</span>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mt-20 space-y-24">
+        
+        {/* Main Dashboard Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          
+          {/* Left Column: Trips */}
+          <div className="lg:col-span-2 space-y-12">
+            
+            {/* Upcoming Trips */}
+            <section>
+              <div className="flex justify-between items-end mb-8">
+                <h2 className="font-serif text-3xl font-medium tracking-tight text-luxury-charcoal">Active Journeys</h2>
+                <Link href="/trips" className="text-sm font-bold tracking-widest uppercase text-luxury-charcoal/60 hover:text-luxury-charcoal transition-colors">View All</Link>
               </div>
-              <h2 className="font-serif text-3xl md:text-4xl font-medium tracking-tight mb-6">
-                Insights for your upcoming journey to {upcomingTrips.length > 0 ? upcomingTrips[0].destination.name : 'your next destination'}.
-              </h2>
-              <div className="space-y-4">
-                {aiSuggestions.map((suggestion, i) => (
-                  <div key={i} className="flex items-center gap-4 p-4 rounded-xl bg-luxury-cream border border-black/5 hover:border-black/10 transition-colors cursor-pointer group">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
-                      <suggestion.icon className="w-5 h-5 text-luxury-charcoal" />
+              
+              {upcomingTrips.length > 0 ? (
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {upcomingTrips.map((trip, i) => (
+                    <Link key={trip.id} href="/matrix">
+                      <TripCard trip={trip} index={i} />
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-12 border border-dashed border-black/10 rounded-3xl text-center">
+                  <Compass className="w-10 h-10 text-luxury-charcoal/20 mx-auto mb-4" />
+                  <p className="text-luxury-charcoal/60">No active journeys. Start planning your next adventure.</p>
+                </div>
+              )}
+            </section>
+
+            {/* AI Travel Carousel */}
+            <section>
+              <div className="flex justify-between items-end mb-8">
+                <h2 className="font-serif text-3xl font-medium tracking-tight text-luxury-charcoal">Trending Destinations</h2>
+                <Link href="/discover" className="text-sm font-bold tracking-widest uppercase text-luxury-charcoal/60 hover:text-luxury-charcoal transition-colors">Explore</Link>
+              </div>
+              <TravelCarousel destinations={trendingDestinations} />
+            </section>
+            
+          </div>
+
+          {/* Right Column: Activity Feed & Quick Actions */}
+          <div className="space-y-8">
+            
+            {/* Quick Actions */}
+            <div className="grid grid-cols-2 gap-4">
+              <Link href="/telemetry" className="p-6 bg-white border border-black/5 rounded-3xl hover:border-black/20 hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 group">
+                <div className="w-12 h-12 bg-luxury-beige rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Calendar className="w-5 h-5 text-luxury-forest" />
+                </div>
+                <span className="font-medium text-sm text-luxury-charcoal">Budget & Packing</span>
+              </Link>
+              <Link href="/missions" className="p-6 bg-white border border-black/5 rounded-3xl hover:border-black/20 hover:shadow-md transition-all flex flex-col items-center justify-center text-center gap-3 group">
+                <div className="w-12 h-12 bg-luxury-beige rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Compass className="w-5 h-5 text-luxury-forest" />
+                </div>
+                <span className="font-medium text-sm text-luxury-charcoal">Travel Journal</span>
+              </Link>
+            </div>
+
+            {/* Activity Feed */}
+            <div className="bg-white border border-black/5 rounded-3xl p-8 shadow-sm">
+              <h3 className="font-serif text-xl font-medium mb-6">Activity Feed</h3>
+              <div className="space-y-8">
+                {MOCK_ACTIVITY_FEED.map((feed) => (
+                  <div key={feed.id} className="flex gap-4 group">
+                    <div className="relative mt-1">
+                      <div className="w-10 h-10 rounded-full bg-luxury-beige flex items-center justify-center shrink-0 border border-black/5">
+                         {/* Dynamic Icon fallback */}
+                        <Clock className="w-4 h-4 text-luxury-forest" />
+                      </div>
+                      <div className="absolute top-10 bottom-[-32px] left-1/2 w-px bg-black/5 group-last:hidden" />
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium text-luxury-charcoal group-hover:text-luxury-forest transition-colors">{suggestion.title}</h4>
-                      <p className="text-xs text-luxury-charcoal/50 font-medium uppercase tracking-wider">{suggestion.type}</p>
+                    <div>
+                      <p className="text-sm text-luxury-charcoal/90 font-medium mb-1 leading-relaxed">{feed.text}</p>
+                      <p className="text-xs font-bold uppercase tracking-widest text-luxury-charcoal/40">{feed.time}</p>
                     </div>
-                    <ArrowRight className="w-4 h-4 text-luxury-charcoal/30 group-hover:translate-x-1 group-hover:text-luxury-forest transition-all" />
                   </div>
                 ))}
               </div>
             </div>
-            
-            {/* Quick Map Preview */}
-            <div className="w-full md:w-80 h-80 rounded-2xl bg-luxury-beige relative overflow-hidden border border-black/5 flex items-center justify-center group cursor-pointer">
-               <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-multiply" />
-               <MapIcon className="w-12 h-12 text-luxury-forest/30 group-hover:scale-110 transition-transform duration-500" />
-               <div className="absolute bottom-6 left-6 right-6">
-                 <Link href="/matrix" className="w-full bg-white/80 backdrop-blur-md text-luxury-charcoal font-medium py-3 rounded-xl shadow-sm border border-white/50 flex justify-center hover:bg-white transition-colors">
-                   Open Route Matrix
-                 </Link>
-               </div>
-            </div>
+
           </div>
-        </motion.div>
-      </section>
-      
+        </div>
+
+      </div>
     </div>
   );
 }

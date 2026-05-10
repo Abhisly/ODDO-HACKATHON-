@@ -8,10 +8,12 @@ import { Compass, User, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
-  { label: 'Destinations', path: '/' },
-  { label: 'My Journeys', path: '/missions' },
-  { label: 'Plan a Trip', path: '/dashboard' },
-  { label: 'Travel Guide AI', path: '/concierge' },
+  { label: 'Dashboard', path: '/dashboard' },
+  { label: 'Discover', path: '/discover' },
+  { label: 'My Trips', path: '/trips' },
+  { label: 'Route Matrix', path: '/matrix' },
+  { label: 'Logistics', path: '/telemetry' },
+  { label: 'AI Concierge', path: '/concierge' },
 ];
 
 export default function ElegantNavbar() {

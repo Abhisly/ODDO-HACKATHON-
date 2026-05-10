@@ -13,6 +13,8 @@ export function ResponsiveSidebar() {
 
   const navLinks = [
     { name: 'Dashboard', href: '/dashboard', icon: Compass },
+    { name: 'Discover', href: '/discover', icon: MapIcon },
+    { name: 'My Trips', href: '/trips', icon: Calendar },
     { name: 'Route Matrix', href: '/matrix', icon: MapIcon },
     { name: 'Logistics', href: '/telemetry', icon: Calendar },
     { name: 'AI Concierge', href: '/concierge', icon: MessageSquare },
